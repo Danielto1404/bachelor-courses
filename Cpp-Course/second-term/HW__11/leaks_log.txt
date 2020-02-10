@@ -1,0 +1,36 @@
+==12948== Memcheck, a memory error detector
+==12948== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==12948== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==12948== Command: ./Test
+==12948== Parent PID: 12937
+==12948== 
+==12948== 
+==12948== HEAP SUMMARY:
+==12948==     in use at exit: 22,414 bytes in 163 blocks
+==12948==   total heap usage: 192 allocs, 29 frees, 30,939 bytes allocated
+==12948== 
+==12948== 72 bytes in 3 blocks are possibly lost in loss record 25 of 42
+==12948==    at 0x1000B06EA: calloc (in /usr/local/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==12948==    by 0x1008457E2: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==12948==    by 0x1008587DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==12948==    by 0x10000BC64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==12948==    by 0x10000BE39: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==12948==    by 0x10031071D: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==12948==    by 0x100845075: _objc_init (in /usr/lib/libobjc.A.dylib)
+==12948==    by 0x10029AB34: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==12948==    by 0x10029AB1B: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==12948==    by 0x1001759C2: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==12948==    by 0x10001DAC5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==12948==    by 0x10001DCF5: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==12948== 
+==12948== LEAK SUMMARY:
+==12948==    definitely lost: 0 bytes in 0 blocks
+==12948==    indirectly lost: 0 bytes in 0 blocks
+==12948==      possibly lost: 72 bytes in 3 blocks
+==12948==    still reachable: 4,296 bytes in 7 blocks
+==12948==         suppressed: 18,046 bytes in 153 blocks
+==12948== Reachable blocks (those to which a pointer was found) are not shown.
+==12948== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==12948== 
+==12948== For counts of detected and suppressed errors, rerun with: -v
+==12948== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 8 from 8)

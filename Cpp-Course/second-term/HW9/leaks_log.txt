@@ -1,0 +1,36 @@
+==10663== Memcheck, a memory error detector
+==10663== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==10663== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==10663== Command: ./Test
+==10663== Parent PID: 10642
+==10663== 
+==10663== 
+==10663== HEAP SUMMARY:
+==10663==     in use at exit: 26,682 bytes in 168 blocks
+==10663==   total heap usage: 192 allocs, 24 frees, 35,226 bytes allocated
+==10663== 
+==10663== 72 bytes in 3 blocks are possibly lost in loss record 28 of 47
+==10663==    at 0x1000BB6EA: calloc (in /usr/local/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==10663==    by 0x1008507E2: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==10663==    by 0x1008637DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==10663==    by 0x100016C64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==10663==    by 0x100016E39: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==10663==    by 0x10031B71D: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==10663==    by 0x100850075: _objc_init (in /usr/lib/libobjc.A.dylib)
+==10663==    by 0x1002A5B34: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==10663==    by 0x1002A5B1B: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==10663==    by 0x1001809C2: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==10663==    by 0x100028AC5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==10663==    by 0x100028CF5: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==10663== 
+==10663== LEAK SUMMARY:
+==10663==    definitely lost: 0 bytes in 0 blocks
+==10663==    indirectly lost: 0 bytes in 0 blocks
+==10663==      possibly lost: 72 bytes in 3 blocks
+==10663==    still reachable: 8,540 bytes in 11 blocks
+==10663==         suppressed: 18,070 bytes in 154 blocks
+==10663== Reachable blocks (those to which a pointer was found) are not shown.
+==10663== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==10663== 
+==10663== For counts of detected and suppressed errors, rerun with: -v
+==10663== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 9 from 9)

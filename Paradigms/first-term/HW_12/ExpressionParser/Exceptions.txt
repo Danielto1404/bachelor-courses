@@ -1,0 +1,49 @@
+No first argument              MissingOperandException: Missing operand before position: 0
+* y * z
+^
+
+No middle argument             MissingOperandException: Missing operand before position: 5
+x *  * z
+     ^
+
+No last argument               ParsingException: Incorrect expression
+x * y * 
+No first argument'             MissingOperandException: Missing operand before position: 5
+1 + (* y * z) + 2
+     ^
+
+No middle argument'            MissingOperandException: Missing operand before position: 10
+1 + (x *  / 9) + 3
+          ^
+
+No last argument'              MissingOperandException: Missing operand before position: 13
+1 + (x * y - ) + 3
+             ^
+
+No opening parenthesis         ExcessClosingBracketException: Excess closing bracket at position: 5
+x * y)
+     ^
+
+No closing parenthesis         MissingClosingBracketException: Missing closing bracket for opening bracket at position: 0
+(x * y
+^
+
+Start symbol                   UnknownSymbolException: Unknown symbol '@' at position 0
+@x * y
+^
+
+Middle symbol                  UnknownSymbolException: Unknown symbol '@' at position 2
+x @ * y
+  ^
+
+End symbol                     UnknownSymbolException: Unknown symbol '@' at position 5
+x * y@
+     ^
+
+Constant overflow 1            IllegalConstantException: Constant '-2147483649' is unsuitable for int at position: 0
+-2147483649
+^~~~~~~~~~~
+
+Constant overflow 2            IllegalConstantException: Constant '2147483648' is unsuitable for int at position: 0
+2147483648
+^~~~~~~~~~

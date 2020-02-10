@@ -1,0 +1,292 @@
+==77832== Memcheck, a memory error detector
+==77832== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==77832== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==77832== Command: ./Test
+==77832== Parent PID: 77791
+==77832== 
+--77832-- run: /usr/bin/dsymutil "./Test"
+==77832== 
+==77832== HEAP SUMMARY:
+==77832==     in use at exit: 26,510 bytes in 164 blocks
+==77832==   total heap usage: 5,129 allocs, 4,965 frees, 615,637 bytes allocated
+==77832== 
+==77832== 24 bytes in 1 blocks are still reachable in loss record 3 of 43
+==77832==    at 0x1000AF2FE: malloc_zone_malloc (in /usr/local/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77832==    by 0x100812928: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008128FA: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008113CB: __sel_registerName(char const*, int, int) (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008110DA: sel_init (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008109AD: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008237DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x10000AC64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==77832==    by 0x10000AE39: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==77832==    by 0x1002DB71D: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==77832==    by 0x100810075: _objc_init (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x100265B34: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==77832== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc_zone_malloc
+   fun:NXCreateMapTableFromZone
+   fun:NXCreateMapTableFromZone
+   fun:_ZL18__sel_registerNamePKcii
+   fun:sel_init
+   fun:map_images_nolock
+   fun:_ZN11objc_object21sidetable_retainCountEv
+   fun:_ZN4dyldL18notifyBatchPartialE17dyld_image_statesbPFPKcS0_jPK15dyld_image_infoEbb
+   fun:_ZN4dyld21registerObjCNotifiersEPFvjPKPKcPKPK11mach_headerEPFvS1_S6_ESC_
+   fun:_dyld_objc_notify_register
+   fun:_objc_init
+   fun:_os_object_init
+}
+==77832== 32 bytes in 1 blocks are still reachable in loss record 7 of 43
+==77832==    at 0x1000AF2FE: malloc_zone_malloc (in /usr/local/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77832==    by 0x100812A80: NXCreateHashTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x100812A50: NXCreateHashTable (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x100812950: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008128FA: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008113CB: __sel_registerName(char const*, int, int) (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008110DA: sel_init (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008109AD: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008237DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x10000AC64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==77832==    by 0x10000AE39: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==77832==    by 0x1002DB71D: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==77832== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc_zone_malloc
+   fun:NXCreateHashTableFromZone
+   fun:NXCreateHashTable
+   fun:NXCreateMapTableFromZone
+   fun:NXCreateMapTableFromZone
+   fun:_ZL18__sel_registerNamePKcii
+   fun:sel_init
+   fun:map_images_nolock
+   fun:_ZN11objc_object21sidetable_retainCountEv
+   fun:_ZN4dyldL18notifyBatchPartialE17dyld_image_statesbPFPKcS0_jPK15dyld_image_infoEbb
+   fun:_ZN4dyld21registerObjCNotifiersEPFvjPKPKcPKPK11mach_headerEPFvS1_S6_ESC_
+   fun:_dyld_objc_notify_register
+}
+==77832== 32 bytes in 1 blocks are still reachable in loss record 8 of 43
+==77832==    at 0x1000AF2FE: malloc_zone_malloc (in /usr/local/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77832==    by 0x100812AA1: NXCreateHashTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x100812A50: NXCreateHashTable (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x100812950: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008128FA: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008113CB: __sel_registerName(char const*, int, int) (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008110DA: sel_init (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008109AD: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008237DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x10000AC64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==77832==    by 0x10000AE39: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==77832==    by 0x1002DB71D: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==77832== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc_zone_malloc
+   fun:NXCreateHashTableFromZone
+   fun:NXCreateHashTable
+   fun:NXCreateMapTableFromZone
+   fun:NXCreateMapTableFromZone
+   fun:_ZL18__sel_registerNamePKcii
+   fun:sel_init
+   fun:map_images_nolock
+   fun:_ZN11objc_object21sidetable_retainCountEv
+   fun:_ZN4dyldL18notifyBatchPartialE17dyld_image_statesbPFPKcS0_jPK15dyld_image_infoEbb
+   fun:_ZN4dyld21registerObjCNotifiersEPFvjPKPKcPKPK11mach_headerEPFvS1_S6_ESC_
+   fun:_dyld_objc_notify_register
+}
+==77832== 32 bytes in 1 blocks are still reachable in loss record 9 of 43
+==77832==    at 0x1000AF086: malloc (in /usr/local/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77832==    by 0x100812B65: NXCreateHashTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x100812A50: NXCreateHashTable (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x100812950: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008128FA: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008113CB: __sel_registerName(char const*, int, int) (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008110DA: sel_init (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008109AD: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008237DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x10000AC64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==77832==    by 0x10000AE39: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==77832==    by 0x1002DB71D: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==77832== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:NXCreateHashTableFromZone
+   fun:NXCreateHashTable
+   fun:NXCreateMapTableFromZone
+   fun:NXCreateMapTableFromZone
+   fun:_ZL18__sel_registerNamePKcii
+   fun:sel_init
+   fun:map_images_nolock
+   fun:_ZN11objc_object21sidetable_retainCountEv
+   fun:_ZN4dyldL18notifyBatchPartialE17dyld_image_statesbPFPKcS0_jPK15dyld_image_infoEbb
+   fun:_ZN4dyld21registerObjCNotifiersEPFvjPKPKcPKPK11mach_headerEPFvS1_S6_ESC_
+   fun:_dyld_objc_notify_register
+}
+==77832== 32 bytes in 1 blocks are still reachable in loss record 10 of 43
+==77832==    at 0x1000AF086: malloc (in /usr/local/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77832==    by 0x1008129B6: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008128FA: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008113CB: __sel_registerName(char const*, int, int) (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008110DA: sel_init (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008109AD: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008237DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x10000AC64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==77832==    by 0x10000AE39: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==77832==    by 0x1002DB71D: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==77832==    by 0x100810075: _objc_init (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x100265B34: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==77832== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:NXCreateMapTableFromZone
+   fun:NXCreateMapTableFromZone
+   fun:_ZL18__sel_registerNamePKcii
+   fun:sel_init
+   fun:map_images_nolock
+   fun:_ZN11objc_object21sidetable_retainCountEv
+   fun:_ZN4dyldL18notifyBatchPartialE17dyld_image_statesbPFPKcS0_jPK15dyld_image_infoEbb
+   fun:_ZN4dyld21registerObjCNotifiersEPFvjPKPKcPKPK11mach_headerEPFvS1_S6_ESC_
+   fun:_dyld_objc_notify_register
+   fun:_objc_init
+   fun:_os_object_init
+}
+==77832== 48 bytes in 1 blocks are still reachable in loss record 14 of 43
+==77832==    at 0x1000AF8AD: malloc_zone_calloc (in /usr/local/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77832==    by 0x100812F18: _NXHashRehashToCapacity (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x100812E96: NXHashInsert (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x100812B8F: NXCreateHashTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x100812A50: NXCreateHashTable (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x100812950: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008128FA: NXCreateMapTableFromZone (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008113CB: __sel_registerName(char const*, int, int) (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008110DA: sel_init (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008109AD: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008237DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x10000AC64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==77832== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc_zone_calloc
+   fun:_NXHashRehashToCapacity
+   fun:NXHashInsert
+   fun:NXCreateHashTableFromZone
+   fun:NXCreateHashTable
+   fun:NXCreateMapTableFromZone
+   fun:NXCreateMapTableFromZone
+   fun:_ZL18__sel_registerNamePKcii
+   fun:sel_init
+   fun:map_images_nolock
+   fun:_ZN11objc_object21sidetable_retainCountEv
+   fun:_ZN4dyldL18notifyBatchPartialE17dyld_image_statesbPFPKcS0_jPK15dyld_image_infoEbb
+}
+==77832== 72 bytes in 3 blocks are possibly lost in loss record 25 of 43
+==77832==    at 0x1000AF6EA: calloc (in /usr/local/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77832==    by 0x1008107E2: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x1008237DA: objc_object::sidetable_retainCount() (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x10000AC64: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==77832==    by 0x10000AE39: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==77832==    by 0x1002DB71D: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==77832==    by 0x100810075: _objc_init (in /usr/lib/libobjc.A.dylib)
+==77832==    by 0x100265B34: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==77832==    by 0x100265B1B: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==77832==    by 0x1000BD9C2: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==77832==    by 0x10001CAC5: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==77832==    by 0x10001CCF5: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==77832== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:calloc
+   fun:map_images_nolock
+   fun:_ZN11objc_object21sidetable_retainCountEv
+   fun:_ZN4dyldL18notifyBatchPartialE17dyld_image_statesbPFPKcS0_jPK15dyld_image_infoEbb
+   fun:_ZN4dyld21registerObjCNotifiersEPFvjPKPKcPKPK11mach_headerEPFvS1_S6_ESC_
+   fun:_dyld_objc_notify_register
+   fun:_objc_init
+   fun:_os_object_init
+   fun:libdispatch_init
+   fun:libSystem_initializer
+   fun:_ZN16ImageLoaderMachO18doModInitFunctionsERKN11ImageLoader11LinkContextE
+   fun:_ZN16ImageLoaderMachO16doInitializationERKN11ImageLoader11LinkContextE
+}
+==77832== 4,096 bytes in 1 blocks are still reachable in loss record 41 of 43
+==77832==    at 0x1000AF086: malloc (in /usr/local/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77832==    by 0x1003A0500: __smakebuf (in /usr/lib/system/libsystem_c.dylib)
+==77832==    by 0x1003B420F: __swsetup (in /usr/lib/system/libsystem_c.dylib)
+==77832==    by 0x10039F7BF: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==77832==    by 0x10039FD9D: fwrite (in /usr/lib/system/libsystem_c.dylib)
+==77832==    by 0x1000013EA: std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> > std::__1::__pad_and_output<char, std::__1::char_traits<char> >(std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> >, char const*, char const*, char const*, std::__1::ios_base&, char) (in ./Test)
+==77832==    by 0x100000DD5: std::__1::basic_ostream<char, std::__1::char_traits<char> >& std::__1::__put_character_sequence<char, std::__1::char_traits<char> >(std::__1::basic_ostream<char, std::__1::char_traits<char> >&, char const*, unsigned long) (in ./Test)
+==77832==    by 0x100000ADB: std::__1::basic_ostream<char, std::__1::char_traits<char> >& std::__1::operator<< <std::__1::char_traits<char> >(std::__1::basic_ostream<char, std::__1::char_traits<char> >&, char const*) (in ./Test)
+==77832==    by 0x100002933: testSwapMin(unsigned int) (in ./Test)
+==77832==    by 0x100000A08: main (in ./Test)
+==77832== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:__smakebuf
+   fun:__swsetup
+   fun:__sfvwrite
+   fun:fwrite
+   fun:_ZNSt3__116__pad_and_outputIcNS_11char_traitsIcEEEENS_19ostreambuf_iteratorIT_T0_EES6_PKS4_S8_S8_RNS_8ios_baseES4_
+   fun:_ZNSt3__124__put_character_sequenceIcNS_11char_traitsIcEEEERNS_13basic_ostreamIT_T0_EES7_PKS4_m
+   fun:_ZNSt3__1lsINS_11char_traitsIcEEEERNS_13basic_ostreamIcT_EES6_PKc
+   fun:_Z11testSwapMinj
+   fun:main
+}
+==77832== 4,096 bytes in 1 blocks are still reachable in loss record 42 of 43
+==77832==    at 0x1000AF086: malloc (in /usr/local/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==77832==    by 0x1003A0500: __smakebuf (in /usr/lib/system/libsystem_c.dylib)
+==77832==    by 0x1003A3C75: __srefill0 (in /usr/lib/system/libsystem_c.dylib)
+==77832==    by 0x1003A3D65: __srefill (in /usr/lib/system/libsystem_c.dylib)
+==77832==    by 0x1003A3E38: __srget (in /usr/lib/system/libsystem_c.dylib)
+==77832==    by 0x10039FF84: getc (in /usr/lib/system/libsystem_c.dylib)
+==77832==    by 0x1000D840C: std::__1::__stdinbuf<char>::__getchar(bool) (in /usr/lib/libc++.1.dylib)
+==77832==    by 0x1000CFF87: std::__1::basic_istream<char, std::__1::char_traits<char> >::get() (in /usr/lib/libc++.1.dylib)
+==77832==    by 0x100001A16: getline() (in ./Test)
+==77832==    by 0x100000A38: main (in ./Test)
+==77832== 
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:__smakebuf
+   fun:__srefill0
+   fun:__srefill
+   fun:__srget
+   fun:getc
+   fun:_ZNSt3__110__stdinbufIcE9__getcharEb
+   fun:_ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE3getEv
+   fun:_Z7getlinev
+   fun:main
+}
+==77832== LEAK SUMMARY:
+==77832==    definitely lost: 0 bytes in 0 blocks
+==77832==    indirectly lost: 0 bytes in 0 blocks
+==77832==      possibly lost: 72 bytes in 3 blocks
+==77832==    still reachable: 8,392 bytes in 8 blocks
+==77832==         suppressed: 18,046 bytes in 153 blocks
+==77832== 
+==77832== For counts of detected and suppressed errors, rerun with: -v
+==77832== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 8 from 8)
