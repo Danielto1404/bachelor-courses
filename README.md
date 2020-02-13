@@ -1,6 +1,9 @@
 # ITMO home works & projects
 
-+ [Algorithms and Data Structures & Discrete Maths labs](Labs)
-+ [Paradigms of Programming](Paradigms)
-+ [C++](Cpp-Course)
-+ [Operation Systems](Bash-course)
++ [Algorithms and Data Structures labs](algorithms-and-data-structures)
++ [Discrete Maths](discrete-maths)
++ [Paradigms of Programming](paradigms-of-programming)
++ [C++](cpp-Course)
++ [Operation Systems](bash-course)
++ [Java Advanced](java-advanced)
++ [Mathematical Logic](mathematical-logic)
