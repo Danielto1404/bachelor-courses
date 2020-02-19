@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 
-public class RecursiveWalk {
+public class RecursiveWalker {
 
     public static void main(String[] args) {
         if (!checkInputArguments(args)) {
