@@ -1,6 +1,6 @@
 package ru.ifmo.rain.korolev.walk;
 
-import java.io.FileWriter;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
@@ -16,13 +16,20 @@ public class Walker {
             System.out.println("Usage java Walk <input file name> <output file name>");
             return;
         }
-        Path inputFilePath = Path.of(args[0]);
-        Path outputFilePath = Path.of(args[1]);
-        try (FileWriter fileWriter = new FileWriter(outputFilePath.toString(), StandardCharsets.UTF_8)) {
+        Path inputFilePath;
+        Path outputFilePath;
+        try {
+            inputFilePath = Path.of(args[0]);
+            outputFilePath = Path.of(args[1]);
+        } catch (InvalidPathException e) {
+            System.err.println("Invalid path for files");
+            return;
+        }
+        try (BufferedWriter writer = Files.newBufferedWriter(outputFilePath, StandardCharsets.UTF_8)) {
             try (Stream<String> inputFiles = Files.lines(inputFilePath, StandardCharsets.UTF_8)) {
                 inputFiles.forEach(filePathName -> {
                     int hash = FNVHasher.calculateHash(Path.of(filePathName));
-                    write(fileWriter, hash, filePathName);
+                    write(writer, hash, filePathName);
                 });
             } catch (IOException e) {
                 System.out.println("Unable to read input file " + inputFilePath.toString());
