@@ -51,21 +51,21 @@ public class RecursiveWalker {
     }
 
     private static void run(Path inputPath, Path outputPath) {
-        try (BufferedWriter bw = Files.newBufferedWriter(outputPath, StandardCharsets.UTF_8)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(outputPath, StandardCharsets.UTF_8)) {
             try (Stream<String> inputStream = Files.lines(inputPath, StandardCharsets.UTF_8)) {
                 inputStream.forEach(fileName ->
                 {
                     Path filePath = createPath(fileName);
                     if (filePath == null) {
-                        writeError(bw, fileName);
+                        writeError(writer, fileName);
                         return;
                     }
                     try (Stream<Path> pathStream = Files.walk(filePath)) {
                         pathStream.filter(Predicate.not(Files::isDirectory)).forEach(
-                                path -> write(bw, FNVHasher.calculateHash(path), path.toString()));
+                                path -> write(writer, FNVHasher.calculateHash(path), path.toString()));
                     } catch (IOException e) {
                         System.err.println("Can't read file: " + fileName);
-                        writeError(bw, fileName);
+                        writeError(writer, fileName);
                     }
                 });
 
@@ -84,7 +84,7 @@ public class RecursiveWalker {
         try {
             writer.write(String.format("%08x %s%n", hash, pathName));
         } catch (IOException e) {
-            System.out.println("Error writing into output file");
+            System.err.println("Error writing into output file");
         }
     }
 
