@@ -88,7 +88,7 @@ public class ArraySortedSet<E> extends AbstractSet<E> implements SortedSet<E> {
         return comparator == null ? ((Comparable<E>) a).compareTo(b) : comparator.compare(a, b);
     }
 
-    private int index(E e) {
+    private int index(E e)  {
         int index = Collections.binarySearch(elements, e, comparator);
         return index >= 0 ? index : -index - 1;
     }
