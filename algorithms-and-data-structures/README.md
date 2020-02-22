@@ -12,3 +12,4 @@
     #### 1.  [DFS, MST, реберная и вершинная двусвязность](second-year/dfs-mst) 
     #### 2.  [Кратчайшие пути, отрицательные циклы, игры на графах](second-year/dijkstra-floyd)
     #### 3.  [Алгоритмы на строках](second-year/strings)
+    #### 4.  [Паросочетания](second-year/matchings)
