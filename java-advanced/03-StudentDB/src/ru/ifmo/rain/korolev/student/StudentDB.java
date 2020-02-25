@@ -184,9 +184,9 @@ public class StudentDB implements StudentGroupQuery {
                 .sorted(GROUP_BY_NAME_COMPARATOR);
     }
 
-    private static List<Group> groupQuery(Collection<Student> students, Comparator<Student> comparator) {
-        return sortedGroupStream(students, (Map.Entry<String, List<Student>> e) -> new Group(
-                e.getKey(), listSortingQuery(e.getValue(), comparator)))
+    private static List<Group> listGroupQuery(Collection<Student> students, Comparator<Student> comparator) {
+        return sortedGroupStream(students, (Map.Entry<String, List<Student>> e) ->
+                new Group(e.getKey(), listSortingQuery(e.getValue(), comparator)))
                 .collect(Collectors.toList());
     }
 
@@ -201,12 +201,12 @@ public class StudentDB implements StudentGroupQuery {
 
     @Override
     public List<Group> getGroupsByName(Collection<Student> students) {
-        return groupQuery(students, STUDENT_BY_NAME_COMPARATOR);
+        return listGroupQuery(students, STUDENT_BY_NAME_COMPARATOR);
     }
 
     @Override
     public List<Group> getGroupsById(Collection<Student> students) {
-        return groupQuery(students, STUDENT_BY_ID_COMPARATOR);
+        return listGroupQuery(students, STUDENT_BY_ID_COMPARATOR);
     }
 
     @Override
