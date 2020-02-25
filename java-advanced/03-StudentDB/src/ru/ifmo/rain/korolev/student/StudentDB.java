@@ -5,6 +5,7 @@ import info.kgeorgiy.java.advanced.student.Student;
 import info.kgeorgiy.java.advanced.student.StudentGroupQuery;
 
 import java.util.*;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collector;
@@ -149,9 +150,8 @@ public class StudentDB implements StudentGroupQuery {
                 Comparator.naturalOrder(),
                 Collectors.toMap(
                         Student::getLastName, Student::getFirstName,
-                        (oldName, newName) -> (oldName.compareTo(newName) <= 0) ? oldName : newName));
+                        BinaryOperator.minBy(String::compareTo)));
     }
-
 
 
     /*
