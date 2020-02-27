@@ -41,7 +41,8 @@ public class StudentDB implements StudentGroupQuery {
     private static Function<Student, String> GET_FULL_NAME =
             student -> student.getFirstName() + " " + student.getLastName();
 
-    private static <R> Stream<R> mappingStream(List<Student> students, Function<Student, ? extends R> mapper) {
+    private static <R> Stream<R> mappingStream(List<Student> students,
+                                               Function<Student, ? extends R> mapper) {
         return students
                 .stream()
                 .map(mapper);
@@ -166,35 +167,43 @@ public class StudentDB implements StudentGroupQuery {
 
     // Group auxiliary functions
 
-    private static <K, V> Stream<Map.Entry<K, V>> studentEntryStream(Collection<Student> students,
-                                                                     Function<Student, K> keyFunction,
-                                                                     Collector<Student, ?, V> valueCollector) {
+    private static <K> Stream<Map.Entry<K, List<Student>>> studentEntryStream(Collection<Student> students,
+                                                                              Function<Student, K> keyFunction) {
         return students
                 .stream()
-                .collect(Collectors.groupingBy(keyFunction, valueCollector))
+                .collect(Collectors.groupingBy(keyFunction))
                 .entrySet()
                 .stream();
     }
 
     private static Stream<Group> sortedGroupStream(Collection<Student> students,
-                                                   Function<Map.Entry<String, List<Student>>, Group> groupBuilder) {
+                                                   Comparator<Student> comparator) {
 
-        return studentEntryStream(students, Student::getGroup, Collectors.toList())
-                .map(groupBuilder)
+        return studentEntryStream(students, Student::getGroup)
+                .map(groupConstructor(comparator))
                 .sorted(GROUP_BY_NAME_COMPARATOR);
     }
 
+    private static Function<Map.Entry<String, List<Student>>, Group> groupConstructor(Comparator<Student> comparator) {
+        return (Map.Entry<String, List<Student>> e) ->
+                new Group(e.getKey(), listSortingQuery(e.getValue(), comparator));
+    }
+
     private static List<Group> listGroupQuery(Collection<Student> students, Comparator<Student> comparator) {
-        return sortedGroupStream(students, (Map.Entry<String, List<Student>> e) ->
-                new Group(e.getKey(), listSortingQuery(e.getValue(), comparator)))
+        return sortedGroupStream(students, comparator)
                 .collect(Collectors.toList());
     }
 
     private static String maxGroupNameQuery(Collection<Student> students, Comparator<Group> comparator) {
-        return sortedGroupStream(students, (Map.Entry<String, List<Student>> e) -> new Group(e.getKey(), e.getValue()))
+        return sortedGroupStream(students, Comparator.naturalOrder())
                 .max(comparator)
                 .map(Group::getName)
                 .orElse(EMPTY_STRING);
+    }
+
+    private static Comparator<Group> maxNameGroupPostComparator(Function<Group, Integer> function) {
+        return Comparator.comparing(function)
+                .thenComparing(Comparator.comparing(Group::getName).reversed());
     }
 
     // Group methods implementation
@@ -211,16 +220,15 @@ public class StudentDB implements StudentGroupQuery {
 
     @Override
     public String getLargestGroup(Collection<Student> students) {
-        return maxGroupNameQuery(students,
-                Comparator.comparingInt((Group g) -> g.getStudents().size())
-                        .thenComparing(Comparator.comparing(Group::getName).reversed()));
+        return maxGroupNameQuery(
+                students,
+                maxNameGroupPostComparator(group -> group.getStudents().size()));
     }
 
     @Override
     public String getLargestGroupFirstName(Collection<Student> students) {
         return maxGroupNameQuery(students,
-                Comparator.comparing((Group g) ->
-                        mappingStream(g.getStudents(), Student::getFirstName).distinct().count())
-                        .thenComparing(Comparator.comparing(Group::getName).reversed()));
+                maxNameGroupPostComparator(group ->
+                        Math.toIntExact(mappingStream(group.getStudents(), Student::getFirstName).distinct().count())));
     }
 }
