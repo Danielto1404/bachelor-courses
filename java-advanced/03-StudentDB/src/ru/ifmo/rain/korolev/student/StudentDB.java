@@ -176,17 +176,17 @@ public class StudentDB implements StudentGroupQuery {
                 .stream();
     }
 
+    private static Function<Map.Entry<String, List<Student>>, Group> groupConstructor(Comparator<Student> comparator) {
+        return (Map.Entry<String, List<Student>> e) ->
+                new Group(e.getKey(), listSortingQuery(e.getValue(), comparator));
+    }
+
     private static Stream<Group> sortedGroupStream(Collection<Student> students,
                                                    Comparator<Student> comparator) {
 
         return studentEntryStream(students, Student::getGroup)
                 .map(groupConstructor(comparator))
                 .sorted(GROUP_BY_NAME_COMPARATOR);
-    }
-
-    private static Function<Map.Entry<String, List<Student>>, Group> groupConstructor(Comparator<Student> comparator) {
-        return (Map.Entry<String, List<Student>> e) ->
-                new Group(e.getKey(), listSortingQuery(e.getValue(), comparator));
     }
 
     private static List<Group> listGroupQuery(Collection<Student> students, Comparator<Student> comparator) {
