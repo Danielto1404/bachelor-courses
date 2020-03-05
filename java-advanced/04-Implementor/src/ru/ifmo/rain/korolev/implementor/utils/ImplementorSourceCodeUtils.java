@@ -38,7 +38,7 @@ public class ImplementorSourceCodeUtils {
      */
 
     private static String makeIndent(int cnt, String... lines) {
-        return ImplementorSourceCodeUtils.TAB.repeat(cnt) + String.join(EMPTY, lines);
+        return TAB.repeat(cnt) + String.join(EMPTY, lines);
     }
 
     private static String getDefaultValue(Class<?> token) {
