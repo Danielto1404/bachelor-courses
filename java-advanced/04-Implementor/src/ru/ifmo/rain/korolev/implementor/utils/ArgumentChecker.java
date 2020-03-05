@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class ArgumentChecker {
 
-    public static void validateToken(Class<?> token) throws ImplerException {
+    public static void checkValidity(Class<?> token) throws ImplerException {
         if (token.isPrimitive() || token.isArray() || token == Enum.class) {
             throw new ImplerException("Unsupported token given");
         }

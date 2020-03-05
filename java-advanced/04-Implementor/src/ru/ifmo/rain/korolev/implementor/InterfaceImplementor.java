@@ -12,13 +12,14 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 public class InterfaceImplementor implements Impler {
     private static final String SOURCE_CODE_SUFFIX = "Impl.java";
 
     @Override
     public void implement(Class<?> token, Path root) throws ImplerException {
-        ArgumentChecker.validateToken(token);
+        ArgumentChecker.checkValidity(token);
         Path sourceCodePath = prepareSourceCodePath(token, root);
         try (BufferedWriter sourceCodeWriter = Files.newBufferedWriter(sourceCodePath)) {
             sourceCodeWriter.write(ImplementorSourceCodeUtils.generateSourceCode(token));
@@ -54,7 +55,7 @@ public class InterfaceImplementor implements Impler {
 
 
     public static void main(String[] args) throws ImplerException {
-        if (args == null || args.length != 2) {
+        if (args == null || args.length != 2 || args[0] == null || args[1] == null) {
             System.err.println("Usage: InterfaceImplementor <className> <path>");
             return;
         }

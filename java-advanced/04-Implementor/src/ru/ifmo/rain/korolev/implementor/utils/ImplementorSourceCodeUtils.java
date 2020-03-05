@@ -7,19 +7,16 @@ import java.util.stream.Collectors;
 
 public class ImplementorSourceCodeUtils {
 
-    /**
-     * Key code tokens
-     */
     private static final String EMPTY = "";
     private static final String SPACE = " ";
-    private static final String COMMA = ", ";
+    private static final String COMMA_WITH_SPACE = "," + SPACE;
     private static final String TAB = "\t";
     private static final String LINE_SEPARATOR = System.lineSeparator();
     private static final String SEMICOLON = ";";
-    private static final String BRACES_OPEN = "(";
-    private static final String BRACES_CLOSE = ")";
-    private static final String BLOCK_OPEN = "{";
-    private static final String BLOCK_CLOSE = "}";
+    private static final String LBRACE = "(";
+    private static final String RBRACE = ")";
+    private static final String BLOCK_OPENED = "{";
+    private static final String BLOCK_CLOSED = "}";
 
     private static final String PACKAGE = "package";
     private static final String CLASS = "class";
@@ -32,10 +29,6 @@ public class ImplementorSourceCodeUtils {
     private static final String ZERO = "0";
 
     private static final String IMPL_SUFFIX = "Impl";
-
-    /**
-     * Code generation auxiliary members
-     */
 
     private static String makeIndent(int cnt, String... lines) {
         return TAB.repeat(cnt) + String.join(EMPTY, lines);
@@ -73,10 +66,10 @@ public class ImplementorSourceCodeUtils {
         ArgumentNameGenerator nameGenerator = new ArgumentNameGenerator();
         return Arrays
                 .stream(method.getParameterTypes())
-                .map(type -> String.join(SPACE,
-                        type.getCanonicalName(),
+                .map(argumentType -> String.join(SPACE,
+                        argumentType.getCanonicalName(),
                         nameGenerator.get()))
-                .collect(Collectors.joining(COMMA));
+                .collect(Collectors.joining(COMMA_WITH_SPACE));
     }
 
     private static String getThrowingExceptions(Method method) {
@@ -87,14 +80,11 @@ public class ImplementorSourceCodeUtils {
         return String.join(
                 SPACE,
                 THROWS,
-                Arrays.stream(method.getExceptionTypes())
-                        .map(Class::getCanonicalName)
-                        .collect(Collectors.joining(COMMA + SPACE)));
+                Arrays.stream(exceptionTypes)
+                .map(Class::getCanonicalName)
+                .collect(Collectors.joining(COMMA_WITH_SPACE)));
     }
 
-    /**
-     * Outer class declaration
-     */
     private static String generatePackageLine(Class<?> token) {
         Package pkg = token.getPackage();
         return (pkg == null) ? EMPTY : String.join(
@@ -112,13 +102,10 @@ public class ImplementorSourceCodeUtils {
                 getClassImplementationName(token),
                 IMPLEMENTS,
                 token.getCanonicalName(),
-                BLOCK_OPEN);
+                BLOCK_OPENED);
     }
 
-    /**
-     * Functions commonly used for constructors and methods
-     */
-    private static String generateMethodOpeningLine(Method method) {
+    private static String generateMethodDefinition(Method method) {
 
         String modifiers = getMethodModifiers(method);
         String methodName = method.getName();
@@ -130,18 +117,16 @@ public class ImplementorSourceCodeUtils {
                 modifiers,
                 returnType,
                 methodName,
-                BRACES_OPEN,
-                arguments,
-                BRACES_CLOSE,
+                LBRACE + arguments + RBRACE,
                 exceptions,
-                BLOCK_OPEN);
+                BLOCK_OPENED);
     }
 
     private static String generateMethod(Method method) {
         return String.join(LINE_SEPARATOR,
-                makeIndent(1, generateMethodOpeningLine(method)),
+                makeIndent(1, generateMethodDefinition(method)),
                 makeIndent(2, generateMethodBody(method)),
-                makeIndent(1, BLOCK_CLOSE)
+                makeIndent(1, BLOCK_CLOSED)
         );
     }
 
@@ -155,15 +140,12 @@ public class ImplementorSourceCodeUtils {
                 .collect(Collectors.joining(LINE_SEPARATOR));
     }
 
-    /**
-     * Method to collect complete source code from parts
-     */
     public static String generateSourceCode(Class<?> token) {
         return String.join(LINE_SEPARATOR,
                 generatePackageLine(token),
                 LINE_SEPARATOR,
                 generateClassOpeningLine(token),
                 generateAllMethods(token),
-                BLOCK_CLOSE);
+                BLOCK_CLOSED);
     }
 }
