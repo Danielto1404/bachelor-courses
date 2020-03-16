@@ -8,11 +8,26 @@ import java.nio.file.Paths;
 
 public class ArgumentChecker {
 
+    public static void nullAssertion(String... args) throws ImplerException {
+        for (String s : args) {
+            if (s == null) {
+                throw new ImplerException("Null arguments appeared");
+            }
+        }
+    }
+
+    /**
+     * Validates whether {@link Class} attributes and modifiers allow common implementation.
+     *
+     * @param token {@link Class} which implementation is required
+     * @throws ImplerException In case check fails
+     */
     public static void checkValidity(Class<?> token) throws ImplerException {
         if (token.isPrimitive() || token.isArray() || token == Enum.class) {
             throw new ImplerException("Unsupported token given");
         }
     }
+
 
     public static Class<?> getTokenByName(String className) throws ImplerException {
         try {
