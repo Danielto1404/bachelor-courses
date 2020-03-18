@@ -56,9 +56,9 @@ public class IterativeParallelism implements ScalarIP {
         List<Thread> workers = new ArrayList<>();
 
         for (int index = 0; index < threads; index++) {
-            final int threadIndex = index;
+            final int finalIndex = index;
             Thread thread = new Thread(
-                    () -> tasksResults.set(threadIndex, batchJob.apply(tasksDistributions.get(threadIndex).stream())));
+                    () -> tasksResults.set(finalIndex, batchJob.apply(tasksDistributions.get(finalIndex).stream())));
             workers.add(thread);
             thread.start();
         }
