@@ -12,4 +12,4 @@ OUT_PATH=${ROOT}/out/production/04-Implementor
 SRC_PATH=${ROOT}/src/${MODULE_PATH}
 INFO_PATH=${ROOT}/src/${INFO_MODULE_PATH}
 
-javac "${SRC_PATH}"/*.java "${SRC_PATH}"/utils/*.java "${INFO_PATH}"/*.java -d "${OUT_PATH}"
+javac "${SRC_PATH}"/*.java "${INFO_PATH}"/*.java -d "${OUT_PATH}"

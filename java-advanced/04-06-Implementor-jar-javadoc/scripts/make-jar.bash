@@ -12,8 +12,8 @@ mkdir -p generated/${INFO_MODULE_PATH}
 
 #mkdir -p directories - creates all auxiliary directories without warning and errors
 
-cp src/${MODULE_PATH}/utils/SourceCodeImplementor.java generated/${MODULE_PATH}/utils
-cp src/${MODULE_PATH}/utils/FilesUtils.java generated/${MODULE_PATH}/utils
+cp src/${MODULE_PATH}/NativeCodeImplementor.java generated/${MODULE_PATH}
+cp src/${MODULE_PATH}/FilesUtils.java generated/${MODULE_PATH}
 cp src/${MODULE_PATH}/Implementor.java generated/${MODULE_PATH}
 cp -R src/${INFO_MODULE_PATH}/* generated/${INFO_MODULE_PATH}
 

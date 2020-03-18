@@ -3,7 +3,6 @@ package ru.ifmo.rain.korolev.implementor;
 import info.kgeorgiy.java.advanced.implementor.Impler;
 import info.kgeorgiy.java.advanced.implementor.ImplerException;
 import info.kgeorgiy.java.advanced.implementor.JarImpler;
-import ru.ifmo.rain.korolev.implementor.utils.SourceCodeImplementor;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -12,7 +11,7 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static ru.ifmo.rain.korolev.implementor.utils.FilesUtils.*;
+import static ru.ifmo.rain.korolev.implementor.FilesUtils.*;
 
 
 /**
@@ -51,7 +50,7 @@ public class Implementor implements Impler, JarImpler {
         }
 
         try (BufferedWriter writer = Files.newBufferedWriter(pathToSource)) {
-            writer.write(SourceCodeImplementor.getImplementation(token));
+            writer.write(NativeCodeImplementor.getImplementation(token));
         } catch (IOException e) {
             throw new ImplerException("Can't open file: " + e.getMessage());
         }
@@ -65,22 +64,22 @@ public class Implementor implements Impler, JarImpler {
      * added.
      *
      * @param token   type token to create implementation for.
-     * @param jarFile target .jar file.
+     * @param jarFilePath target .jar file.
      * @throws ImplerException when implementation cannot be generated.
      */
     @Override
-    public void implementJar(Class<?> token, Path jarFile) throws ImplerException {
-        if (token == null || jarFile == null) {
+    public void implementJar(Class<?> token, Path jarFilePath) throws ImplerException {
+        if (token == null || jarFilePath == null) {
             throw new ImplerException("Arguments must not be null");
         }
 
-        Path parentDir = createParentDirectory(jarFile);
+        Path parentDir = createParentDirectories(jarFilePath);
         Path sourceDir = createTmpDirectory(parentDir);
 
         try {
             implement(token, sourceDir);
             compile(token, sourceDir);
-            createJar(token, sourceDir, jarFile);
+            createJar(token, sourceDir, jarFilePath);
         } catch (ImplerException e) {
             throw new ImplerException("Implementation failed", e);
         } finally {

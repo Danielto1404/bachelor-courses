@@ -14,4 +14,4 @@ javadoc \
  -link https://docs.oracle.com/en/java/javase/11/docs/api/ \
  -html5 -private \
  -d JAVADOC \
- "${SRC_PATH}"/*.java "${SRC_PATH}"/utils/*.java "${INFO_PATH}"/*.java
+ "${SRC_PATH}"/*.java "${INFO_PATH}"/*.java
