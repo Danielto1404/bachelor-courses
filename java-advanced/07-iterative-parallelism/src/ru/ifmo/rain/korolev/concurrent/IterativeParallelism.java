@@ -50,21 +50,22 @@ public class IterativeParallelism implements ScalarIP {
      * @throws InterruptedException throws in case some thread didn't join.
      */
     private static void joinTasks(final List<Thread> threads) throws InterruptedException {
-        boolean isInterrupted = false;
+        InterruptedException exceptions = new InterruptedException();
         for (Thread thread : threads) {
             try {
                 thread.join();
             } catch (InterruptedException e) {
-                isInterrupted = true;
+                exceptions.addSuppressed(e);
             }
         }
-        if (isInterrupted) {
-            throw new InterruptedException("Some thead didn't join");
+        if (exceptions.getSuppressed().length != 0) {
+            throw exceptions;
         }
     }
-
+    
     private <T, R> R baseTask(int threads, List<T> list, Function<Stream<T>, R> tasksFunction,
                               Function<Stream<R>, R> collector) throws InterruptedException {
+
         List<Stream<T>> tasksDistributions = makeDistributionForThreads(threads, list);
         threads = tasksDistributions.size();
         List<R> tasksResults = new ArrayList<>(Collections.nCopies(threads, null));
@@ -80,6 +81,9 @@ public class IterativeParallelism implements ScalarIP {
         return collector.apply(tasksResults.stream());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> T maximum(int threads, List<? extends T> values, Comparator<? super T> comparator)
             throws InterruptedException {
@@ -88,12 +92,18 @@ public class IterativeParallelism implements ScalarIP {
                 stream -> stream.max(comparator).orElseThrow());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> T minimum(int threads, List<? extends T> values, Comparator<? super T> comparator)
             throws InterruptedException {
         return maximum(threads, values, comparator.reversed());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> boolean all(int threads, List<? extends T> values, Predicate<? super T> predicate)
             throws InterruptedException {
@@ -102,6 +112,9 @@ public class IterativeParallelism implements ScalarIP {
                 stream -> stream.allMatch(Boolean::booleanValue));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> boolean any(int threads, List<? extends T> values, Predicate<? super T> predicate)
             throws InterruptedException {
