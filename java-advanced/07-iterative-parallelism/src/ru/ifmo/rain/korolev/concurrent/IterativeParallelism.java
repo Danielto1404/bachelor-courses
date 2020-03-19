@@ -23,8 +23,8 @@ public class IterativeParallelism implements ScalarIP {
      *
      * @param <T>     Associated type for task.
      * @param threads Number of threads to use.
-     * @param values  List {@link List} of tasks to be completed.
-     * @return {@link List} returns list of tasks distributed on given number of threads {@link Thread}
+     * @param values  {@link List} of tasks to be completed.
+     * @return returns {@link List} of tasks distributed on given number of threads {@link Thread}
      */
     private <T> List<Stream<T>> makeDistributionForThreads(int threads, List<T> values) {
 
@@ -62,7 +62,7 @@ public class IterativeParallelism implements ScalarIP {
             throw exceptions;
         }
     }
-    
+
     private <T, R> R baseTask(int threads, List<T> list, Function<Stream<T>, R> tasksFunction,
                               Function<Stream<R>, R> collector) throws InterruptedException {
 
