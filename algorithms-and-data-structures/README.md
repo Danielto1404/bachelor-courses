@@ -13,3 +13,4 @@
     #### 2.  [Кратчайшие пути, отрицательные циклы, игры на графах](second-year/dijkstra-floyd)
     #### 3.  [Алгоритмы на строках](second-year/strings)
     #### 4.  [Паросочетания](second-year/matchings)
+    #### 5.  [Потоки](second-year/flows)
