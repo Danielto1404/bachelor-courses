@@ -94,9 +94,9 @@ public class FilesUtils {
     /**
      * Creates JAR file
      *
-     * @param token       Class token
-     * @param sourceDir   directory with .class code
-     * @param toWritePath directory to save JAR file
+     * @param token     Class token
+     * @param sourceDir directory with .class code
+     * @param toWritePath   directory to save JAR file
      * @throws ImplerException if JAR creation failed
      */
     public static void createJar(Class<?> token, Path sourceDir, Path toWritePath) throws ImplerException {

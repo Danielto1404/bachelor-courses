@@ -118,7 +118,7 @@ public class JarImplementor implements Impler, JarImpler {
         try {
             token = Class.forName(args[startIndex]);
         } catch (ClassNotFoundException e) {
-            System.out.println("Class not found!");
+            System.out.println("Class not found: " + args[startIndex]);
             return;
         }
 
@@ -126,7 +126,7 @@ public class JarImplementor implements Impler, JarImpler {
         try {
             root = Paths.get(args[startIndex + 1]);
         } catch (InvalidPathException e) {
-            System.out.println("Can't get parent directory");
+            System.out.println("Can't get parent directory: " + args[startIndex + 1]);
             return;
         }
 
