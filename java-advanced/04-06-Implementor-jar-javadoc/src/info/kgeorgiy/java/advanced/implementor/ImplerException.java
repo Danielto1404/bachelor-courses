@@ -6,8 +6,6 @@ package info.kgeorgiy.java.advanced.implementor;
  * @author Georgiy Korneev (kgeorgiy@kgeorgiy.info)
  */
 public class ImplerException extends Exception {
-    public ImplerException() {
-    }
 
     public ImplerException(final String message) {
         super(message);

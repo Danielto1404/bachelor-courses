@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
- * Assisting class to {@link Implementor}. Provides tools for necessary operations
+ * Assisting class to {@link JarImplementor}. Provides tools for necessary operations
  * for implementation source code generation.
  *
  * @author Korolev Daniil

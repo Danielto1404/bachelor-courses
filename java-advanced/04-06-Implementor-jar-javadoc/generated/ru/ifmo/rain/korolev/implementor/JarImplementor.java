@@ -13,7 +13,6 @@ import java.nio.file.Paths;
 
 import static ru.ifmo.rain.korolev.implementor.FilesUtils.*;
 
-
 /**
  * Class implementing {@link Impler}, {@link JarImpler}. Provides public methods to generate abstract class or
  * interface basic implementation and packing it into jar.
@@ -21,11 +20,11 @@ import static ru.ifmo.rain.korolev.implementor.FilesUtils.*;
  * @author Daniil Korolev
  * @version 239.0
  */
-public class Implementor implements Impler, JarImpler {
+public class JarImplementor implements Impler, JarImpler {
 
     /**
      * Produces code implementing class or interface specified by provided token.
-     * 
+     *
      * Generated class classes name should be same as classes name of the type token with Impl suffix
      * added. Generated source code should be placed in the correct subdirectory of the specified
      * root directory and have correct file name. For example, the implementation of the
@@ -59,11 +58,11 @@ public class Implementor implements Impler, JarImpler {
 
     /**
      * Produces .jar file implementing class or interface specified by provided token.
-     * 
+     *
      * Generated class classes name should be same as classes name of the type token with Impl suffix
      * added.
      *
-     * @param token   type token to create implementation for.
+     * @param token       type token to create implementation for.
      * @param jarFilePath target .jar file.
      * @throws ImplerException when implementation cannot be generated.
      */
@@ -89,11 +88,11 @@ public class Implementor implements Impler, JarImpler {
     }
 
     /**
-     * Main method
-     * 
-     * Usage: ([-jar]) [ClassName] [Path]
+     * Main method to run.
      *
-     * @param args Provided to program arguments
+     * USAGE: ([-jar]) [ClassName] [Path]
+     *
+     * @param args Provided to program arguments (see USAGE)
      */
     public static void main(String[] args) {
 
@@ -118,8 +117,7 @@ public class Implementor implements Impler, JarImpler {
         Class<?> token;
         try {
             token = Class.forName(args[startIndex]);
-        } catch (
-                ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             System.out.println("Class not found!");
             return;
         }
@@ -127,13 +125,12 @@ public class Implementor implements Impler, JarImpler {
         Path root;
         try {
             root = Paths.get(args[startIndex + 1]);
-        } catch (
-                InvalidPathException e) {
+        } catch (InvalidPathException e) {
             System.out.println("Can't get parent directory");
             return;
         }
 
-        Implementor implementor = new Implementor();
+        JarImplementor implementor = new JarImplementor();
 
         try {
             if (jarMode) {
