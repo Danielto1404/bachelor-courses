@@ -42,10 +42,10 @@ public class JarImplementor implements Impler, JarImpler {
             throw new ImplerException("Arguments must not be null");
         }
 
-        Path pathToSource = makePath(token, root);
+        Path pathToSource = makeImplementationPath(token, root);
 
         if (token.isPrimitive() || token.isArray() || token.isEnum()) {
-            throw new ImplerException("Unsupported type");
+            throw new ImplerException("Unsupported type of token");
         }
 
         try (BufferedWriter writer = Files.newBufferedWriter(pathToSource)) {
@@ -63,22 +63,22 @@ public class JarImplementor implements Impler, JarImpler {
      * added.
      *
      * @param token       type token to create implementation for.
-     * @param jarFilePath target .jar file.
+     * @param jarOutputFilePath target .jar file.
      * @throws ImplerException when implementation cannot be generated.
      */
     @Override
-    public void implementJar(Class<?> token, Path jarFilePath) throws ImplerException {
-        if (token == null || jarFilePath == null) {
+    public void implementJar(Class<?> token, Path jarOutputFilePath) throws ImplerException {
+        if (token == null || jarOutputFilePath == null) {
             throw new ImplerException("Arguments must not be null");
         }
 
-        Path parentDir = createParentDirectories(jarFilePath);
+        Path parentDir = createParentDirectories(jarOutputFilePath);
         Path sourceDir = createTmpDirectory(parentDir);
 
         try {
             implement(token, sourceDir);
             compile(token, sourceDir);
-            createJar(token, sourceDir, jarFilePath);
+            createJar(token, sourceDir, jarOutputFilePath);
         } catch (ImplerException e) {
             throw new ImplerException("Implementation failed", e);
         } finally {

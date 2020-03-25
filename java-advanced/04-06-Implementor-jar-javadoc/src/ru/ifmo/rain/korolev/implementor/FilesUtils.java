@@ -96,14 +96,14 @@ public class FilesUtils {
      *
      * @param token     Class token
      * @param sourceDir directory with .class code
-     * @param aimPath   directory to save JAR file
+     * @param toWritePath   directory to save JAR file
      * @throws ImplerException if JAR creation failed
      */
-    public static void createJar(Class<?> token, Path sourceDir, Path aimPath) throws ImplerException {
+    public static void createJar(Class<?> token, Path sourceDir, Path toWritePath) throws ImplerException {
         Manifest manifest = new Manifest();
         manifest.getMainAttributes().put(Attributes.Name.MANIFEST_VERSION, "1.0");
 
-        try (JarOutputStream stream = new JarOutputStream(Files.newOutputStream(aimPath), manifest)) {
+        try (JarOutputStream stream = new JarOutputStream(Files.newOutputStream(toWritePath), manifest)) {
             String implementationPath = getPathByPackage(token) + "Impl.class";
             stream.putNextEntry(new ZipEntry(implementationPath));
             Files.copy(Path.of(sourceDir.toString(), implementationPath), stream);
@@ -169,7 +169,7 @@ public class FilesUtils {
      * @return {@link Path} where implementation must be created
      * @throws ImplerException In case generated path is invalid
      */
-    public static Path makePath(Class<?> token, Path root) throws ImplerException {
+    public static Path makeImplementationPath(Class<?> token, Path root) throws ImplerException {
 
         String pth = getPathByPackage(token) + "Impl.java";
         Path path;
@@ -184,7 +184,7 @@ public class FilesUtils {
             try {
                 Files.createDirectories(path.getParent());
             } catch (IOException e) {
-                throw new ImplerException("Can't create ");
+                throw new ImplerException("Can't create parent directory");
             }
         }
         return path;
