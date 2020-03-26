@@ -181,6 +181,10 @@ public class NativeCodeImplementor {
         StringBuilder unicodeString = new StringBuilder();
         for (char c : line.toCharArray()) {
             if (c >= 128) {
+//                The X means that it will print an integer, in hexadecimal, large X for large hexadecimal letters
+//                The 4 means the number will be printed left justified with at least four digits,
+//                print spaces if there is less than four digits
+//                The 0 means that if there is less than four digits it will print leading zeroes.
                 unicodeString.append(String.format("\\u%04X", (int) c));
             } else {
                 unicodeString.append(c);
