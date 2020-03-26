@@ -72,13 +72,11 @@ public class ParallelMapperImpl implements ParallelMapper {
             this.data = new ArrayList<>(Collections.nCopies(size, null));
         }
 
-        void set(final T value, final int index) {
+        synchronized void set(final T value, final int index) {
             data.set(index, value);
-            synchronized (this) {
-                ++doneTasks;
-                if (doneTasks == data.size()) {
-                    notify();
-                }
+            ++doneTasks;
+            if (doneTasks == data.size()) {
+                notify();
             }
         }
 
@@ -111,5 +109,12 @@ public class ParallelMapperImpl implements ParallelMapper {
     @Override
     public void close() {
         workers.forEach(Thread::interrupt);
+        for (Thread thread : workers) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
