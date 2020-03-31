@@ -78,6 +78,10 @@ int dfs_find_flow_tour(int from, Net &net, vector<int> &last_block_edge, vector<
     return 0;
 }
 
+pair<int, int> get_vertex(int i, int j) {
+    if (i > j) swap(i, j);
+    return {i, j};
+}
 
 int find_max_flow(Net &net) {
     int max_flow = 0;
@@ -92,34 +96,34 @@ int find_max_flow(Net &net) {
 
 int main() {
     c_boost;
-    int n, requested_points;
+    int n, requested_points, global_index = 0;
     char symbol;
     cin >> n;
     int total_games = n * (n - 1) / 2;
     map<pair<int, int>, int> games_indexes;
-    int global_index = 1;
     Net net(total_games + n + 2);
 
     for (int i = 1; i <= n; ++i)
         for (int j = 1; j <= n; ++j) {
             cin >> symbol;
             if (i == j) continue;
-            int from = i, to = j;
-            if (from > to) swap(from, to);
-            if (!games_indexes[{from, to}])
-                games_indexes[{from, to}] = global_index++;
+            auto game_vertex = get_vertex(i, j);
+            if (!games_indexes[game_vertex])
+                games_indexes[game_vertex] = ++global_index;
             int c = 0;
-            if (symbol == 'W' || symbol == '.') {
+            if (symbol == 'W' || symbol == '.')
                 c = 3;
-            } else if (symbol == 'w') {
+            else if (symbol == 'w')
                 c = 2;
-            } else if (symbol == 'l') {
+            else if (symbol == 'l')
                 c = 1;
-            }
-            net.add_oriented_edge(games_indexes[{from, to}], i + total_games, c);
+
+            net.add_oriented_edge(games_indexes[game_vertex], i + total_games, c);
         }
+
     for (int i = 1; i <= total_games; ++i)
         net.add_oriented_edge(net.start, i, 3);
+
     for (int i = 1; i <= n; ++i) {
         cin >> requested_points;
         net.add_oriented_edge(total_games + i, net.finish, requested_points);
@@ -133,10 +137,9 @@ int main() {
                 cout << '#';
                 continue;
             }
-            int from = i, to = j;
-            if (from > to) swap(from, to);
             string team_result;
-            switch (net.get_edge_flow(games_indexes[{from, to}], total_games + i)) {
+            int flow = net.get_edge_flow(games_indexes[get_vertex(i, j)], total_games + i);
+            switch (flow) {
                 case 3:
                     team_result = 'W';
                     break;
