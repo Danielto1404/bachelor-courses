@@ -14,4 +14,4 @@
     #### 3.  [Алгоритмы на строках](second-year/strings)
     #### 4.  [Паросочетания](second-year/matchings)
     #### 5.  [Потоки](second-year/flows)
-    #### 6.  [Потоки минимальной стоимости, задача о назначениях](second-year/maximum-flow-minumum-cost)
+    #### 6.  [Потоки минимальной стоимости, задача о назначениях](second-year/maximum-flow-minimum-cost)
