@@ -1,18 +1,16 @@
-  # Лабораторная работа 2-5. Поток минимальной стоимости
-  
+## Лабораторная работа 2-4. Потоки
+
 + A [Максимальный поток минимальной стоимости](#A)
 + B [Задача о назначениях](#B)
 + C [Камень, ножницы, бумага — 2](#C)
-+ D [День рождения](#D)
-+ E [НЛО](#E)
++ D [Задача коммивояжеров](#D)
++ E [В поисках невест](#E)
 
-***
 
 <a name="A"></a>
 <h1 align="center">A. Максимальный поток минимальной стоимости</h1>
-<p align="center"><i><br>
-ограничение по времени на тест: 5 секунд<br>
-ограничение по памяти на тест: 512 мегабайт<br>
+<p align="center"><i>ограничение по времени на тест 5 секунд<br>
+ограничение по памяти на тест 512 мегабайт<br>
 ввод: стандартный ввод<br>
 вывод: стандартный вывод</i></p>
 
@@ -25,10 +23,10 @@
 
 ### Выходные данные
 
-В выходной файл выведите одно число — цену максимального потока минимальной стоимости из вершины с номером 1 в вершину с номером n. Ответ не превышает 263 - 1. Гарантируется, что в графе нет циклов отрицательной стоимости.
+В выходной файл выведите одно число — цену максимального потока минимальной стоимости из вершины с номером 1 в вершину с номером n. Ответ не превышает 2^63 - 1. Гарантируется, что в графе нет циклов отрицательной стоимости.
 
-### Пример
-#### Входные данные
+#### Пример
+##### Входные данные
 ```
 4 5
 1 2 1 2
@@ -38,18 +36,20 @@
 3 4 2 3
 ```
 
-#### Выходные данные
+##### Выходные данные
 ```
 12
 ```
 
-<a name=<"B"></a>
+---
+
+<a name="B"></a>
 <h1 align="center">B. Задача о назначениях</h1>
-<p align="center"><i><br>
-ограничение по времени на тест: 2 секунды<br>
-ограничение по памяти на тест: 256 мегабайт<br>
+<p align="center"><i>ограничение по времени на тест 2 секунды<br>
+ограничение по памяти на тест 256 мегабайт<br>
 ввод: стандартный ввод<br>
-вывод: стандартный вывод</i></p>
+вывод: стандартный вывод</i></p
+
 
 Дана целочисленная матрица C размера n × n. Требуется выбрать n ячеек так, чтобы в каждой строке и каждом столбце была выбрана ровно одна ячейка, а сумма значений в выбранных ячейках была минимальна.
 
@@ -63,8 +63,8 @@
 
 Пары чисел можно выводить в произвольном порядке.
 
-### Пример
-#### Входные данные
+#### Пример
+##### Входные данные
 ```
 3
 3 2 1
@@ -72,7 +72,7 @@
 2 1 3
 ```
 
-#### Выходные данные
+##### Выходные данные
 ```
 3
 2 1
@@ -80,13 +80,15 @@
 1 3
 ```
 
-<a name=<"C"></a>
-<h1 align="center">C. Камень, ножницы, бумага — 2</h1>
-<p align="center"><i><br>
-ограничение по времени на тест: 1 секунда<br>
-ограничение по памяти на тест: 512 мегабайт<br>
+---
+
+<a name="С"></a>
+<h1 align="center">С. Камень, ножницы, бумага — 2</h1>
+<p align="center"><i>ограничение по времени на тест 1 секунда<br>
+ограничение по памяти на тест 512 мегабайт<br>
 ввод: стандартный ввод<br>
-вывод: стандартный вывод</i></p>
+вывод: стандартный вывод</i></p
+
 
 Год назад Ростислав с Мирославом играли в камень, ножницы, бумагу на щелбаны. За каждый выигранный раунд победитель ставил один щелбан проигравшему. В случае ничьи щелбаны не ставились. Эта игра запомнилась Мирославу как самая худшая игра в его жизни: всю следующую неделю у него болел лоб.
 
@@ -108,166 +110,43 @@
 
 Выходные данные должны содержать единственное число  — минимальное количество щелбанов, которые мог получить Мирослав.
 
-### Примеры
-#### Входные данные
+#### Примеры
+##### Входные данные
 ```
 3 0 0
 0 3 0
 ```
 
-#### Выходные данные
+##### Выходные данные
 ```
 3
 ```
 
-## C. Costly Labels
-```
-time limit per test 2 seconds
-memory limit per test 256 megabytes
-input standard input
-output standard output
-```
-You've got yourself an unrooted tree with N nodes — that is, a connected, undirected graph with N nodes numbered from 1 to N, and N - 1 edges. The ith edge connects nodes Ai and Bi.
-
-You'd like to spend as little money as possible to label each node with a number from 1 to K, inclusive. It costs Ci, j dollars to label the ith node with the number j.
-
-Additionally, after the whole tree has been labelled, you must pay P more dollars for each node which has at least one pair of neighbours that share the same label as each other. In other words, for each node u, you must pay P dollars if there exist two other nodes v and w which are both adjacent to node u, such that the labels on nodes v and w are equal (note that node u's label is irrelevant). You only pay the penalty of P dollars once for a given central node u, even if it has multiple pairs of neighbours which satisfy the above condition.
-
-What's the minimum cost (in dollars) to label all N nodes?
-
-### Input
-
-Input begins with a line containing the space-separated integers N (1 ≤ N ≤ 1000), K (1 ≤ K ≤ 30), and P (0 ≤ P ≤ 106). Then, N lines follow, the ith of which contains the space-separated integers Ci, 1 through Ci, K in order (0 ≤ Ci, j ≤ 106). Then, N - 1 lines follow, the ith of which contains the space-separated integers Ai and Bi (1 ≤ Ai, Bi ≤ N).
-
-### Output
-
-Print the minimum cost to label all of the tree's nodes.
-
-### Examples
-#### Input
-```
-1 1 1
-111
-```
-
-#### Output
-```
-111
-```
-
 ---
 
-#### Input
-```
-3 1 8
-1
-2
-4
-1 2
-2 3
-```
-
-#### Output
-```
-15
-```
-
----
-
-#### Input
-```
-3 2 10
-4 7
-8 9
-2 3
-1 2
-2 3
-```
-
-#### Output
-```
-15
-```
-
----
-
-#### Input
-```
-4 2 99
-0 1
-0 1
-0 1
-0 0
-4 1
-2 4
-4 3
-```
-
-#### Output
-```
-99
-```
-
----
-
-#### Input
-```
-4 3 99
-0 1 0
-0 1 0
-0 1 0
-0 0 0
-4 1
-2 4
-4 3
-```
-
-#### Output
-```
-1
-```
-> Note:
->
->  In the first case, there is only one node which must be painted the only possible color for 111 dollars. In the second case, there is only one color, so a penalty of 8 dollars must be paid since node 2 has two neighbors with the same color. In total we pay 1 + 2 + 4 + 8 = 15 dollars. In the third case, it's optimal to paint nodes 1 and 2 with color 1, and node 3 with color 2. The total cost is 4 + 8 + 3 = 15 dollars.
+<a name="D"></a>
+<h1 align="center">D. Задача коммивояжеров</h1>
+<p align="center"><i>ограничение по времени на тест 2 секунды<br>
+ограничение по памяти на тест 256 мегабайт<br>
+ввод: стандартный ввод<br>
+вывод: стандартный вывод</i></p
 
 
-## E. Travelling salesmans problem
-```
-time limit per test 2 seconds
-memory limit per test 256 megabytes
-input standard input
-output standard output
-```
+Есть n городов. Между городами есть ориентированные дороги, у каждой дороги есть стоимость покупки разрешения на проезд. Мы хотим торговать во всех городах. У нас есть неограниченное кол-во коммивояжеров. Для каждого из них мы должны определить список городов, в которых они будут торговать. Каждый коммивояжер будет объезжать все города из своего списка по циклу (он может по пути заезжать в другие города, но не торговать там). Если два (или более) коммивояжеров будут ездить по одной дороге, то каждому из них мы должны купить разрешение на проезд. Если список у коммивояжера состоит только из одного города, то он либо должен регулярно выезжать из города (тоже по какому-то циклу), либо мы должны купить ему прописку (у каждого города есть цена прописки). Наконец, в любом городе должен торговать только один коммивояжер, иначе предприятием заинтересуется налоговая. Нужно минимизировать издержки.
 
-You are working in a salesmans company as a programmer.
+#### Входные данные
 
-There are n towns in your country and m directed roads between them. Each road has a cost person should spend on fuel. The company wants to sell goods in all n towns. There are infinetely many salesmans in the company. We can choose some positive number of salesmans and give a non-empty list of towns to each of them. Towns from the list are the towns to sell goods in. Each salesman will visit all the towns in his list in this particular order in cycle (after the last town he will return to the first town and so on). Salesman can visit other towns on his way but he will not sell goods in these towns. Two salesmans cannot sell goods in one town because it will attract unnecessary attention to your company. But for every town there must be a salesman who sell goods in this town. If salesman's list of towns consists of exactly 1 town then he should pay fee to stay in this town each month (each town has its own fee) or he should go for a round trip and spend money on fuel.
+В первой строке два числа n, m — количество городов и количество дорог (1 ≤ n ≤ 256, 0 ≤ m ≤ n(n - 1)).
+Во второй строке n чисел a i — цена прописки для города номер i (0 ≤ a i ≤ 109).
+Затем в m строках описаны дороги. Описание дороги из города u в город v со стоимостью разрешения на проезд c выглядит как u v cost (1 ≤ u, v ≤ n, u ≠ v, 0 ≤ c ≤ 109). Гарантируется, что между любой парой городов не более 1 дороги в каждом из направлений.
 
-Your task is to calculate the minimal amount of money company must spend monthly to achieve its goals. We will assume that every salesman will spend a month to make one cycle.
+#### Выходные данные
 
-### Input
+Выведите одно число — минимальную сумму издержек.
 
-The first line of input contains two integers n and m — number of towns and number of directed roads between them respectively (1 ≤ n ≤ 500, 0 ≤ m ≤ n(n - 1)).
+#### Примеры
+##### Выходные данные
 
-The second line contains n numbers ai — monthly fee for i-th town (0 ≤ ai ≤ 109).
-
-Next m lines describes roads. Each description looks like u v cost and describe a road from town u to town v with assigned cost cost (1 ≤ u, v ≤ n, u ≠ v, 0 ≤ cost ≤ 109). It is guaranteed that there are no two roads between the same pair of towns in the same direction.
-
-### Output
-
-Print one integer — the minimal amount of money to spend.
-Scoring
-
-n ≤ 5 — 5 points
-
-n ≤ 16 — 25 points
-
-n ≤ 80 — 30 points
-
-n ≤ 500 — 40 points
-
-### Example
-#### Input
 ```
 3 3
 30 25 30
@@ -276,7 +155,57 @@ n ≤ 500 — 40 points
 3 1 10
 ```
 
-#### Output
+##### Входные данные
+
 ```
 18
 ```
+
+---
+
+<a name="E"></a>
+<h1 align="center">E. В поисках невест</h1>
+<p align="center"><i>ограничение по времени на тест 2 секунды<br>
+ограничение по памяти на тест 256 мегабайт<br>
+ввод: стандартный ввод<br>
+вывод: стандартный вывод</i></p
+
+
+Однажды король Флатландии решил отправить k своих сыновей на поиски невест. Всем известно, что во Флатландии n городов, некоторые из которых соединены дорогами. Король живет в столице, которая имеет номер 1, а город с номером n знаменит своими невестами.
+
+Итак, король повелел, чтобы каждый из его сыновей добрался по дорогам из города 1 в город n. Поскольку, несмотря на обилие невест в городе n, красивых среди них не так много, сыновья опасаются друг друга. Поэтому они хотят добраться до цели таким образом, чтобы никакие два сына не проходили по одной и той же дороге (даже в разное время). Так как король любит своих сыновей, он хочет, чтобы среднее время сына в пути до города назначения было минимально.
+
+
+#### Входные данные
+
+В первой строке входного файла находятся числа n, m и k — количество городов и дорог во Флатландии и сыновей короля, соответственно (2 ≤ n ≤ 200, 1 ≤ m ≤ 2000, 1 ≤ k ≤ 100). Следующие m строк содержат по три целых положительных числа каждая — города, которые соединяет соответствующая дорога и время, которое требуется для ее прохождения (время не превышает 106). По дороге можно перемещаться в любом из двух направлений, два города могут быть соединены несколькими дорогами.
+
+#### Выходные данные
+
+Если выполнить повеление короля невозможно, выведите на первой строке число  - 1. В противном случае выведите на первой строке минимальное возможное среднее время (с точностью 5 знаков после десятичной точки), которое требуется сыновьям, чтобы добраться до города назначения, не менее чем с пятью знаками после десятичной точки. В следующих k строках выведите пути сыновей, сначала число дорог в пути, и затем номера дорог в пути в том порядке, в котором их следует проходить. Дороги нумеруются, начиная с единицы, в том порядке, в котором они заданы во входном файле.
+
+#### Пример
+
+##### Входные данные
+
+```
+5 8 2
+1 2 1
+1 3 1
+1 4 3
+2 5 5
+2 3 1
+3 5 1
+3 4 1
+5 4 1
+```
+
+##### Выходные данные
+
+```
+3.00000
+2 2 6
+2 3 8
+```
+
+---
