@@ -32,7 +32,7 @@ public class A__max_flow_min_cost {
             return capacity - flow;
         }
 
-        public long johnsonCost(Long[] potentials) {
+        public long johnsonCost(long[] potentials) {
             return weight + potentials[from] - potentials[to];
         }
     }
@@ -42,14 +42,13 @@ public class A__max_flow_min_cost {
 
         private final int n, start, finish;
         private final ArrayList<ArrayList<Edge>> edges = new ArrayList<>();
-        private Long[] potentials;
+        private long[] potentials;
 
         public Network(int n) {
             this.n = n;
             this.start = 0;
             this.finish = n - 1;
-            potentials = new Long[n];
-            Arrays.fill(potentials, 0L);
+            potentials = new long[n];
             for (int i = 0; i < n; ++i)
                 edges.add(new ArrayList<>());
         }
@@ -71,8 +70,8 @@ public class A__max_flow_min_cost {
                 if (!reached[finish]) break;
 
                 potentials = IntStream.range(0, n)
-                        .mapToObj(v -> reached[v] ? potentials[v] + distance[v] : 0L)
-                        .toArray(Long[]::new);
+                        .mapToLong(v -> reached[v] ? potentials[v] + distance[v] : 0L)
+                        .toArray();
 
                 long flow = INF;
                 for (int v = finish; v != start; v = path[v].from)
