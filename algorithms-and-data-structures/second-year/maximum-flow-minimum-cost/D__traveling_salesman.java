@@ -133,7 +133,7 @@ public class D__traveling_salesman {
         IntStream.rangeClosed(1, n).forEach(i -> {
             long weight = sc.nextLong();
             network.addOrientedEdge(network.start, i, 1, 0);
-            network.addOrientedEdge(i, n + i, n, weight);
+            network.addOrientedEdge(i, n + i, 1, weight);
             network.addOrientedEdge(i + n, i, n, 0);
             network.addOrientedEdge(i + n, network.finish, 1, 0);
         });
@@ -141,7 +141,7 @@ public class D__traveling_salesman {
         IntStream.range(0, m).map(i -> sc.nextInt()).forEach(from -> {
             int to = sc.nextInt();
             long weight = sc.nextLong();
-            network.addOrientedEdge(from, n + to, m, weight);
+            network.addOrientedEdge(from, n + to, n, weight);
         });
 
         System.out.println(network.findMaxFlowMinCost());
