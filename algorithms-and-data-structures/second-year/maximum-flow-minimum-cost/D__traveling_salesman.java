@@ -1,10 +1,7 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.IntStream;
 
-public class A__max_flow_min_cost {
+public class D__traveling_salesman {
 
     static class Pair {
         long distance;
@@ -64,16 +61,15 @@ public class A__max_flow_min_cost {
         }
 
         public long findMaxFlowMinCost() {
-            boolean[] reached = new boolean[n];
             Edge[] path = new Edge[n];
             long result = 0;
 
             while (true) {
-                long[] distance = dijkstra(path, reached);
-                if (!reached[finish]) break;
+                long[] distance = quickDijkstra(path);
+                if (distance[finish] == INF) break;
 
                 potentials = IntStream.range(0, n)
-                        .mapToLong(v -> reached[v] ? potentials[v] + distance[v] : 0L)
+                        .mapToLong(v -> distance[v] != INF ? potentials[v] + distance[v] : 0L)
                         .toArray();
 
                 long flow = INF;
@@ -91,31 +87,38 @@ public class A__max_flow_min_cost {
             return result;
         }
 
-        private long[] dijkstra(Edge[] path, boolean[] reached) {
+        private long[] quickDijkstra(Edge[] path) {
             long[] distance = new long[n];
             Arrays.fill(distance, INF);
-            Arrays.fill(reached, false);
             Arrays.fill(path, null);
+
             distance[start] = 0;
+            PriorityQueue<Pair> q = new PriorityQueue<>(Pair.PairComparator);
+            for (Edge e : edges.get(start))
+                if (e.currentCapacity() > 0) {
+                    distance[e.to] = e.johnsonCost(potentials);
+                    path[e.to] = e;
+                }
 
-            while (true) {
-                int nearestVertex = IntStream.range(0, n)
-                        .filter(value -> !reached[value])
-                        .filter(value -> distance[value] < INF)
-                        .mapToObj(value -> new Pair(distance[value], value))
-                        .min(Pair.PairComparator)
-                        .orElse(new Pair(-1L, -1))
-                        .index;
+            for (int v = 0; v < n; ++v)
+                if (v != start)
+                    q.add(new Pair(distance[v], v));
 
-                if (nearestVertex == -1) break;
-                reached[nearestVertex] = true;
+            while (!q.isEmpty()) {
+                Pair way = q.poll();
+                long curMinPath = way.distance;
+                int v = way.index;
 
-                for (Edge e : edges.get(nearestVertex))
-                    if (e.currentCapacity() > 0 && !reached[e.to])
+                if (distance[v] < curMinPath) continue; // Значит что уже добавляли раньше эту вершину!
+
+                for (Edge e : edges.get(v)) {
+                    if (e.currentCapacity() > 0)
                         if (distance[e.to] > distance[e.from] + e.johnsonCost(potentials)) {
                             distance[e.to] = distance[e.from] + e.johnsonCost(potentials);
                             path[e.to] = e;
+                            q.add(new Pair(distance[e.from] + e.johnsonCost(potentials), e.to));
                         }
+                }
             }
             return distance;
         }
@@ -125,9 +128,21 @@ public class A__max_flow_min_cost {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();
-        Network network = new Network(n);
-        for (int i = 0; i < m; ++i)
-            network.addOrientedEdge(sc.nextInt() - 1, sc.nextInt() - 1, sc.nextLong(), sc.nextLong());
+        Network network = new Network(2 * n + 2);
+
+        IntStream.rangeClosed(1, n).forEach(i -> {
+            long weight = sc.nextLong();
+            network.addOrientedEdge(network.start, i, 1, 0);
+            network.addOrientedEdge(i, n + i, n, weight);
+            network.addOrientedEdge(i + n, i, n, 0);
+            network.addOrientedEdge(i + n, network.finish, 1, 0);
+        });
+
+        IntStream.range(0, m).map(i -> sc.nextInt()).forEach(from -> {
+            int to = sc.nextInt();
+            long weight = sc.nextLong();
+            network.addOrientedEdge(from, n + to, m, weight);
+        });
 
         System.out.println(network.findMaxFlowMinCost());
     }
