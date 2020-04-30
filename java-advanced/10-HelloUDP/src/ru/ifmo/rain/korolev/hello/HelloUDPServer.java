@@ -36,7 +36,7 @@ public class HelloUDPServer implements HelloServer {
 
         manager = Executors.newSingleThreadExecutor();
         manager.submit(() -> {
-            while (!serverSocket.isClosed() && !Thread.interrupted()) {
+            while (!serverSocket.isClosed()) {
                 try {
                     final DatagramPacket request = makeReceiveDP(serverSocket);
                     serverSocket.receive(request);

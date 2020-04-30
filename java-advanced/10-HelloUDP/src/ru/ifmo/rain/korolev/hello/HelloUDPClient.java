@@ -74,7 +74,7 @@ public class HelloUDPClient implements HelloClient {
                 final String requestText = makeRequest(prefix, threadIndex, requestIndex);
                 request.setData(stringToBytes(requestText));
 
-                while (!socket.isClosed() && !Thread.interrupted()) {
+                while (!socket.isClosed()) {
                     try {
                         socket.send(request);
                         System.out.println("Request: " + requestText);
