@@ -1,1 +1,0 @@
-daniilkorolev@MacBook-Pro-Daniil.local.54527

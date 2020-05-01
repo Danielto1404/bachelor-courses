@@ -11,12 +11,12 @@ $variable = [$alpha 0-9 \' \’]
 tokens :-
        $white+			    ;
        $alpha[$variable]*	{ \x -> TOKEN_VARIABLE x   }
-       \(		        	{ \x -> TOKEN_OPENED_BRACE }
-       \) 			        { \x -> TOKEN_CLOSED_BRACE }
-       &		            { \x -> TOKEN_AND 	       }
-       !			        { \x -> TOKEN_NOT	       }
-       \|		           	{ \x -> TOKEN_OR	       }
-       "->"		        	{ \x -> TOKEN_IMPLICATION  }
+       \(		        { \x -> TOKEN_OPENED_BRACE }
+       \) 			{ \x -> TOKEN_CLOSED_BRACE }
+       &		        { \x -> TOKEN_AND 	   }
+       !			{ \x -> TOKEN_NOT	   }
+       \|		        { \x -> TOKEN_OR	   }
+       "->"		        { \x -> TOKEN_IMPLICATION  }
 
 {
 data Token
