@@ -35,7 +35,7 @@ getModusPonens e modusPonensMap indexMap = case Map.lookup e modusPonensMap of
         extractModusPonens []              = Incorrect
         extractModusPonens ((e, pos) : es) = case Map.lookup e indexMap of
                                                Nothing        -> extractModusPonens es
-                                               (Just leftPos) -> MP pos leftPos
+                                               (Just olderPos) -> MP pos olderPos
 
 
 -- For every proof line create a ProofState object associated with proof line evidence

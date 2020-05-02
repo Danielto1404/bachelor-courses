@@ -5,7 +5,7 @@ data Operation = And
                | Or deriving (Eq, Ord)
 
 data Expression = Binary Operation Expression Expression
-                | Not !Expression
+                | Not Expression
                 | Var String deriving (Eq, Ord)
 
 instance Show Operation where

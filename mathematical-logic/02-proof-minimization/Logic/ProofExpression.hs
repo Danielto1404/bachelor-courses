@@ -11,6 +11,7 @@ instance Show ProofState where
     show Incorrect = "Incorrect"
 
 
+-- returns describing of the proof state
 getDescribingLine :: ProofState -> Int -> String
 getDescribingLine state n = concat ["[",
                                     show n,
@@ -19,6 +20,7 @@ getDescribingLine state n = concat ["[",
                                     "]"
                                     ]
 
+-- returns single describing line (EX. "[5. Ax. sch. 1] (A -> (A -> A))" )
 getTheWholeLine :: Int -> ProofState -> Expression -> String
 getTheWholeLine n state expression = concat [getDescribingLine state n,
                                              " ",
@@ -26,6 +28,7 @@ getTheWholeLine n state expression = concat [getDescribingLine state n,
                                              "\n"
                                              ]
 
+-- returns describing proof lines
 getDescribingProof :: [ProofState] -> [Expression]  -> String
 getDescribingProof states expressions = concat $ collector (zip states expressions) 1 [] where
     collector :: [(ProofState, Expression)] -> Int -> [String] -> [String]
