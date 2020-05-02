@@ -68,17 +68,21 @@ simplify states = Set.insert n (dfs (reverse states) n (Set.fromList [n])) where
 
 -- walks recursively through MP lines
    dfs :: [ProofState] -> Int -> Int_Set -> Int_Set
-   dfs ((MP i j) : ps) index used | Set.member index used = mark [i - 1, j - 1] $ nextProofs $ mark [i - 1, j - 1] used
+   dfs ((MP i j) : ps) index used | Set.member index used = mark [i', j'] $ nextProofs $ mark [i', j'] used
                                   | otherwise             = nextProofs used
                                  where
                                     -- walks recursively through next MP lines
                                     nextProofs :: Int_Set -> Int_Set
                                     nextProofs = dfs ps (index - 1)
 
+                                    i' = i - 1
+                                    j' = j - 1
+
                                     -- add MP indexes to dfs recursive tree
                                     mark :: [Int]-> Int_Set -> Int_Set
-                                    mark (x:xs) used = Set.insert x (mark xs (Set.insert x used))
+                                    mark (x:xs) used = Set.insert x $ mark xs (Set.insert x used)
                                     mark []     used = used
+
    dfs [] _   _                                           = Set.empty
    dfs (_ : ps) index used                                = dfs ps (index - 1) used
 
