@@ -34,7 +34,7 @@ getModusPonens e modusPonensMap indexMap = case Map.lookup e modusPonensMap of
         extractModusPonens :: [(Expression, Int)] -> ProofState
         extractModusPonens []              = Incorrect
         extractModusPonens ((e, pos) : es) = case Map.lookup e indexMap of
-                                               Nothing        -> extractModusPonens es
+                                               Nothing         -> extractModusPonens es
                                                (Just olderPos) -> MP pos olderPos
 
 
