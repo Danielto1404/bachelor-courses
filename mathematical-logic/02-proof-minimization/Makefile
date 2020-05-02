@@ -1,7 +1,7 @@
 PARSING_MODULE    = Parsing
 LOGIC_MODULE      = Logic
 
-LEXER     	      = Lexer.x
+LEXER             = Lexer.x
 GRAMMAR           = Grammar.y
 
 SOURCES           = Main.hs $(LOGIC_MODULE)/*.hs
@@ -27,8 +27,8 @@ pack: $(GENERATED)
 	zip $(EXECUTABLE).zip $(SOURCES) $(PARSING_MODULE)/*.hs Makefile
 
 clean:
-	rm -f *.o *.hi $(LOGIC_MODULE)/*.o    \
-		           $(LOGIC_MODULE)/*.hi   \
-    		       $(PARSING_MODULE)/*.o  \
-   		           $(PARSING_MODULE)/*.hi \
-				   $(GENERATED)
+	rm -f *.o *.hi  $(LOGIC_MODULE)/*.o    \
+		            $(LOGIC_MODULE)/*.hi   \
+    		        $(PARSING_MODULE)/*.o  \
+				 	$(PARSING_MODULE)/*.hi \
+				    $(GENERATED)
