@@ -1,0 +1,23 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s _       -> goBack _ <
+s 0       -> s 0 >
+s 1       -> s 1 >
+
+goBack _  -> ac _ >
+goBack 0  -> putZero 0' >
+goBack 1  -> putOne 1' >
+goBack 0' -> goBack 0 <
+goBack 1' -> goBack 1 <
+
+putZero _ -> goBack 0 <
+putZero 0 -> putZero 0' >
+putZero 1 -> putZero 1' >
+
+putOne _  -> goBack 1 <
+putOne 0  -> putOne 0' >
+putOne 1  -> putOne 1' >
+
