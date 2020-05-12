@@ -12,3 +12,4 @@
     #### 1. [Hamilton-cycles](second-year/Hamilton-cycles)
     #### 2. [Matroids](second-year/Matroids)
     #### 3. [Generating functions](second-year/Generating-functions)
+    #### 4. [Turing machine](second-year/Turing-machine)
