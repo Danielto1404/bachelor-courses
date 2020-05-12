@@ -70,7 +70,6 @@ hs_err_pid*
 
 # Executables
 *.exe
-*.out
 *.app
 
 #
