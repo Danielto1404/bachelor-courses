@@ -1,0 +1,52 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s 1             -> getLast 1 >
+s 0             -> getLast 0 >
+
+getLast _       -> sum _ <
+getLast 0       -> getLast 0 >
+getLast 1       -> getLast 1 >
+getLast +       -> getLast + >
+getLast 0'      -> getLast 0' >
+getLast curry   -> getLast curry >
+getLast 1'      -> getLast 1' >
+
+sum +           -> getAnswer _ <
+sum 0           -> moveLeftZero _ <
+sum 1           -> moveLeftOne _ <
+
+moveLeftZero 0  -> moveLeftZero 0 <
+moveLeftZero 1  -> moveLeftZero 1 <
+moveLeftZero +  -> plusZero + <
+
+moveLeftOne 0   -> moveLeftOne 0 <
+moveLeftOne 1   -> moveLeftOne 1 <
+moveLeftOne +   -> plusOne + <
+
+plusZero 0'     -> plusZero 0' <
+plusZero 1'     -> plusZero 1' <
+plusZero 0      -> getLast 0' >
+plusZero 1      -> getLast 1' >
+plusZero _      -> getLast 0' >
+plusZero curry  -> getLast 1' >
+
+curryPlusOne 1  -> curryPlusOne 0 <
+curryPlusOne 0  -> getLast curry >
+curryPlusOne _  -> getLast curry >
+
+plusOne 0'      -> plusOne 0'  <
+plusOne 1'      -> plusOne 1'  <
+plusOne 1       -> curryPlusOne 0' <
+plusOne curry   -> curryPlusOne 0' <
+plusOne 0       -> getLast 1'  >
+plusOne _       -> getLast 1'  >
+
+getAnswer curry -> getAnswer 1 <
+getAnswer 0'    -> getAnswer 0 <
+getAnswer 1'    -> getAnswer 1 <
+getAnswer 0     -> getAnswer 0 <
+getAnswer 1     -> getAnswer 1 <
+getAnswer _     -> ac _ >
