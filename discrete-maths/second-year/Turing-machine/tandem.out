@@ -3,61 +3,61 @@ accept: ac
 reject: rj
 blank: _
 
-s _ -> ac _ ^
-s 0 -> goRight 0' >
-s 1 -> goRight 1' >
+s _                  -> ac _ ^
+s 0                  -> goRight 0' >
+s 1                  -> goRight 1' >
 
-goRight _  -> findFirstFromEnd _ <
-goRight 0  -> goRight 0 >
-goRight 1  -> goRight 1 >
-goRight 0' -> findFirstFromEnd 0' <
-goRight 1' -> findFirstFromEnd 1' <
+goRight _            -> findFirstFromEnd _ <
+goRight 0            -> goRight 0 >
+goRight 1            -> goRight 1 >
+goRight 0'           -> findFirstFromEnd 0' <
+goRight 1'           -> findFirstFromEnd 1' <
 
-goLeft 0   -> goLeft 0 <
-goLeft 1   -> goLeft 1 <
-goLeft 0'  -> mark 0' >
-goLeft 1'  -> mark 1' >
+goLeft 0      	     -> goLeft 0 <
+goLeft 1   	     -> goLeft 1 <
+goLeft 0'     	     -> mark 0' >
+goLeft 1'     	     -> mark 1' >
 
-mark 0 -> checkOdd 0' >
-mark 1 -> checkOdd 1' >
+mark 0 	      	     -> checkOdd 0' >
+mark 1 	  	     -> checkOdd 1' >
 
-checkOdd 0  -> goRight 0 >
-checkOdd 1  -> goRight 1 >
-checkOdd 0' -> rj _ ^
-checkOdd 1' -> rj _ ^
+checkOdd 0  	     -> goRight 0 >
+checkOdd 1  	     -> goRight 1 >
+checkOdd 0' 	     -> rj _ ^
+checkOdd 1'	     -> rj _ ^
 
-findFirstFromBegin 0  -> checkOdd 0' >
-findFirstFromBegin 1  -> checkOdd 1' >
+findFirstFromBegin 0 -> checkOdd 0' >
+findFirstFromBegin 1 -> checkOdd 1' >
 
-findFirstFromEnd 0  -> findMiddle 0' <
-findFirstFromEnd 1  -> findMiddle 1' <
+findFirstFromEnd 0   -> findMiddle 0' <
+findFirstFromEnd 1   -> findMiddle 1' <
 
-findMiddle 0  -> goLeft 0 <
-findMiddle 1  -> goLeft 1 <
-findMiddle 0' -> checkZero X >
-findMiddle 1' -> checkOne X >
+findMiddle 0         -> goLeft 0 <
+findMiddle 1         -> goLeft 1 <
+findMiddle 0'        -> checkZero X >
+findMiddle 1'        -> checkOne X >
 
-checkZero X  -> checkZero X >
-checkZero 0' -> checkZero 0' >
-checkZero 1' -> checkZero 1' >
-checkZero _  -> isLastZero _ <
+checkZero X          -> checkZero X >
+checkZero 0'         -> checkZero 0' >
+checkZero 1'         -> checkZero 1' >
+checkZero _          -> isLastZero _ <
 
-isLastZero 0' -> findLast _ <
-isLastZero 1' -> rj _ ^
+isLastZero 0'        -> findLast _ <
+isLastZero 1'        -> rj _ ^
 
-checkOne X  -> checkOne X >
-checkOne 0' -> checkOne 0' >
-checkOne 1' -> checkOne 1' >
-checkOne _  -> isLastOne _ <
+checkOne X           -> checkOne X >
+checkOne 0'          -> checkOne 0' >
+checkOne 1'          -> checkOne 1' >
+checkOne _           -> isLastOne _ <
 
-isLastOne 0' -> rj _ ^
-isLastOne 1' -> findLast _ <
+isLastOne 0'         -> rj _ ^
+isLastOne 1' 	     -> findLast _ <
 
-findLast 0' -> findLast 0' <
-findLast 1' -> findLast 1' <
-findLast X  -> findFirstNonX X <
+findLast 0'  	     -> findLast 0' <
+findLast 1'          -> findLast 1' <
+findLast X           -> findFirstNonX X <
 
-findFirstNonX _  -> ac _ ^
-findFirstNonX X  -> findFirstNonX X <
-findFirstNonX 0' -> checkZero X >
-findFirstNonX 1' -> checkOne X >
+findFirstNonX _      -> ac _ ^
+findFirstNonX X      -> findFirstNonX X <
+findFirstNonX 0'     -> checkZero X >
+findFirstNonX 1'     -> checkOne X >
