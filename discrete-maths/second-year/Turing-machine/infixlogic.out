@@ -1,0 +1,60 @@
+3
+
+S 0 _ _                     -> pushQueue 0 ^  _ ^  _ ^
+S 1 _ _                     -> pushQueue 1 ^  _ ^  _ ^
+S o _ _                     -> pushStack o ^  _ ^  _ ^
+S a _ _                     -> pushStack a ^  _ ^  _ ^
+S ( _ _                     -> pushStack ( ^  _ ^  _ ^
+S ) _ _                     -> pushStack ) ^  _ ^  _ ^
+S _ _ _                     -> popAll    _ ^  _ <  _ ^
+
+pushQueue 0 _ _             -> S _ >  _ ^  0 >
+pushQueue 1 _ _             -> S _ >  _ ^  1 >
+
+pushStack a _ _             -> S        _            >  and >  _ ^
+pushStack ( _ _             -> S        _            >  (   >  _ ^
+pushStack o _ _             -> popStack _            ^  _   <  _ ^
+pushStack ) _ _             -> popStack popLeftBrace ^  _   <  _ ^
+
+popStack _            and _  -> popStack _ ^  _  <  and >
+popStack _            or  _  -> popStack _ ^  _  <  or  >
+popStack _            _   _  -> S        _ >  or >  _   ^
+popStack _            (   _  -> pushOr   _ ^  (  >  _   ^
+
+popStack popLeftBrace and _  -> popStack popLeftBrace ^  _  <  and >
+popStack popLeftBrace or  _  -> popStack popLeftBrace ^  _  <  or  >
+popStack popLeftBrace (   _  -> S        _            >  _  ^  _   ^
+
+pushOr _ _ _                 -> S _ > or > _ ^
+
+popAll _ or  _               -> popAll    _ ^  _ <  or  >
+popAll _ and _               -> popAll    _ ^  _ <  and >
+popAll _ _   _               -> calculate _ ^  _ ^  _   <
+
+calculate _ _ _              -> calculatePostfix _ ^  _ ^  _   >
+calculate _ _ 0              -> calculate        _ ^  _ ^  0   <
+calculate _ _ 1              -> calculate        _ ^  _ ^  1   <
+calculate _ _ or             -> calculate        _ ^  _ ^  or  <
+calculate _ _ and            -> calculate        _ ^  _ ^  and <
+
+calculatePostfix _ _ 0       -> calculatePostfix 0 >  _ ^  _ >
+calculatePostfix _ _ 1       -> calculatePostfix 1 >  _ ^  _ >
+calculatePostfix _ _ or      -> applyOr          _ <  _ ^  _ ^
+calculatePostfix _ _ and     -> applyAnd         _ <  _ ^  _ ^
+calculatePostfix _ _ _       -> AC               _ <  _ <  _ ^
+
+applyOr 0 _ _                -> or _ <  0 ^  _ ^
+applyOr 1 _ _                -> or _ <  1 ^  _ ^
+
+or 0 0 _                     -> calculatePostfix 0 >  _ ^  _ >
+or 0 1 _                     -> calculatePostfix 1 >  _ ^  _ >
+or 1 0 _                     -> calculatePostfix 1 >  _ ^  _ >
+or 1 1 _                     -> calculatePostfix 1 >  _ ^  _ >
+
+applyAnd 0 _ _               -> and _ <  0 ^  _ ^
+applyAnd 1 _ _               -> and _ <  1 ^  _ ^
+
+and 0 0 _                    -> calculatePostfix 0 >  _ ^  _ >
+and 0 1 _                    -> calculatePostfix 0 >  _ ^  _ >
+and 1 0 _                    -> calculatePostfix 0 >  _ ^  _ >
+and 1 1 _                    -> calculatePostfix 1 >  _ ^  _ >
