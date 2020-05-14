@@ -1,0 +1,43 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s 0          -> ac 0 ^
+s 1          -> put$ 1 <
+s 2          -> put$ 2 <
+
+put$ _       -> putZero $ <
+
+putZero _    -> getLast 0' >
+
+getLast 0    -> getLast 0 >
+getLast 1    -> getLast 1 >
+getLast 2    -> getLast 2 >
+getLast $    -> getLast $ >
+getLast 0'   -> getLast 0' >
+getLast 1'   -> getLast 1' >
+getLast _    -> subOne _ <
+
+subOne 0     -> subOne 2 <
+subOne 1     -> plusOne 0 <
+subOne 2     -> plusOne 1 <
+subOne $     -> clear $ ^
+
+plusOne 0    -> plusOne 0 <
+plusOne 1    -> plusOne 1 <
+plusOne 2    -> plusOne 2 <
+plusOne $    -> plusOne $ <
+
+plusOne 1'   -> plusOne 0' <
+plusOne _    -> getLast 1' >
+plusOne 0'   -> getLast 1' >
+
+getAnswer 0' -> getAnswer 0 <
+getAnswer 1' -> getAnswer 1 <
+getAnswer $  -> getAnswer _ <
+getAnswer _  -> ac _ >
+
+clear $      -> clear $ >
+clear 2      -> clear $ >
+clear _      -> getAnswer _ <

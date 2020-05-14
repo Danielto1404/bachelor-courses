@@ -23,7 +23,7 @@ init-move-0 1      -> init-move-0 1 <
 init-move-0 $      -> init-put-0 $  <
 
 init-put-0 0       -> init-put-0 0    <
-init-put-0 1       -> init-put-0 1    <
+init-put-0 1       -> init-put-0 1    < 
 init-put-0 _       -> init-goRight$ 0 >
 
 init-move-1 0      -> init-move-1 0 <
