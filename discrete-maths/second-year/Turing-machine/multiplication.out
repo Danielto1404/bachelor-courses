@@ -3,156 +3,83 @@ accept: ac
 reject: rj
 blank: _
 
-s 1                -> put$ 1 <
-s 0                -> put$ 0 <
+s 0                     -> put$ 0 <
+s 1                     -> put$ 1 <
 
-put$ _             -> initialCopy $ >
+put$ _                  -> putZero $ <
+putZero _               -> goBackAndTransform 0 >
 
-initialCopy *      -> initialMove *  <
-initialCopy 0'     -> initialMove 0' <
-initialCopy 1'     -> initialMove 1' <
-initialCopy 0      -> initialCopy 0  >
-initialCopy 1      -> initialCopy 1  >
+goBackAndTransform _    -> subOne _ <
+goBackAndTransform *    -> goBackAndTransform * >
+goBackAndTransform zero -> goBackAndTransform 0 >
+goBackAndTransform one  -> goBackAndTransform 1 >
+goBackAndTransform 0    -> goBackAndTransform 0 >
+goBackAndTransform 1    -> goBackAndTransform 1 >
+goBackAndTransform $    -> goBackAndTransform $ >
 
-initialMove $      -> put+ $ <
-initialMove 0      -> init-move-0 0' <
-initialMove 1      -> init-move-1 1' <
+nextBitForSum *         -> sum *               <
+nextBitForSum zero      -> sum zero            <
+nextBitForSum one       -> sum one             <
+nextBitForSum 0         -> nextBitForSum 0     >
+nextBitForSum 1         -> nextBitForSum 1     >
+nextBitForSum $         -> nextBitForSum $     >
+nextBitForSum 0'        -> nextBitForSum 0'    >
+nextBitForSum curry     -> nextBitForSum curry >
+nextBitForSum 1'        -> nextBitForSum 1'    >
 
-init-move-0 0      -> init-move-0 0 <
-init-move-0 1      -> init-move-0 1 <
-init-move-0 $      -> init-put-0 $  <
+sum $                   -> getSumResult $    <
+sum 0                   -> moveLeftZero zero <
+sum 1                   -> moveLeftOne one   <
 
-init-put-0 0       -> init-put-0 0    <
-init-put-0 1       -> init-put-0 1    < 
-init-put-0 _       -> init-goRight$ 0 >
+moveLeftZero 0          -> moveLeftZero 0 <
+moveLeftZero 1          -> moveLeftZero 1 <
+moveLeftZero $          -> plusZero $ <
 
-init-move-1 0      -> init-move-1 0 <
-init-move-1 1      -> init-move-1 1 <
-init-move-1 $      -> init-put-1 $  <
+moveLeftOne 0           -> moveLeftOne 0 <
+moveLeftOne 1           -> moveLeftOne 1 <
+moveLeftOne $           -> plusOne $ <
 
-init-put-1 0       -> init-put-1 0    <
-init-put-1 1       -> init-put-1 1    <
-init-put-1 _       -> init-goRight$ 1 >
+plusZero 0'             -> plusZero 0' <
+plusZero 1'             -> plusZero 1' <
+plusZero 0              -> nextBitForSum 0' >
+plusZero 1              -> nextBitForSum 1' >
+plusZero _              -> nextBitForSum 0' >
+plusZero curry          -> nextBitForSum 1' >
 
-put+ 0             -> put+ 0     <
-put+ 1             -> put+ 1     <
-put+ _             -> put-zero + <
+curryPlusOne 1          -> curryPlusOne 0 <
+curryPlusOne 0          -> nextBitForSum curry >
+curryPlusOne _          -> nextBitForSum curry >
 
-init-goRight$ 0    -> init-goRight$ 0 >
-init-goRight$ 1    -> init-goRight$ 1 >
-init-goRight$ +    -> init-goRight$ $ >
-init-goRight$ _    -> init-goRight _  >
-init-goRight$ $    -> initialCopy $   >
+plusOne 0'              -> plusOne 0'  <
+plusOne 1'              -> plusOne 1'  <
+plusOne 1               -> curryPlusOne 0' <
+plusOne curry           -> curryPlusOne 0' <
+plusOne 0               -> nextBitForSum 1'  >
+plusOne _               -> nextBitForSum 1'  >
 
-put-zero _         -> goRight$ 0 >
+getSumResult curry      -> getSumResult 1 <
+getSumResult 0'         -> getSumResult 0 <
+getSumResult 1'         -> getSumResult 1 <
+getSumResult 0          -> getSumResult 0 <
+getSumResult 1          -> getSumResult 1 <
+getSumResult _          -> goBackAndTransform _ >
 
-copy *             -> moveToSum *  <
-copy 0'            -> moveToSum 0' <
-copy 1'            -> moveToSum 1' <
-copy 0             -> copy 0       >
-copy 1             -> copy 1       >
+goLeftThenSum 0         -> goLeftThenSum 0 <
+goLeftThenSum 1         -> goLeftThenSum 1 <
+goLeftThenSum *         -> sum * <
 
-moveToSum $        -> transform $ >
-moveToSum 0        -> move-0 0'   <
-moveToSum 1        -> move-1 1'   <
+subOne *                -> cleanRight _ >
+subOne 0                -> subOne 1 <
+subOne 1                -> goLeftThenSum 0 <
 
-move-0 0           -> move-0 0 <
-move-0 1           -> move-0 1 <
-move-0 $           -> put-0 $  <
+cleanRight _            -> cleanLeft _ <
+cleanRight 1            -> cleanRight _ >
 
-put-0 0            -> put-0 0    <
-put-0 1            -> put-0 1    <
-put-0 _            -> goRight$ 0 >
+cleanLeft _             -> cleanLeft _   <
+cleanLeft 0             -> cleanLeft _   <
+cleanLeft 1             -> cleanLeft _   <
+cleanLeft $             -> getFinalAns _ <
 
-move-1 0           -> move-1 0 <
-move-1 1           -> move-1 1 <
-move-1 $           -> put-1 $  <
-
-put-1 0            -> put-1 0    <
-put-1 1            -> put-1 1    <
-put-1 _            -> goRight$ 1 >
-
-transform 0'       -> transform 0     >
-transform 1'       -> transform 1     >
-transform *        -> findLastToSub * >
-
-goRight$ 0         -> goRight$ 0 >
-goRight$ 1         -> goRight$ 1 >
-goRight$ +         -> goRight$ + >
-goRight$ _         -> goRight$ _ >
-goRight$ $         -> copy $     >
-
-findLastToSub 0    -> findLastToSub 0 >
-findLastToSub 1    -> findLastToSub 1 >
-findLastToSub _    -> subOne _        <
-
-subOne *           -> clearTil_ _ >
-subOne 0           -> subOne 1    <
-subOne 1           -> move_ 0     <
-
-clearTil_ 1        -> clearTil_ _ >
-clearTil_ _        -> clearTil+ _ <
-
-clearTil+ _        -> clearTil+ _    <
-clearTil+ 0        -> clearTil+ _    <
-clearTil+ 1        -> clearTil+ _    <
-clearTil+ *        -> clearTil+ _    <
-clearTil+ $        -> clearTil+ _    <
-clearTil+ +        -> moveToAnswer _ <
-
-moveToAnswer 0     -> moveToAnswer 0 <
-moveToAnswer 1     -> moveToAnswer 1 <
-moveToAnswer _     -> ac _           >
-
-move_ 0            -> move_ 0   <
-move_ 1            -> move_ 1   <
-move_ +            -> move_ +   <
-move_ *            -> move_ *   <
-move_ $            -> move_ $   <
-move_ _            -> getLast _ >
-
-getLast $          -> sum $         <
-getLast _          -> sum _         <
-getLast 0          -> getLast 0     >
-getLast 1          -> getLast 1     >
-getLast +          -> getLast +     >
-getLast 0'         -> getLast 0'    >
-getLast curry      -> getLast curry >
-getLast 1'         -> getLast 1'    >
-
-sum +              -> getSumAnswer + <
-sum 0              -> moveLeftZero _ <
-sum 1              -> moveLeftOne _  <
-
-moveLeftZero 0     -> moveLeftZero 0 <
-moveLeftZero 1     -> moveLeftZero 1 <
-moveLeftZero +     -> plusZero +     <
-
-moveLeftOne 0      -> moveLeftOne 0 <
-moveLeftOne 1      -> moveLeftOne 1 <
-moveLeftOne +      -> plusOne +     <
-
-plusZero 0'        -> plusZero 0' <
-plusZero 1'        -> plusZero 1' <
-plusZero 0         -> getLast 0'  >
-plusZero 1         -> getLast 1'  >
-plusZero _         -> getLast 0'  >
-plusZero curry     -> getLast 1'  >
-
-curryPlusOne 1     -> curryPlusOne 0 <
-curryPlusOne 0     -> getLast curry  >
-curryPlusOne _     -> getLast curry  >
-
-plusOne 0'         -> plusOne 0'      <
-plusOne 1'         -> plusOne 1'      <
-plusOne 1          -> curryPlusOne 0' <
-plusOne curry      -> curryPlusOne 0' <
-plusOne 0          -> getLast 1'      >
-plusOne _          -> getLast 1'      >
-
-getSumAnswer curry -> getSumAnswer 1 <
-getSumAnswer 0'    -> getSumAnswer 0 <
-getSumAnswer 1'    -> getSumAnswer 1 <
-getSumAnswer 0     -> getSumAnswer 0 <
-getSumAnswer 1     -> getSumAnswer 1 <
-getSumAnswer _     -> goRight$ _     >
+getFinalAns 0           -> getFinalAns 0 <
+getFinalAns 1           -> getFinalAns 1 <
+getFinalAns _           -> ac _ >
