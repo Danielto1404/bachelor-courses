@@ -15,3 +15,4 @@
     #### 4.  [Паросочетания](second-year/matchings)
     #### 5.  [Потоки](second-year/flows)
     #### 6.  [Потоки минимальной стоимости, задача о назначениях](second-year/maximum-flow-minimum-cost)
+    #### 7.  [Математика, криптография](second-year/mathematics)
