@@ -1,0 +1,336 @@
+2
+
+S 0 _                   -> S        0 > _ ^
+S 1 _                   -> S        1 > _ ^
+S | _                   -> S        | > _ ^
+S $ _                   -> S        $ > _ ^
+S _ _                   -> goFirst  $ < _ ^
+
+
+goFirst _ _             -> sort    _ > _ ^
+goFirst 0 _             -> goFirst 0 < _ ^
+goFirst 1 _             -> goFirst 1 < _ ^
+goFirst | _             -> goFirst | < _ ^
+goFirst $ _             -> goFirst $ < _ ^
+
+sort 0 _                -> copyFst 0 > 0 >
+sort 1 _                -> copyFst 1 > 1 >
+
+copyFst 0 _             -> copyFst      0 > 0 >
+copyFst 1 _             -> copyFst      1 > 1 >
+copyFst | _             -> copySnd      | > < >
+copyFst $ _             -> clearCmpLine | ^ _ <
+
+copySnd 0 _             -> copySnd   0 > 0 >
+copySnd 1 _             -> copySnd   1 > 1 >
+copySnd $ _             -> startCmp$ $ ^ _ <
+copySnd | _             -> startCmp  | ^ _ <
+
+clearCmpLine | 0        -> clearCmpLine | ^ _ <
+clearCmpLine | 1        -> clearCmpLine | ^ _ <
+clearCmpLine | _        -> deleteLast$  | > _ ^
+
+deleteLast$ 0 _         -> deleteLast$ 0 > _ ^
+deleteLast$ 1 _         -> deleteLast$ 1 > _ ^
+deleteLast$ | _         -> deleteLast$ | > _ ^
+deleteLast$ $ _         -> deleteLast$ | > _ ^
+deleteLast$ _ _         -> deletePipe  _ < _ ^
+
+deletePipe | _          -> getAnswer _ < _ ^
+
+getAnswer _ _           -> AC        _ > _ ^
+getAnswer 0 _           -> getAnswer 0 < _ ^
+getAnswer 1 _           -> getAnswer 1 < _ ^
+getAnswer | _           -> getAnswer | < _ ^
+
+
+
+
+
+startCmp | 0            -> startCmp | ^ 0 <
+startCmp | 1            -> startCmp | ^ 1 <
+startCmp | <            -> startCmp | ^ < <
+startCmp | _            -> setBit   | ^  _ >
+
+movePointersLeft | _    -> movePointersLeft | < _ <
+movePointersLeft 0 0    -> movePointersLeft _ < 0 <
+movePointersLeft 0 1    -> movePointersLeft _ < 1 <
+movePointersLeft 0 0'   -> movePointersLeft _ < 0 <
+movePointersLeft 0 1'   -> movePointersLeft _ < 1 <
+movePointersLeft 1 0    -> movePointersLeft _ < 0 <
+movePointersLeft 1 1    -> movePointersLeft _ < 1 <
+movePointersLeft 1 0'   -> movePointersLeft _ < 0 <
+movePointersLeft 1 1'   -> movePointersLeft _ < 1 <
+movePointersLeft | <    -> nextMove         _ < < <
+
+nextMove | _            -> goTil<   | ^ _ >
+nextMove _ _            -> goTil<   _ ^ _ >
+nextMove 0 0            -> nextMove _ < 0 <
+nextMove 0 1            -> nextMove _ < 1 <
+nextMove 0 0'           -> nextMove _ < 0 <
+nextMove 0 1'           -> nextMove _ < 1 <
+nextMove 1 0            -> nextMove _ < 0 <
+nextMove 1 1            -> nextMove _ < 1 <
+nextMove 1 0'           -> nextMove _ < 0 <
+nextMove 1 1'           -> nextMove _ < 1 <
+
+goTil< | <              -> putSnd | > X >
+goTil< | 0              -> goTil< | ^ 0 >
+goTil< | 1              -> goTil< | ^ 1 >
+goTil< _ <              -> putSnd _ > X >
+goTil< _ 0              -> goTil< _ ^ 0 >
+goTil< _ 1              -> goTil< _ ^ 1 >
+
+putSnd _ 0              -> putSnd        0 > X >
+putSnd _ 1              -> putSnd        1 > X >
+putSnd _ _              -> clearThenFst  | ^ _ <
+
+clearThenFst | X        -> clearThenFst | ^ _ <
+clearThenFst | 0        -> clearThenFst | ^ 0 <
+clearThenFst | 1        -> clearThenFst | ^ 1 <
+clearThenFst | _        -> putFst       | > _ >
+
+putFst _ 0              -> putFst     0 > _ >
+putFst _ 1              -> putFst     1 > _ >
+putFst | _              -> goLeftTil| | < _ >
+
+goLeftTil| 0 _          -> goLeftTil| 0 < _ ^
+goLeftTil| 1 _          -> goLeftTil| 1 < _ ^
+goLeftTil| | _          -> sort       | > _ ^
+
+goRight | 0             -> goRight    | ^ 0 >
+goRight | 1             -> goRight    | ^ 1 >
+goRight | <             -> findSecond | ^ < >
+
+goLeft | 0'             -> goLeft      | ^ 0' <
+goLeft | 1'             -> goLeft      | ^ 1' <
+goLeft | <              -> checkLength | ^ <  <
+
+checkLength | 0         -> findFirst | ^ 0  <
+checkLength | 1         -> findFirst | ^ 1  <
+checkLength | 0'        -> checkRest | ^ 0' >
+checkLength | 1'        -> checkRest | ^ 1' >
+
+findFirst | 0           -> findFirst | ^ 0  <
+findFirst | 1           -> findFirst | ^ 1  <
+findFirst | 0'          -> setBit    | ^ 0' >
+findFirst | 1'          -> setBit    | ^ 1' >
+
+setBit | 0              -> goRight | ^ 0' >
+setBit | 1              -> goRight | ^ 1' >
+
+findSecond | 0'         -> findSecond             | ^ 0' >
+findSecond | 1'         -> findSecond             | ^ 1' >
+findSecond | 0          -> goLeft                 | ^ 0' <
+findSecond | 1          -> goLeft                 | ^ 1' <
+findSecond | _          -> movePointersLeft       | ^ _  ^
+
+checkRest | <           -> checkRest            | ^ <  >
+checkRest | 0'          -> checkRest            | ^ 0' >
+checkRest | 1'          -> checkRest            | ^ 1' >
+checkRest | 0           -> prepareToCopyOrig    | ^ 0' >
+checkRest | 1           -> prepareToCopyOrig    | ^ 1' >
+checkRest | _           -> goToStart            | ^ _  <
+
+goToStart | 0'          -> goToStart  | ^ 0' <
+goToStart | 1'          -> goToStart  | ^ 1' <
+goToStart | <           -> goToStart  | ^ <  <
+goToStart | _           -> bitChecker | ^ _  >
+
+bitChecker | 0'         -> moveRightZero    | ^ 0 >
+bitChecker | 1'         -> moveRightOne     | ^ 1 >
+bitChecker | <         -> prepareToCopyOrig | ^ < >
+
+moveRightZero | 0'      -> moveRightZero     | ^ 0' >
+moveRightZero | 1'      -> moveRightZero     | ^ 1' >
+moveRightZero | <       -> checkRightZeroBit | ^ <  >
+
+moveRightOne | 0'       -> moveRightOne     | ^ 0' >
+moveRightOne | 1'       -> moveRightOne     | ^ 1' >
+moveRightOne | <        -> checkRightOneBit | ^ <  >
+
+moveLeft | 0            -> moveLeft    | ^ 0 <
+moveLeft | 1            -> moveLeft    | ^ 1 <
+moveLeft | <            -> findNextBit | ^ < <
+
+findNextBit | 0'        -> findNextBit       | ^ 0' <
+findNextBit | 1'        -> findNextBit       | ^ 1' <
+findNextBit | 0         -> bitChecker        | ^ 0  >
+findNextBit | 1         -> bitChecker        | ^ 1  >
+findNextBit | _         -> prepareToCopyOrig | ^ _  ^
+
+checkRightZeroBit | 0   -> checkRightZeroBit     | ^ 0 >
+checkRightZeroBit | 1   -> checkRightZeroBit     | ^ 1 >
+checkRightZeroBit | 0'  -> moveLeft              | ^ 0 <
+checkRightZeroBit | 1'  -> prepareToCopyOrig     | ^ 1' >
+
+checkRightOneBit | 0    -> checkRightOneBit  | ^ 0  >
+checkRightOneBit | 1    -> checkRightOneBit  | ^ 1  >
+checkRightOneBit | 1'   -> moveLeft          | ^ 1  <
+checkRightOneBit | 0'   -> prepareToCopy     | ^ 0' ^
+
+prepareToCopy | 0       -> prepareToCopy    | ^ 0  >
+prepareToCopy | 1       -> prepareToCopy    | ^ 1  >
+prepareToCopy | 0'      -> prepareToCopy    | ^ 0' >
+prepareToCopy | 1'      -> prepareToCopy    | ^ 1  >
+prepareToCopy | _       -> movePointersLeft | ^ _  ^
+
+prepareToCopyOrig | 0   -> prepareToCopyOrig | ^ 0  >
+prepareToCopyOrig | 1   -> prepareToCopyOrig | ^ 1  >
+prepareToCopyOrig | 0'  -> prepareToCopyOrig | ^ 0' >
+prepareToCopyOrig | 1'  -> prepareToCopyOrig | ^ 1' >
+prepareToCopyOrig | <   -> prepareToCopyOrig | ^ < >
+prepareToCopyOrig | _   -> clearDown | ^ _ <
+
+clearDown | 0           -> clearDown  | ^ _ <
+clearDown | 1           -> clearDown  | ^ _ <
+clearDown | 0'          -> clearDown  | ^ _ <
+clearDown | 1'          -> clearDown  | ^ _ <
+clearDown | <           -> clearDown  | ^ _ <
+clearDown | <           -> clearDown  | ^ _ <
+clearDown | _           -> goLeftTil| | < _ ^
+
+
+
+
+startCmp$ $ 0           -> startCmp$ $ ^ 0 <
+startCmp$ $ 1           -> startCmp$ $ ^ 1 <
+startCmp$ $ <           -> startCmp$ $ ^ < <
+startCmp$ $ _           -> setBit$   $ ^ _ >
+
+movePointersLeft$ $ _   -> movePointersLeft$ $ < _ <
+movePointersLeft$ 0 0   -> movePointersLeft$ _ < 0 <
+movePointersLeft$ 0 1   -> movePointersLeft$ _ < 1 <
+movePointersLeft$ 0 0'  -> movePointersLeft$ _ < 0 <
+movePointersLeft$ 0 1'  -> movePointersLeft$ _ < 1 <
+movePointersLeft$ 1 0   -> movePointersLeft$ _ < 0 <
+movePointersLeft$ 1 1   -> movePointersLeft$ _ < 1 <
+movePointersLeft$ 1 0'  -> movePointersLeft$ _ < 0 <
+movePointersLeft$ 1 1'  -> movePointersLeft$ _ < 1 <
+movePointersLeft$ | <   -> nextMove$         _ < < <
+
+nextMove$ | _           -> goTil<$   | ^ _ >
+nextMove$ _ _           -> goTil<$   _ ^ _ >
+nextMove$ 0 0           -> nextMove$ _ < 0 <
+nextMove$ 0 1           -> nextMove$ _ < 1 <
+nextMove$ 0 0'          -> nextMove$ _ < 0 <
+nextMove$ 0 1'          -> nextMove$ _ < 1 <
+nextMove$ 1 0           -> nextMove$ _ < 0 <
+nextMove$ 1 1           -> nextMove$ _ < 1 <
+nextMove$ 1 0'          -> nextMove$ _ < 0 <
+nextMove$ 1 1'          -> nextMove$ _ < 1 <
+
+goTil<$ | <             -> putSnd$ | > X >
+goTil<$ | 0             -> goTil<$ | ^ 0 >
+goTil<$ | 1             -> goTil<$ | ^ 1 >
+goTil<$ _ <             -> putSnd$ _ > X >
+goTil<$ _ 0             -> goTil<$ _ ^ 0 >
+goTil<$ _ 1             -> goTil<$ _ ^ 1 >
+
+putSnd$ _ 0             -> putSnd$        0 > X >
+putSnd$ _ 1             -> putSnd$        1 > X >
+putSnd$ _ _             -> clearThenFst$  $ ^ _ <
+
+clearThenFst$ $ X       -> clearThenFst$ $ ^ _ <
+clearThenFst$ $ 0       -> clearThenFst$ $ ^ 0 <
+clearThenFst$ $ 1       -> clearThenFst$ $ ^ 1 <
+clearThenFst$ $ _       -> putFst$       $ > _ >
+
+putFst$ _ 0             -> putFst$     0 > _ >
+putFst$ _ 1             -> putFst$     1 > _ >
+putFst$ $ _             -> goFirst     $ < _ >
+
+goRight$ $ 0            -> goRight$    $ ^ 0 >
+goRight$ $ 1            -> goRight$    $ ^ 1 >
+goRight$ $ <            -> findSecond$ $ ^ < >
+
+goLeft$ $ 0'            -> goLeft$      $ ^ 0' <
+goLeft$ $ 1'            -> goLeft$      $ ^ 1' <
+goLeft$ $ <             -> checkLength $ ^ <  <
+
+checkLength $ 0         -> findFirst$ $ ^ 0  <
+checkLength $ 1         -> findFirst$ $ ^ 1  <
+checkLength $ 0'        -> checkRest$ $ ^ 0' >
+checkLength $ 1'        -> checkRest$ $ ^ 1' >
+
+findFirst$ $ 0          -> findFirst$ $ ^ 0  <
+findFirst$ $ 1          -> findFirst$ $ ^ 1  <
+findFirst$ $ 0'         -> setBit$    $ ^ 0' >
+findFirst$ $ 1'         -> setBit$    $ ^ 1' >
+
+setBit$ $ 0             -> goRight$ $ ^ 0' >
+setBit$ $ 1             -> goRight$ $ ^ 1' >
+
+findSecond$ $ 0'        -> findSecond$             $ ^ 0' >
+findSecond$ $ 1'        -> findSecond$             $ ^ 1' >
+findSecond$ $ 0         -> goLeft$                 $ ^ 0' <
+findSecond$ $ 1         -> goLeft$                 $ ^ 1' <
+findSecond$ $ _         -> movePointersLeft$       $ ^ _  ^
+
+checkRest$ $ <          -> checkRest$            $ ^ <  >
+checkRest$ $ 0'         -> checkRest$            $ ^ 0' >
+checkRest$ $ 1'         -> checkRest$            $ ^ 1' >
+checkRest$ $ 0          -> prepareToCopy$Orig    $ ^ 0' >
+checkRest$ $ 1          -> prepareToCopy$Orig    $ ^ 1' >
+checkRest$ $ _          -> goToStart$            $ ^ _  <
+
+goToStart$ $ 0'         -> goToStart$  $ ^ 0' <
+goToStart$ $ 1'         -> goToStart$  $ ^ 1' <
+goToStart$ $ <          -> goToStart$  $ ^ <  <
+goToStart$ $ _          -> bitChecker$ $ ^ _  >
+
+bitChecker$ $ 0'        -> moveRightZero$     $ ^ 0 >
+bitChecker$ $ 1'        -> moveRightOne$      $ ^ 1 >
+bitChecker$ $ <         -> prepareToCopy$Orig $ ^ < >
+
+moveRightZero$ $ 0'     -> moveRightZero$     $ ^ 0' >
+moveRightZero$ $ 1'     -> moveRightZero$     $ ^ 1' >
+moveRightZero$ $ <      -> checkRightZeroBit$ $ ^ <  >
+
+moveRightOne$ $ 0'      -> moveRightOne$     $ ^ 0' >
+moveRightOne$ $ 1'      -> moveRightOne$     $ ^ 1' >
+moveRightOne$ $ <       -> checkRightOneBit$ $ ^ <  >
+
+moveLeft$ $ 0           -> moveLeft$    $ ^ 0 <
+moveLeft$ $ 1           -> moveLeft$    $ ^ 1 <
+moveLeft$ $ <           -> findNextBit$ $ ^ < <
+
+findNextBit$ $ 0'       -> findNextBit$       $ ^ 0' <
+findNextBit$ $ 1'       -> findNextBit$       $ ^ 1' <
+findNextBit$ $ 0        -> bitChecker$        $ ^ 0  >
+findNextBit$ $ 1        -> bitChecker$        $ ^ 1  >
+findNextBit$ $ _        -> prepareToCopy$Orig $ ^ _  ^
+
+checkRightZeroBit$ $ 0  -> checkRightZeroBit$     $ ^ 0 >
+checkRightZeroBit$ $ 1  -> checkRightZeroBit$     $ ^ 1 >
+checkRightZeroBit$ $ 0' -> moveLeft$              $ ^ 0 <
+checkRightZeroBit$ $ 1' -> prepareToCopy$Orig     $ ^ 1' >
+
+checkRightOneBit$ $ 0   -> checkRightOneBit$  $ ^ 0  >
+checkRightOneBit$ $ 1   -> checkRightOneBit$  $ ^ 1  >
+checkRightOneBit$ $ 1'  -> moveLeft$          $ ^ 1  <
+checkRightOneBit$ $ 0'  -> prepareToCopy$     $ ^ 0' ^
+
+prepareToCopy$ $ 0      -> prepareToCopy$    $ ^ 0  >
+prepareToCopy$ $ 1      -> prepareToCopy$    $ ^ 1  >
+prepareToCopy$ $ 0'     -> prepareToCopy$    $ ^ 0' >
+prepareToCopy$ $ 1'     -> prepareToCopy$    $ ^ 1  >
+prepareToCopy$ $ _      -> movePointersLeft$ $ ^ _  ^
+
+prepareToCopy$Orig $ 0  -> prepareToCopy$Orig $ ^ 0  >
+prepareToCopy$Orig $ 1  -> prepareToCopy$Orig $ ^ 1  >
+prepareToCopy$Orig $ 0' -> prepareToCopy$Orig $ ^ 0' >
+prepareToCopy$Orig $ 1' -> prepareToCopy$Orig $ ^ 1' >
+prepareToCopy$Orig $ <  -> prepareToCopy$Orig $ ^ < >
+prepareToCopy$Orig $ _  -> clearDown$         $ ^ _ <
+
+clearDown$ $ 0          -> clearDown$  $ ^ _ <
+clearDown$ $ 1          -> clearDown$  $ ^ _ <
+clearDown$ $ 0'         -> clearDown$  $ ^ _ <
+clearDown$ $ 1'         -> clearDown$  $ ^ _ <
+clearDown$ $ <          -> clearDown$  $ ^ _ <
+clearDown$ $ _          -> goFirst$     $ < _ ^
+
+goFirst$ 0 _            -> goFirst$ 0 < _ ^
+goFirst$ 1 _            -> goFirst$ 1 < _ ^
+goFirst$ | _            -> goFirst $ < _ ^
