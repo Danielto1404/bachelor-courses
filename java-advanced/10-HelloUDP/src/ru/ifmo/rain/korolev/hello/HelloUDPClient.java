@@ -102,7 +102,7 @@ public class HelloUDPClient implements HelloClient {
      * Usage: <HelloUDPClient> [host] [port] [prefix] [threads amount] [query amount for each thread]
      */
     public static void main(String[] args) {
-        if (checkArguments(args, 5, USAGE)) {
+        if (!checkArguments(args, 5, USAGE)) {
             return;
         }
         try {
