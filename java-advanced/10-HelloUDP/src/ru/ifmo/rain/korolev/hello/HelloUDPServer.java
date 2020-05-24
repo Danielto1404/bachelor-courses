@@ -3,9 +3,7 @@ package ru.ifmo.rain.korolev.hello;
 import info.kgeorgiy.java.advanced.hello.HelloServer;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketException;
+import java.net.*;
 import java.util.concurrent.*;
 
 import static ru.ifmo.rain.korolev.hello.DatagramPacketManager.*;
@@ -52,7 +50,7 @@ public class HelloUDPServer implements HelloServer {
         final DatagramPacket respond = makeRequestDP(request.getSocketAddress());
         respond.setData(stringToBytes("Hello, " + extractMessage(request)));
         try {
-            serverSocket.send(respond);
+            serverSocket.send(respond);;
         } catch (IOException e) {
             System.err.println("Response exception occurred: " + e.getMessage());
         }
@@ -80,7 +78,7 @@ public class HelloUDPServer implements HelloServer {
      * USAGE: <HelloUDPServer> [port] [threads]
      */
     public static void main(String[] args) {
-        if (checkArguments(args, 2, USAGE)) {
+        if (!checkArguments(args, 2, USAGE)) {
             return;
         }
         try {

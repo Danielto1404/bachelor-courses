@@ -2,15 +2,15 @@ package ru.ifmo.rain.korolev.hello;
 
 public class Checker {
 
-    public static boolean checkArguments(String[] args, int size, String usage) {
+    public static boolean checkArguments(String[] args, int size, String usage) { ;
         if (args == null || args.length != size) {
-            System.err.println(usage);
+            System.out.println(usage);
             return false;
         }
         for (String arg : args) {
             if (arg == null) {
-                System.err.println("Expected non-null argument");
-                System.err.println(usage);
+                System.out.println("Expected non-null argument");
+                System.out.println(usage);
                 return false;
             }
         }
