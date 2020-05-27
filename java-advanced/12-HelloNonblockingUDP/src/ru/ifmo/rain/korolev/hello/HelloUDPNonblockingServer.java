@@ -21,8 +21,7 @@ import static ru.ifmo.rain.korolev.hello.DatagramByteBufferManager.fillBuffer;
 
 
 public class HelloUDPNonblockingServer implements HelloServer {
-    private final static int SELECTOR_AWAITING_TIME = 1000;
-    private final static int MANAGER_AWAITING_TIME = 10;
+    private final static int MANAGER_AWAITING_TIME = 100;
     private static final String USAGE = "USAGE: <HelloUDPServer> [port] [threads]";
 
     private DatagramChannel mainChanel;
@@ -63,7 +62,7 @@ public class HelloUDPNonblockingServer implements HelloServer {
                 mainChanel.register(selector, SelectionKey.OP_READ, new ClientAttachment());
 
                 while (!Thread.interrupted() && selector.isOpen() && mainChanel.isOpen()) {
-                    selector.select(SELECTOR_AWAITING_TIME);
+                    selector.select();
 
                     if (selector.selectedKeys().isEmpty()) {
                         continue;
@@ -82,7 +81,7 @@ public class HelloUDPNonblockingServer implements HelloServer {
                     }
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                close();
             }
         });
     }
