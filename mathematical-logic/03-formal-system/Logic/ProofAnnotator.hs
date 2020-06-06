@@ -50,7 +50,7 @@ getModusPonens e modusPonensMap indexMap = case Map.lookup e modusPonensMap of
                   in result
 
 
-data SubstitutionState = Found Expression | Correct | IncorrectSub deriving (Eq)
+data SubstitutionState = Found Expression | Correct | IncorrectSub deriving (Eq, Show)
 
 
 unpackValues :: SubstitutionState -> SubstitutionState -> SubstitutionState
@@ -91,8 +91,8 @@ try2Substitute x pattern expr = findSub x pattern expr where
                                                         Correct                       -> Correct
                                                         IncorrectSub                  -> IncorrectSub
                                                         Found var@(Var z) | z == x    -> Correct
-                                                                          | otherwise -> Found var
-                                                        Found e                       -> Found e
+                                                                          | otherwise -> IncorrectSub
+                                                        Found e                       -> IncorrectSub
 
                                            | otherwise                                 = IncorrectSub
 
