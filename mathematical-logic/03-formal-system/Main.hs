@@ -17,7 +17,7 @@ main = do
     let (provableLine : proofLines) = lines contents
     let provable                    = getProvable provableLine
     let initialEvidence             = parseList $ proofLines
-    let proofLines                  = buildProof initialEvidence
+    let proofLines                  = annotate initialEvidence
 
 
 ---------------------DEBUG AREA---------------------------------------------------
