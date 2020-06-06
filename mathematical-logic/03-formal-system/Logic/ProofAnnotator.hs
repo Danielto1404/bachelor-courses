@@ -89,10 +89,9 @@ try2Substitute x pattern expr = findSub x pattern expr where
                                                 else
                                                     case result of
                                                         Correct                       -> Correct
-                                                        IncorrectSub                  -> IncorrectSub
                                                         Found var@(Var z) | z == x    -> Correct
                                                                           | otherwise -> IncorrectSub
-                                                        Found e                       -> IncorrectSub
+                                                        _                             -> IncorrectSub
 
                                            | otherwise                                 = IncorrectSub
 
