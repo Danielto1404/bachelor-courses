@@ -9,29 +9,30 @@ $capitalAlpha = [A-Z]
 $spaces       = [\ \t]
 
 tokens :-
-       $white+			    ;
-       $alpha           	{ \x -> TOKEN_VARIABLE x   }
+       $white+	            ;
+       $alpha               { \x -> TOKEN_VARIABLE x   }
        $capitalAlpha        { \x -> TOKEN_PREDICATE x  }
 
-       \(		            { \x -> TOKEN_OPENED_BRACE }
-       \) 			        { \x -> TOKEN_CLOSED_BRACE }
+       \(		    { \x -> TOKEN_OPENED_BRACE }
+       \) 		    { \x -> TOKEN_CLOSED_BRACE }
 
        \@                   { \x -> TOKEN_ANY          }
        \?                   { \x -> TOKEN_EXISTS       }
 
        \.                   { \x -> TOKEN_DOT          }
 
-       "->"		            { \x -> TOKEN_IMPLICATION  }
-       \|		            { \x -> TOKEN_OR	       }
-       \&		            { \x -> TOKEN_AND 	       }
+       "->"		    { \x -> TOKEN_IMPLICATION  }
+       \|		    { \x -> TOKEN_OR	       }
+       \&		    { \x -> TOKEN_AND 	       }
        \=                   { \x -> TOKEN_EQUAL        }
        \+                   { \x -> TOKEN_ADD          }
        \*                   { \x -> TOKEN_MUL          }
 
        \'                   { \x -> TOKEN_NEXT         }
-       \!		            { \x -> TOKEN_NOT	       }
+       \!		    { \x -> TOKEN_NOT	       }
 
        0                    { \x -> TOKEN_ZERO         }
+       
 {
 data Token
      = TOKEN_VARIABLE String
