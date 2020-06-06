@@ -24,7 +24,7 @@ public class HelloUDPNonblockingClient implements HelloClient {
 
     public static class DatagramAttachment {
 
-        private final int chanelIndex;
+        private final int threadIndex;
         private int requestIndex;
 
         public void incrementRequestIndex() {
@@ -35,12 +35,12 @@ public class HelloUDPNonblockingClient implements HelloClient {
             return requestIndex;
         }
 
-        public int getChanelIndex() {
-            return chanelIndex;
+        public int getThreadIndex() {
+            return threadIndex;
         }
 
-        public DatagramAttachment(int chanelIndex) {
-            this.chanelIndex = chanelIndex;
+        public DatagramAttachment(int threadIndex) {
+            this.threadIndex = threadIndex;
             this.requestIndex = 0;
         }
     }
@@ -81,7 +81,9 @@ public class HelloUDPNonblockingClient implements HelloClient {
             int openedChannels = threads;
             ByteBuffer buffer = ByteBuffer.allocate(MAX_UDP_MESSAGE_SIZE);
             while (openedChannels > 0) {
+
                 selector.select(AWAITING_TIME);
+
                 if (selector.selectedKeys().isEmpty()) {
                     selector.keys().forEach(key -> key.interestOps(SelectionKey.OP_WRITE));
                     continue;
@@ -91,8 +93,9 @@ public class HelloUDPNonblockingClient implements HelloClient {
                     final SelectionKey key = i.next();
                     final DatagramChannel channel = (DatagramChannel) key.channel();
                     final DatagramAttachment attachment = (DatagramAttachment) key.attachment();
-                    final String requestText = makeRequest(prefix,
-                            attachment.getChanelIndex(),
+                    final String requestText = makeRequest(
+                            prefix,
+                            attachment.getThreadIndex(),
                             attachment.getRequestIndex());
 
                     buffer.clear();
