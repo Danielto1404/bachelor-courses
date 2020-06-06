@@ -1,6 +1,7 @@
 package ru.ifmo.rain.korolev.i18n;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class StatisticsCalculator {
     private final ResourceBundle bundle;
@@ -12,6 +13,13 @@ public class StatisticsCalculator {
             "maxLength",
             "averageLength"
     };
+
+    private static final String LINE_TYPE = "lines";
+    private static final String SENTENCE_TYPE = "sentence";
+    private static final String WORD_TYPE = "words";
+    private static final String DATE_TYPE = "dates";
+    private static final String CURRENCY_TYPE = "currency";
+    private static final String NUMBER_TYPE = "numbers";
 
     private static final String EMPTY_DATA = "empty.data";
 
@@ -63,5 +71,39 @@ public class StatisticsCalculator {
             }
         }
         return statistics.append(System.lineSeparator()).toString();
+    }
+
+    public String[] getAllStatistics(String lines,
+                                     Locale inputLocale,
+                                     ArrayList<Integer> counts) {
+
+        StatisticsCalculator calculator = new StatisticsCalculator(bundle);
+        DataParser parser = new DataParser(inputLocale);
+        String text = String.join(" ", lines.split("\n"));
+
+        ArrayList<Data<String>> linesData = Arrays.stream(lines.split("\n"))
+                .map(line -> new Data<>(line.toLowerCase(), line, -1))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        Triple<ArrayList<Data<Date>>, ArrayList<Data<Number>>, ArrayList<Data<Number>>> triple =
+                parser.extractDateNumberCurrency(text);
+
+        ArrayList<Data<String>> sentences = parser.extractSentences(text);
+        ArrayList<Data<String>> words = parser.extractWords(text);
+        ArrayList<Data<Date>> dates = triple.getFirst();
+        ArrayList<Data<Number>> currencies = triple.getSecond();
+        ArrayList<Data<Number>> numbers = triple.getThird();
+
+        String sentencesStatistics = calculator.getStatisticsForValue(sentences, parser.getStringComparator(), SENTENCE_TYPE, counts);
+        String linesStatistics = calculator.getStatisticsForValue(linesData, parser.getStringComparator(), LINE_TYPE, counts);
+        String wordsStatistics = calculator.getStatisticsForValue(words, parser.getStringComparator(), WORD_TYPE, counts);
+        String numbersStatistics = calculator.getStatisticsForValue(numbers, parser.getNumberComparator(), NUMBER_TYPE, counts);
+        String currenciesStatistics = calculator.getStatisticsForValue(currencies, parser.getNumberComparator(), CURRENCY_TYPE, counts);
+        String datesStatistics = calculator.getStatisticsForValue(dates, Comparator.comparing(Data::getValue), DATE_TYPE, counts);
+
+        return new String[]{
+                sentencesStatistics, linesStatistics, wordsStatistics, numbersStatistics, currenciesStatistics, datesStatistics
+        };
+
     }
 }

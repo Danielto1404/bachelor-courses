@@ -137,7 +137,7 @@ public class DataParser {
         for (String style : styles) {
             date = ((DateFormat) parsers.get(style)).parse(text, position);
             if (date != null)
-                return new Data<>(date, text.substring(pos, position.getIndex()), position.getIndex());
+                return new Data<>(date, text.substring(pos, position.getIndex()).trim(), position.getIndex());
         }
         return null;
     }
