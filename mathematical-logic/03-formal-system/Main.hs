@@ -23,13 +23,13 @@ main = do
 ---------------------DEBUG AREA---------------------------------------------------
 
 
---    putStrLn $ show $ substitution "y" (head initialEvidence) (last initialEvidence)
---    putStrLn $ show $ getUsedQuantifiers "b" $ head initialEvidence
+--    putStrLn $ show $ try2Substitute "x" (head initialEvidence) (last initialEvidence)
+--    putStrLn $ show $ getQuantifiersVars "x" $ head initialEvidence
 --    putStrLn $ show $ getFreeVars $ head initialEvidence
+--    writeFile "output.txt" ("|-" ++ (show provable) ++ "\n" ++ getDescribingProof proofLines initialEvidence)
 
 
 ----------------------------------------------------------------------------------
-
 
     putStrLn ("|-" ++ (show provable))
     putStrLn $ getDescribingProof proofLines initialEvidence
