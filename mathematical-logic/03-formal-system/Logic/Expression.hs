@@ -13,7 +13,6 @@ data Quantifier = Any
 
 
 data UnaryOp    = Next
-
                 | Not deriving (Eq, Ord)
 
 data Expression = Binary Operation Expression Expression

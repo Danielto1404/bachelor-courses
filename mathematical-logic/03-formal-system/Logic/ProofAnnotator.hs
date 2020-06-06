@@ -130,7 +130,7 @@ validateSubstitution x pattern expr = case try2Substitute x pattern expr of
 
 checkFree :: String -> Expression -> Expression -> CheckSubstitutionState
 checkFree x pattern found =
-    if null $ Set.intersection (getUsedQuantifiers x pattern) (getFreeVars found)
+    if null $ Set.intersection (getQuantifiersVars x pattern) (getFreeVars found)
         then T
         else NotFreeError x found
 
@@ -146,17 +146,17 @@ getFreeVars expr = extractFreeVars expr Set.empty where
                                  | otherwise         = Set.insert v Set.empty
 
 
-getUsedQuantifiers :: String -> Expression -> Str_Set
-getUsedQuantifiers x expr = extractUsedVars x expr where
-    extractUsedVars x (Binary _ l r)              = Set.union (extractUsedVars x l) (extractUsedVars x r)
-    extractUsedVars x (Unary _ e)                 = extractUsedVars x e
-    extractUsedVars x (Predicate _)               = Set.empty
-    extractUsedVars x Zero                        = Set.empty
-    extractUsedVars x (Var v)       | x /= v      = Set.empty
+getQuantifiersVars :: String -> Expression -> Str_Set
+getQuantifiersVars x expr = extractQuanVars x expr where
+    extractQuanVars x (Binary _ l r)              = Set.union (extractQuanVars x l) (extractQuanVars x r)
+    extractQuanVars x (Unary _ e)                 = extractQuanVars x e
+    extractQuanVars x (Predicate _)               = Set.empty
+    extractQuanVars x Zero                        = Set.empty
+    extractQuanVars x (Var v)       | x /= v      = Set.empty
                                     | otherwise   = Set.insert indicator_constant Set.empty
 
-    extractUsedVars x (Quan _ v e)  | v == x      = Set.empty
-                                    | otherwise   = let resultSet = (extractUsedVars x e)
+    extractQuanVars x (Quan _ v e)  | v == x      = Set.empty
+                                    | otherwise   = let resultSet = (extractQuanVars x e)
                                                     in case null resultSet of
                                                         True  -> Set.empty
                                                         False -> Set.insert v resultSet
