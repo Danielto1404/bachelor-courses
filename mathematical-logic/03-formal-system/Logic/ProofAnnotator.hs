@@ -85,15 +85,14 @@ try2Substitute x pattern expr = findSub x pattern expr where
 
     findSub x (Quan q v e) (Quan q' v' e') | q == q' && v == v' = let result = findSub x e e' in
                                                if (x /= v)
-                                                then result
-                                                else
-                                                    case result of
-                                                        Correct                       -> Correct
-                                                        Found var@(Var z) | z == x    -> Correct
-                                                                          | otherwise -> IncorrectSub
-                                                        _                             -> IncorrectSub
-
-                                           | otherwise                                 = IncorrectSub
+                                                 then result
+                                                 else
+                                                     case result of
+                                                         Correct                       -> Correct
+                                                         Found var@(Var z) | z == x    -> Correct
+                                                                           | otherwise -> IncorrectSub
+                                                         _                             -> IncorrectSub
+                                           | otherwise                                  = IncorrectSub
 
     findSub _ _ _                          = IncorrectSub
 
@@ -249,3 +248,7 @@ annotate proofLines = proofBuilder proofLines 1 Map.empty Map.empty where
 
             forallRule       = getForallRule e indexMap
             existsRule       = getExistsRule e indexMap
+
+--            checkRestProofs :: ProofState -> [Expression] -> Int -> MP_Map -> Index_Map -> ProofState
+--            checkRestProofs state es pos modusPonensMap indexMap = case
+
