@@ -4,33 +4,18 @@
 
 module Main where
 
-import Parsing.ProofParser
-import Logic.AxiomChecker
+import Parsing.ProofParser (getProvable, parseList)
 import Logic.ProofExpression
-import Logic.ProofAnnotator
+import Logic.ProofAnnotator (annotate)
 
 main :: IO ()
 main = do
---    contents                        <- readFile "debug.txt"
---    contents                        <- readFile "input.txt"
     contents                        <- getContents
 
     let (provableLine : proofLines) = lines contents
     let provable                    = getProvable provableLine
     let initialEvidence             = parseList $ proofLines
     let proofLines                  = annotate initialEvidence
-
-
----------------------DEBUG AREA---------------------------------------------------
-
-
---    putStrLn $ show $ try2Substitute "x" (head initialEvidence) (last initialEvidence)
---    putStrLn $ show $ getQuantifiersVars "x" $ head initialEvidence
---    putStrLn $ show $ getFreeVars $ head initialEvidence
---    writeFile "output.txt" ("|-" ++ (show provable) ++ "\n" ++ getDescribingProof proofLines initialEvidence)
-
-
-----------------------------------------------------------------------------------
 
     putStrLn ("|-" ++ (show provable))
     putStrLn $ getDescribingProof proofLines initialEvidence

@@ -1,6 +1,5 @@
 module Logic.Expression where
 
-
 data Operation  = Impl
                 | Or
                 | And
@@ -22,7 +21,6 @@ data Expression = Binary Operation Expression Expression
                 | Zero
                 | Predicate String
                 | Var String deriving (Eq, Ord)
-
 
 
 instance Show Operation where

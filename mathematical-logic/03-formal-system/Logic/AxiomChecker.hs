@@ -1,8 +1,8 @@
-module Logic.AxiomChecker where
+module Logic.AxiomChecker (getAxiomSchemeIndex, getFormalAxiomIndex) where
 
 import Logic.Expression
-import Parsing.ProofParser
-import Data.List
+import Parsing.ProofParser 
+import Data.List (elemIndex)
 
 
 -- LOGIC AXIOMS
@@ -101,18 +101,18 @@ isTenthAxiom (Binary Impl
 isTenthAxiom _ = False
 
 
-getAxiomIndex :: Expression -> Int
-getAxiomIndex exp | isFirstAxiom   exp = 1
-                  | isSecondAxiom  exp = 2
-                  | isThirdAxiom   exp = 3
-                  | isFourthAxiom  exp = 4
-                  | isFifthAxiom   exp = 5
-                  | isSixthAxiom   exp = 6
-                  | isSeventhAxiom exp = 7
-                  | isEighthAxiom  exp = 8
-                  | isNinthAxiom   exp = 9
-                  | isTenthAxiom   exp = 10
-                  | otherwise          = 0
+getAxiomSchemeIndex :: Expression -> Int
+getAxiomSchemeIndex exp | isFirstAxiom   exp = 1
+                        | isSecondAxiom  exp = 2
+                        | isThirdAxiom   exp = 3
+                        | isFourthAxiom  exp = 4
+                        | isFifthAxiom   exp = 5
+                        | isSixthAxiom   exp = 6
+                        | isSeventhAxiom exp = 7
+                        | isEighthAxiom  exp = 8
+                        | isNinthAxiom   exp = 9
+                        | isTenthAxiom   exp = 10
+                        | otherwise          = 0
 
 
 -- FORMAL AXIOMS

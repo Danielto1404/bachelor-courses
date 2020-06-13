@@ -1,23 +1,26 @@
-module Logic.ProofExpression where
+module Logic.ProofExpression (ProofState (..), getDescribingProof) where
 
 import Logic.Expression
 
 
 data ProofState = MP Int Int
                 | Axiom Int
-                | InductionAxiom
                 | FormalAxiom Int
                 | Intro Int
+                | InductionAxiom
+
                 | NotFree String Expression
                 | OccursFree String
-                | NotProved deriving Eq
+                | NotProved
+
 
 instance Show ProofState where
     show (MP i j)        = concat ["M.P. ", show i, ", ", show j]
     show (Axiom n)       = concat ["Ax. sch. ", show n]
-    show InductionAxiom  = "Ax. sch. A9"
     show (FormalAxiom n) = concat ["Ax. A", show n]
     show (Intro n)       = concat ["?@-intro ", show n]
+    show InductionAxiom  = "Ax. sch. A9"
+
     show (NotFree v e)   = concat ["variable ", v, " is not free for term ", show e, " in ?@-axiom."]
     show (OccursFree v)  = concat ["variable ", v, " occurs free in ?@-rule."]
     show NotProved       = "is not proved."
