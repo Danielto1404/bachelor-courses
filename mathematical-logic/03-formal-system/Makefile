@@ -17,7 +17,7 @@ run:
 	./$(EXECUTABLE)
 
 formalArithmetic: $(GENERATED) $(SOURCES)
-	ghc -o $(EXECUTABLE) Main.hs
+	 ghc -O2 -o $(EXECUTABLE) Main.hs
 
 $(GENERATED):
 	alex $(PARSING_MODULE)/$(LEXER)

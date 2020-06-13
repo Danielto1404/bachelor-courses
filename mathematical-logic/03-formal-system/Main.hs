@@ -1,6 +1,7 @@
 {-# OPTIONS_GHC -O2 -optc-O2 #-}
 {-# OPTIONS_GHC -fwarn-incomplete-patterns #-}
 
+
 module Main where
 
 import Parsing.ProofParser
