@@ -11,36 +11,12 @@ module Logic.AlphabetSet (
                     Logic.AlphabetSet.fromValue) where
 -- Simple english alphabet bit set implementation (using bit masks for char's)
 
-import Data.Bits ((.|.), (.&.), xor)
+import Data.Bits ((.|.), (.&.), xor, shiftL)
+import Data.Char (ord)
 
 maskFor :: String -> Int
-maskFor "a" = 1
-maskFor "b" = 2
-maskFor "c" = 4
-maskFor "d" = 8
-maskFor "e" = 16
-maskFor "f" = 32
-maskFor "g" = 64
-maskFor "h" = 128
-maskFor "i" = 256
-maskFor "j" = 512
-maskFor "k" = 1024
-maskFor "l" = 2048
-maskFor "m" = 4096
-maskFor "n" = 8192
-maskFor "o" = 16384
-maskFor "p" = 32768
-maskFor "q" = 65536
-maskFor "r" = 131072
-maskFor "s" = 262144
-maskFor "t" = 524288
-maskFor "u" = 1048576
-maskFor "v" = 2097152
-maskFor "w" = 4194304
-maskFor "x" = 8388608
-maskFor "y" = 16777216
-maskFor "z" = 33554432
-maskFor _   = 67108864
+maskFor (c : []) = 1 `shiftL` (ord c - 97)
+maskFor _        = 67108864                 -- 2^26 non ALPHABET char
 
 
 data AlphabetSet = Singleton | Set Int | Empty deriving (Show)
