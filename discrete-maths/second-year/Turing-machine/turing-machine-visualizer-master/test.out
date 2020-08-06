@@ -1,0 +1,77 @@
+start: s
+accept: ac
+reject: rj
+blank: _
+
+s 0                  -> goRight 0' >
+s 1                  -> goRight 1' >
+
+goRight 0            -> goRight 0 >
+goRight 1            -> goRight 1 >
+goRight <            -> findSecond < >
+
+goLeft 0'            -> goLeft 0' <
+goLeft 1'            -> goLeft 1' <
+goLeft <             -> check < <
+
+check 0              -> findFirst 0 <
+check 1              -> findFirst 1 <
+check 0'             -> checkRest 0' >
+check 1'             -> checkRest 1' >
+
+findFirst 0          -> findFirst 0 <
+findFirst 1          -> findFirst 1 <
+findFirst 0'         -> setBit 0' >
+findFirst 1'         -> setBit 1' >
+
+setBit 0             -> goRight 0' >
+setBit 1             -> goRight 1' >
+
+findSecond 0'        -> findSecond 0' >
+findSecond 1'        -> findSecond 1' >
+findSecond 0         -> goLeft 0' <
+findSecond 1         -> goLeft 1' <
+findSecond _         -> ac _ ^
+
+checkRest <          -> checkRest < >
+checkRest 0'         -> checkRest 0' >
+checkRest 1'         -> checkRest 1' >
+checkRest 0          -> rj _ ^
+checkRest 1          -> rj _ ^
+checkRest _          -> goToStart _ <
+
+goToStart 0'         -> goToStart 0' <
+goToStart 1'         -> goToStart 1' <
+goToStart <          -> goToStart <  <
+goToStart _          -> bitChecker _ >
+
+bitChecker 0'        -> moveRightZero 0 >
+bitChecker 1'        -> moveRightOne 1 >
+
+moveRightZero 0'     -> moveRightZero 0' >
+moveRightZero 1'     -> moveRightZero 1' >
+moveRightZero <      -> checkRightZeroBit < >
+
+moveRightOne 0'      -> moveRightOne 0' >
+moveRightOne 1'      -> moveRightOne 1' >
+moveRightOne <       -> checkRightOneBit < >
+
+moveLeft 0           -> moveLeft 0 <
+moveLeft 1           -> moveLeft 1 <
+moveLeft <           -> findNextBit < <
+
+findNextBit 0'       -> findNextBit 0' <
+findNextBit 1'       -> findNextBit 1' <
+findNextBit 0        -> bitChecker 0 >
+findNextBit 1        -> bitChecker 1 >
+findNextBit _        -> rj _ ^
+
+checkRightZeroBit 0  -> checkRightZeroBit 0 >
+checkRightZeroBit 1  -> checkRightZeroBit 1 >
+checkRightZeroBit 0' -> moveLeft 0 <
+checkRightZeroBit 1' -> rj _ ^
+
+checkRightOneBit 0   -> checkRightOneBit 0 >
+checkRightOneBit 1   -> checkRightOneBit 1 >
+checkRightOneBit 1'  -> moveLeft 1 <
+checkRightOneBit 0'  -> ac _ ^
