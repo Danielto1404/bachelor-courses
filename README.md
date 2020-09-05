@@ -7,3 +7,4 @@
 + [Operation Systems](bash-course)
 + [Java Advanced](java-advanced)
 + [Mathematical Logic](mathematical-logic)
++ [Translation methods](translation-methods)
