@@ -1,0 +1,10 @@
+|-S
+a=b->a=c->b=c
+a=b->a'=b'
+a'=b'->a=b
+!a'=0
+a+0=a
+a+b'=(a+b)'
+a*0=0
+a*b'=a*b+a
+a=d->a=c->d=c
