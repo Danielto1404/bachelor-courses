@@ -1,3 +1,3 @@
 ## Homeworks & labs
 
-* #### 01  [Perl regex lab](perl-regex-lab)
+* #### [Perl regex lab](perl-regex-lab)
