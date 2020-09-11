@@ -8,3 +8,5 @@
 + [Java Advanced](java-advanced)
 + [Mathematical Logic](mathematical-logic)
 + [Translation methods](translation-methods)
++ [Parallel programming](parallel-programming)
++ [Machine learning](ml)
