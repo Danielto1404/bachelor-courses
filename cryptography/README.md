@@ -1,3 +1,4 @@
 ## Cryptography labs & projects
 
-* #### 1. [Vigenere hack algorithm](VigenereHack)
+
+#### 1. [Vigenere hack algorithm](VigenereHack)
