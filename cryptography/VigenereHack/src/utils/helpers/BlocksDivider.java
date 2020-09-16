@@ -1,10 +1,12 @@
 package utils.helpers;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class BlocksDivider {
 
-    public static StringBuilder[] divideOnBlocks(String text, int blocksCount) {
+    public static Stream<String> divideOnBlocks(String text, int blocksCount) {
 
         int textLength = text.length();
 
@@ -21,7 +23,7 @@ public class BlocksDivider {
             blocks[i % blocksCount].append(text.charAt(i));
         }
 
-        return blocks;
+        return Arrays.stream(blocks)
+                .map(StringBuilder::toString);
     }
-
 }

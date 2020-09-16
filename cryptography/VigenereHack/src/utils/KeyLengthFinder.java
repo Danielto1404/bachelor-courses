@@ -5,11 +5,11 @@ import utils.helpers.IndexDoublePair;
 import utils.helpers.SymbolCounter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class KeyLengthFinder {
 
@@ -40,13 +40,11 @@ public class KeyLengthFinder {
      * @return Looks for the most likely key length
      */
     public int findKeyLength() {
-        IndexDoublePair pair = IntStream.range(keyMinLength, keyMaxLength + 1)
+        return IntStream.range(keyMinLength, keyMaxLength + 1)
                 .mapToObj(keyLength -> new IndexDoublePair(keyLength, findCoincidenceIndex(keyLength)))
                 .max(Comparator.comparing(IndexDoublePair::getValue))
-                .orElseThrow();
-
-        System.out.println("\n\nEstimated key length: " + pair.getIndex());
-        return pair.getIndex();
+                .orElseThrow()
+                .getIndex();
     }
 
 
@@ -56,12 +54,11 @@ public class KeyLengthFinder {
      */
     public Double findCoincidenceIndex(int keyLength) {
 
-        StringBuilder[] blocks = BlocksDivider.divideOnBlocks(text, keyLength);
+        Stream<String> blocks = BlocksDivider.divideOnBlocks(text, keyLength);
 
-        ArrayList<Double> probabilities = Arrays
-                .stream(blocks)
+        ArrayList<Double> probabilities = blocks
                 .map(block -> {
-                    Map<Character, Integer> counter = SymbolCounter.countLetterSymbols(block.toString());
+                    Map<Character, Integer> counter = SymbolCounter.countLetterSymbols(block);
                     return calculateProbability(counter, block.length());
                 })
                 .collect(Collectors.toCollection(ArrayList::new));
