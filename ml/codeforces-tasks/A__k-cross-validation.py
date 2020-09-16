@@ -1,30 +1,17 @@
-# TIME LIMIT for some undefined cases even in PyPy
+objectsCount, classesCount, blocksCount = map(int, input().split())
 
-objects, classes, blocksNumber = map(int, input().split())
-
-blocks = [[] for _ in range(blocksNumber)]
-typeElementsMap = {}
+blocks = [[] for _ in range(blocksCount)]
+elements = []
 
 startBlock = 0
 
-
-def updateTypeElementsMap(typeKey, value):
-    values = typeElementsMap.get(typeKey, [])
-    typeElementsMap[typeKey] = values + [value]
-
-
-def fillTypeElements(elements):
-    global startBlock
-    for e in elements:
-        blocks[startBlock].append(e)
-        startBlock = (startBlock + 1) % blocksNumber
-
-
 for (i, elementType) in enumerate(map(int, input().split())):
-    updateTypeElementsMap(elementType, i)
+    elements.append((i, elementType))
 
-for typeElements in typeElementsMap.values():
-    fillTypeElements(typeElements)
+# sorting by element type
+for e in sorted(elements, key=lambda x: x[1]):
+    blocks[startBlock].append(e[0])
+    startBlock = (startBlock + 1) % blocksCount
 
 for block in blocks:
     print(len(block), *list(map(lambda x: x + 1, block)))
