@@ -22,3 +22,4 @@
 + [Parallel programming](parallel-programming)
 + [Machine learning](ml)
 + [Functional programming](functional-programming)
++ [Cryptography](cryptography)
