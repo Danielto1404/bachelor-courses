@@ -7,3 +7,5 @@
 
 ### Homeworks
 
+* #### [Codeforces tasks](codeforces-tasks)
+
