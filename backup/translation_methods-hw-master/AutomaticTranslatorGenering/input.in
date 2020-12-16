@@ -1,0 +1,24 @@
+#include "conio.h"
+int main() {
+	int a, b;
+	for (int i=0; i< 10;i=i+1){
+		a=10;
+	}
+}
+
+#include "iostream"
+
+void f(int x){
+	const int v=0;
+	x=x;
+	cout<<x;
+	cin>>x>>y;
+}
+void someFunction(int q, char w){
+	cout<<10;
+	f(q);
+	while (w<32){
+		w=w+q;
+		cout<<w<<"n";
+	}
+}
