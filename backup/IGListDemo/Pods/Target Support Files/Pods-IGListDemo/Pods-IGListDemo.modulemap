@@ -1,6 +1,0 @@
-framework module Pods_IGListDemo {
-  umbrella header "Pods-IGListDemo-umbrella.h"
-
-  export *
-  module * { export * }
-}
