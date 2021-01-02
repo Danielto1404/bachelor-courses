@@ -1,0 +1,53 @@
+numA dd 4.0
+numB dd 8.0
+numC dd 3.14
+result dd 0.0
+
+1) result = 2 * numC * numB + numA
+2) result = numA + numC * numB * numB
+3) result = (numB + numA) / numC
+4) result = sin(numB + numA) * 2 * numC
+5) result = sin(numC) * (numB + numA)
+
+
+a) fld offset numC	2
+   fld offset numB
+   fld offset numB
+   fmulp
+   fmulp
+   fadd offset numA
+   fstp result
+   
+b) fld offset numC	1
+   fld offset numB
+   fld offset numB
+   faddp
+   fmulp
+   fadd offset numA
+   fstp result
+   
+c) fld offset numC	3	
+   fld offset numB
+   fadd offset numA
+   fxch -- exhage st(0) st(1)
+   fdivp
+   fstp result
+   
+d) fld offset numC	5
+   fld offset numB
+   fadd offset numA
+   fxch
+   fsin
+   fmulp
+   fstp result
+   
+e) fld offset numC	4
+   fld offset numB
+   fadd offset numA
+   fsin
+   fxch
+   fadd offset numC
+   fmulp
+   fstp result
+
+Flag:= 1-b, 2-a, 3-c, 4-e, 5-d

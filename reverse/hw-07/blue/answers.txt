@@ -1,0 +1,3 @@
+vsp: = 413d791790502b30842994da1ec6def4 (strace -> "Go out..." -> find function -> jnz -> jz)
+slowpoke: = gTihSK[dIN]vQyZLR]TnUPQLtTjWOaV (nop all sleeps) 
+refunc: = spbctf{p4th_c4ll_r3v3rs3_wa7wa7}  (change name -> secret invoke)

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:orientation="vertical" android:paddingLeft="16dp" android:paddingTop="32dp" android:paddingRight="16dp" android:layout_width="match_parent" android:layout_height="match_parent">
+    <EditText android:id="@+id/solution" android:paddingBottom="16dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Solution"/>
+    <Button android:id="@+id/solve" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Solve"/>
+</LinearLayout>

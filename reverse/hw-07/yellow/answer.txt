@@ -1,0 +1,2 @@
+paraguas: = spbctf{!muchas_gracias_mi_blanco_amigo!} (Strings -> ip -> change ip -> open in bytes -> put bytes in alignh line)
+virtpp:= spbctf{smash_vtable_cpp_is_the_future__} (Double click BadGuy constctor -> find GoodGuy fun name -> change)

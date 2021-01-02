@@ -1,0 +1,48 @@
+1) int num = 4 * 7 + 3 * 2;
+2) int num = 4 + 7 - 3 * 8;
+3) char num = 4 * 7 - 3 * 8;
+4) int num = 4 * 7 - 3 * 8;
+5) int num = 4 * 7 + 3 * 8;
+
+
+a) mov rax, offset num			5 (* 8, last func add)
+   mov rbx, 4
+   imul rbx, 7
+   mov dword ptr [rax], ebx
+   mov rbx, 3
+   lea rbx, [rbx * 8]
+   add dword ptr [rax], ebx
+   
+b) mov rax, offset num			4 (* 8, last func sub)
+   mov rbx, 4
+   imul rbx, 7
+   mov dword ptr [rax], ebx
+   mov rbx, 3
+   lea rbx, [rbx * 8]
+   sub dword ptr [rax], ebx   
+   
+c) mov rax, offset num			1 (last func lea rbx, [rbx + rbx] == 3 * 2)
+   mov rbx, 4
+   imul rbx, 7
+   mov dword ptr [rax], ebx
+   mov rbx, 3
+   lea rbx, [rbx + rbx]
+   add dword ptr [rax], ebx
+   
+d) mov rax, offset num			3 (byte == char)
+   mov rbx, 4
+   imul rbx, 7
+   mov byte ptr [rax], bl
+   mov rbx, 3
+   lea rbx, [rbx * 8]
+   sub byte ptr [rax], bl
+   
+e) mov rax, offset num			2 (second function is add)
+   mov dword ptr [rax], 4
+   add dword ptr [rax], 7
+   mov rbx, 3
+   lea rbx, [rbx * 8]
+   sub dword ptr [rax], ebx
+
+
+Flag:= 1-c, 2-e, 3-d, 4-b, 5-a

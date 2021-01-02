@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public type="color" name="colorAccent" id="2130771968" />
+    <public type="color" name="colorPrimary" id="2130771969" />
+    <public type="color" name="colorPrimaryDark" id="2130771970" />
+    <public type="drawable" name="$ic_launcher_foreground__0" id="2130837504" />
+    <public type="drawable" name="ic_launcher_background" id="2130837505" />
+    <public type="drawable" name="ic_launcher_foreground" id="2130837506" />
+    <public type="id" name="solution" id="2130903040" />
+    <public type="id" name="solve" id="2130903041" />
+    <public type="layout" name="activity_main" id="2130968576" />
+    <public type="mipmap" name="ic_launcher" id="2131034112" />
+    <public type="mipmap" name="ic_launcher_round" id="2131034113" />
+    <public type="string" name="app_name" id="2131099648" />
+</resources>

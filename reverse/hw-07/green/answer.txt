@@ -1,0 +1,4 @@
+trialver: = SPbCTF{d0n7_n33d_t0_buy_buggy_s0f7w4r3} (Change i from 6 to 64)
+daddy: = SPbCTF{N0w_i_kn0w_wh4t_4RM_N0P_is}  (Double click getflag -> ASM -> change B.NE -> B.EQ -> Bytes (21 09 -> 20 08)
+rooty_booty: = SPbCTF{d0nt_run_s4mpl3z_4s_r00t} (swap -> nop reboot; AGRP -> nop reboot)
+redcolor: = SPbCTF{a_l1ttl3_b1t_0f_f0r3ns1cs} (0xFFFFFFF -> 60 10 00 00 00 00 00 in HexView)

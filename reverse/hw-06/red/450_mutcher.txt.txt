@@ -1,0 +1,91 @@
+1) return strcmp(strA, strB)
+2) strncpy(strA, strB, length)
+3) strcat(strA, strB)
+4) return strlen(strA)
+5) strcpy(strA, strB)
+
+
+a) mov esi, offset strA		1 (because length not used)
+   mov edi, offset strB
+   mov ecx, length
+   next:
+     mov al, byte ptr [esi]
+     sub al, byte ptr [edi]
+     test al, al
+     jnz finish
+     cmp byte ptr [esi], 0
+     je finish
+     inc esi
+     inc edi
+     jmp next
+   finish:
+   movsx eax, al
+   ret
+   
+b) mov esi, offset strA		4 (because length and strB not used)		
+   mov edi, offset strB
+   mov ecx, length
+   next:
+     mov al, byte ptr [esi]
+     cmp al, 0
+     je finish
+     inc esi
+     jmp next
+   finish:
+   sub esi, offset strA
+   mov eax, esi
+   ret
+   
+c) mov esi, offset strA		5 (comparing with zero)
+   mov edi, offset strB
+   mov ecx, length
+   next:
+     mov al, byte ptr [edi]
+     mov byte ptr [esi], al
+     cmp al, 0
+     je finish
+     inc esi
+     inc edi
+     jmp next
+   finish:
+   ret
+   
+d) mov esi, offset strA		3 (Finish1, Finish2)
+   mov edi, offset strB
+   mov ecx, length
+   next:
+     mov al, byte ptr [esi]
+     cmp al, 0
+     je finish
+     inc esi
+     jmp next
+   finish:
+   next2:
+     mov al, byte ptr [edi]
+     mov byte ptr [esi], al
+     cmp al, 0
+     je finish2
+     inc esi
+     inc edi
+     jmp next2
+   finish2:
+   ret
+   
+e) mov esi, offset strA		2 - understandable
+   mov edi, offset strB
+   mov ecx, length
+   next:
+     test ecx, ecx
+     jz finish
+     mov al, byte ptr [edi]
+     mov byte ptr [esi], al
+     cmp al, 0
+     je finish
+     inc esi
+     inc edi
+     dec ecx
+     jmp next
+   fi
+
+
+Flag:= 1-a, 2-e, 3-d, 4-b, 5-c

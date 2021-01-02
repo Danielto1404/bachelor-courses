@@ -1,0 +1,5 @@
+task1: = ASIS{f18b0b4f1bc6c8af21a4a53ef002f9a2} 
+task2: = perl				(Generate all input -> cntr f "NO")
+task3: = ruby				(Generate all input -> cntr f "OK")
+task4: = Odnazdivstudenuyzimuyporu      (jnz -> jz)
+task6: = Flagardium_Flagiossa		(Change 1_000_000 in time_wastetime to 1 and 999_999 to 0)

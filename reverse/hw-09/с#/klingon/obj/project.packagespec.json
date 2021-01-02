@@ -1,0 +1,39 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/Users/da.korolev/Documents/GitHub/3-rd-year/reverse/hw-09/с#/klingon/XenoLogin.csproj",
+    "projectName": "XenoLogin",
+    "projectPath": "/Users/da.korolev/Documents/GitHub/3-rd-year/reverse/hw-09/с#/klingon/XenoLogin.csproj",
+    "outputPath": "/Users/da.korolev/Documents/GitHub/3-rd-year/reverse/hw-09/с#/klingon/obj/",
+    "projectStyle": "PackageReference",
+    "originalTargetFrameworks": [
+      "net452"
+    ],
+    "sources": {
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "net452": {
+        "projectReferences": {}
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "net452": {
+      "dependencies": {
+        "Microsoft.NETFramework.ReferenceAssemblies": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[1.0.0, )",
+          "autoReferenced": true
+        }
+      },
+      "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.100/RuntimeIdentifierGraph.json"
+    }
+  }
+}
