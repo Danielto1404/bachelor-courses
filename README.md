@@ -23,3 +23,4 @@
 + [Machine learning](ml)
 + [Functional programming](functional-programming)
 + [Cryptography](cryptography)
++ [CTF Reverse](reverse)
