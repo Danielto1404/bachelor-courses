@@ -1,0 +1,25 @@
+void main(){float f=-5.0;plus(1347 *= 120);} int plus(int a){char d = 4/2-3;int b = 6; int c=b; d=5; c%=2; a=b=c=-d;if(b>-5){return +5;}else{return;}while(!(a > 5)||c){a*=a+1;}; ;   ;} void test(   ) {}
+int
+main( )
+{
+printf( "Hello world"
+)
+;;;;;;;;;;;;;;;;return 0
+;}
+int y(short x, short z) {
+ if (a) {
+                 if (b) {
+      do {
+   a *= a;
+       }
+                     while (a)
+    return;
+     } else {
+     return;
+     }
+  }
+}
+
+struct Point {int x;int y;}
+
+// Hello

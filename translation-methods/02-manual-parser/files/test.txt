@@ -1,0 +1,2 @@
+@Decorator
+def mul(a, b, c) =

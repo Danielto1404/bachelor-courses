@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="LinearizabilityTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-12-25T17:59:12" hostname="MacBook-Pro-Daniil.local" time="10.008">
+  <properties/>
+  <testcase name="testLinearizability" classname="LinearizabilityTest" time="10.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

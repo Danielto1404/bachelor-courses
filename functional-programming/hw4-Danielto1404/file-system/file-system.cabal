@@ -1,0 +1,60 @@
+cabal-version: 1.12
+
+name:           file-system
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/Danielto1404/file-system#readme>
+homepage:       https://github.com/Danielto1404/file-system#readme
+bug-reports:    https://github.com/Danielto1404/file-system/issues
+author:         Daniil Korolev
+maintainer:     daniilkorolev00@gmail.com
+copyright:      2021 Daniil Korolev
+
+build-type:     Simple
+
+library
+  exposed-modules:
+      FS
+    , FSLenses
+    , FSTraversal
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wwarn
+  build-depends:
+      base >=4.7 && <5
+    , filepath
+    , directory
+    , microlens
+  default-language: Haskell2010
+
+executable file-system-exe
+  main-is: Main.hs
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -Wwarn -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , file-system
+    , filepath
+    , directory
+    , microlens
+  default-language: Haskell2010
+
+test-suite file-system-test
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  other-modules:
+      TestFS
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wwarn -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , file-system
+    , hspec
+    , hedgehog
+    , hspec-hedgehog
+    , tasty
+    , tasty-hspec
+    , tasty-hedgehog
+    , microlens
+  default-language: Haskell2010

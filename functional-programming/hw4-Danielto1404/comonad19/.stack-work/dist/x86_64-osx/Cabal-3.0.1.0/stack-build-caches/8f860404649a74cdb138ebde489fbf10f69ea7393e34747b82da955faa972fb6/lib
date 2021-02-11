@@ -1,0 +1,16 @@
+? /Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/comonad19/.stack-work/dist/x86_64-osx/Cabal-3.0.1.0/build/autogen/Paths_comonad19.hs
+: hash: 943672e825dbb99083e7d407657f9fb617361ba419c81eea90c740c915d9825d
+/Users/daniilkorolev/.stack/programs/x86_64-osx/ghc-8.8.3/lib/ghc-8.8.3/include/ghcversion.h:
+  hash: 40d1b759f485f1cd5a54141a6412691ac2b76930507289a16a6a7b89b045b4d2
+/Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/comonad19/comonad19.cabal:
+  hash: c59041c12e0709e3853a713e4f41aa1d53b7de0b8e119f0ec5880e0a0167e752
+/Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/comonad19/src/Virus/Simulation.hs:
+  hash: 818fb07192233c97b0b2273b471e24a058f79ec9c2ad1044ee7d1e7bbc882c5d
+/Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/comonad19/src/Virus/Configuration.hs:
+  hash: 8368a10c6ed5ca4714b08d98f798d03b3647451cf6a8efc37d1678a0c3e6a945
+/Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/comonad19/src/ListZipper.hs:
+  hash: 96d62c655beff0085ecb1b7d00a36af6c2d4f6caa4f8adb2f43140c603a6566c
+? /Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/comonad19/.stack-work/dist/x86_64-osx/Cabal-3.0.1.0/build/autogen/cabal_macros.h
+: hash: babc0a82785bc326fead998bec244d578aa723e3a3524c0be21adf7e4651aac2
+/Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/comonad19/src/Grid.hs:
+  hash: cebf93ba7b2db26a51c4ff58f48a61b88c5d644d21b20bc694ac39f86426f5f8

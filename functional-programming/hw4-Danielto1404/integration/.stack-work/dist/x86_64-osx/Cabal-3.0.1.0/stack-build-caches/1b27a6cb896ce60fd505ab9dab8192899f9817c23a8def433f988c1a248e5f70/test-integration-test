@@ -1,0 +1,10 @@
+? /Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/integration/.stack-work/dist/x86_64-osx/Cabal-3.0.1.0/build/integration-test/autogen/cabal_macros.h
+: hash: 18440447b481d099eedf6c82ac1589835c576d0130d2e5a627962d4b1fca2444
+/Users/daniilkorolev/.stack/programs/x86_64-osx/ghc-8.8.3/lib/ghc-8.8.3/include/ghcversion.h:
+  hash: 40d1b759f485f1cd5a54141a6412691ac2b76930507289a16a6a7b89b045b4d2
+/Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/integration/integration.cabal:
+  hash: 42580b702080b0e5d20a8487fce2dafa3c00b8f803958737dc9910a9137f9580
+? /Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/integration/.stack-work/dist/x86_64-osx/Cabal-3.0.1.0/build/integration-test/autogen/Paths_integration.hs
+: hash: 039501f087b253da19831d57deed6579aaa8cf7ad83f4fe77b55d85a077c5089
+/Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/integration/test/Spec.hs:
+  hash: ef8d1c0c14bd7951b5db43ad0bc2b1c46ef3c248d621c644d3ddb98bc2a08ecc

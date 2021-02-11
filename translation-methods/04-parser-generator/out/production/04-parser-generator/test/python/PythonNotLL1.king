@@ -1,0 +1,36 @@
+grammar PythonNotLL1
+
+<package bad>
+
+start =>
+  decorator definition
+
+decorator =>
+    AT ID
+  | EPS
+
+definition =>
+  DEF fun
+
+fun =>
+  ID OPENED args CLOSED
+
+args =>
+    ID COMMA args
+  | ID
+  | EPS
+
+
+errorRule =>
+    COMMA ID
+  | EPS
+  | COMMA
+
+OPENED => "\("
+CLOSED => "\)"
+COMMA  => ","
+AT     => "@"
+DEF    => "def"
+ID     => "[a-zA-Z]+"
+
+skip WS => "[ ]+"

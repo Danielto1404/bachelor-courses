@@ -1,0 +1,50 @@
+
+= Iteration 1 / 100 =
+ Execution scenario (init part):
+[add(2), peek()]
+$Execution scenario (parallel part):
+| peek()  | poll() | poll() |
+| poll()  | poll() | add(6) |
+| add(-6) | poll() | poll() |
+ Execution scenario (post part):
+[poll(), poll()]
+
+= Iteration 2 / 100 =
+ Execution scenario (init part):
+[peek(), poll()]
+$Execution scenario (parallel part):
+| poll() | peek() | add(-8) |
+| poll() | poll() | peek()  |
+| add(1) | poll() | poll()  |
+ Execution scenario (post part):
+[poll(), peek()]
+
+= Iteration 3 / 100 =
+ Execution scenario (init part):
+[add(4), peek()]
+$Execution scenario (parallel part):
+| add(-8) | poll() | poll() |
+| poll()  | poll() | poll() |
+| poll()  | poll() | add(5) |
+ Execution scenario (post part):
+[poll(), peek()]
+
+= Iteration 4 / 100 =
+ Execution scenario (init part):
+[add(-4), poll()]
+$Execution scenario (parallel part):
+| peek() | poll()  | poll()  |
+| peek() | add(-8) | peek()  |
+| peek() | peek()  | add(-2) |
+ Execution scenario (post part):
+[peek(), add(-8)]
+
+= Iteration 5 / 100 =
+ Execution scenario (init part):
+[poll(), add(4)]
+$Execution scenario (parallel part):
+| add(6) | peek() | peek() |
+| poll() | add(1) | peek() |
+| poll() | peek() | peek() |
+ Execution scenario (post part):
+[add(4), add(0)]

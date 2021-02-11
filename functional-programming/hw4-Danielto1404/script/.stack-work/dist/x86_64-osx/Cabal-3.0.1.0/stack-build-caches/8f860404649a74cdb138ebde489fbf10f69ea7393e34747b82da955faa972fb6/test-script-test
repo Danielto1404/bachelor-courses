@@ -1,0 +1,10 @@
+/Users/daniilkorolev/.stack/programs/x86_64-osx/ghc-8.8.3/lib/ghc-8.8.3/include/ghcversion.h:
+  hash: 40d1b759f485f1cd5a54141a6412691ac2b76930507289a16a6a7b89b045b4d2
+/Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/script/script.cabal:
+  hash: 0af012b9a928f6687165a10b60689f8adf3f7600e3f14f1b8c933c1ae6e5cac0
+? /Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/script/.stack-work/dist/x86_64-osx/Cabal-3.0.1.0/build/script-test/autogen/Paths_script.hs
+: hash: 46b5443c3b0263cfce74a10ef6d0c8ca5510b3dc6eb798734da99f8836ff7967
+? /Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/script/.stack-work/dist/x86_64-osx/Cabal-3.0.1.0/build/script-test/autogen/cabal_macros.h
+: hash: 706ccf8449366a19e50cad9d654923c3238ce19bbc29ad982e72bacdf426134b
+/Users/daniilkorolev/Documents/Haskell/hw4-Danielto1404/script/test/Spec.hs:
+  hash: ef8d1c0c14bd7951b5db43ad0bc2b1c46ef3c248d621c644d3ddb98bc2a08ecc

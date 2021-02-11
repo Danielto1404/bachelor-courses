@@ -1,0 +1,47 @@
+graph ParserTree {
+    NODE_1 [label = START];
+    NODE_2 [label = DECORATOR];
+    NODE_1 -- NODE_2
+    NODE_3 [label = AT];
+    NODE_2 -- NODE_3
+    NODE_4 [label = Decorator];
+    NODE_2 -- NODE_4
+    NODE_5 [label = NEW_LINE];
+    NODE_2 -- NODE_5
+    NODE_6 [label = DEFINITION];
+    NODE_1 -- NODE_6
+    NODE_7 [label = DEF];
+    NODE_6 -- NODE_7
+    NODE_8 [label = FUN_NAME];
+    NODE_6 -- NODE_8
+    NODE_9 [label = mul];
+    NODE_8 -- NODE_9
+    NODE_10 [label = OPENED_BRACKET];
+    NODE_8 -- NODE_10
+    NODE_11 [label = ARGS];
+    NODE_8 -- NODE_11
+    NODE_12 [label = a];
+    NODE_11 -- NODE_12
+    NODE_13 [label = REST_ARGS];
+    NODE_11 -- NODE_13
+    NODE_14 [label = COMMA];
+    NODE_13 -- NODE_14
+    NODE_15 [label = ARGS];
+    NODE_13 -- NODE_15
+    NODE_16 [label = b];
+    NODE_15 -- NODE_16
+    NODE_17 [label = REST_ARGS];
+    NODE_15 -- NODE_17
+    NODE_18 [label = COMMA];
+    NODE_17 -- NODE_18
+    NODE_19 [label = ARGS];
+    NODE_17 -- NODE_19
+    NODE_20 [label = c];
+    NODE_19 -- NODE_20
+    NODE_21 [label = eps];
+    NODE_19 -- NODE_21
+    NODE_22 [label = CLOSED_BRACKET];
+    NODE_8 -- NODE_22
+    NODE_23 [label = EQUALITY];
+    NODE_8 -- NODE_23
+}

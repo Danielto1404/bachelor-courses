@@ -1,0 +1,42 @@
+grammar Python
+
+<package python>
+
+start => (String str, int n)
+  decorator definition
+    { @str = decorator.str; @str = @str + definition.str; @n = definition.n; }
+
+decorator => (String str)
+    AT ID
+      { @str = AT.text; @str = @str + ID.text + "\n"; }
+  | EPS
+      { @str = ""; }
+
+definition => (String str, int n)
+  DEF fun
+    { @str = DEF.text; @str = @str + " " + fun.str; @n = fun.n; }
+
+fun => (String str, int n)
+  ID L_BRACE args R_BRACE
+    { @str = ID.text; @str = @str + "(" + args.str + ")"; @n = args.n; }
+
+args => (String str, int n)
+    ID restArgs
+      { @str = ID.text; @str = @str + restArgs.str; @n = 1 + restArgs.n; }
+  | EPS
+      { @str = new String(); @n = 0; }
+
+restArgs => (String str, int n)
+    COMMA args
+      { @str = ", "; @str = @str + args.str; @n = args.n; }
+  | EPS
+      { @str = new String(); @n = 0; }
+
+AT      => "@"
+COMMA   => ","
+L_BRACE => "\("
+R_BRACE => "\)"
+DEF     => "def"
+ID      => "[a-zA-Z]+"
+
+skip WS => "[\s\n\t]"

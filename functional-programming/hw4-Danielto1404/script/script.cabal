@@ -1,0 +1,49 @@
+cabal-version: 1.12
+
+name:           script
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/Danielto1404/script#readme>
+homepage:       https://github.com/Danielto1404/script#readme
+bug-reports:    https://github.com/Danielto1404/script/issues
+author:         Daniil Korolev
+maintainer:     daniilkorolev00@gmail.com
+copyright:      2021 Daniil Korolev
+build-type:     Simple
+
+
+executable script-exe
+  main-is: Main.hs
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -Wwarn
+  build-depends:
+      base >=4.7 && <5
+    , script
+  default-language: Haskell2010
+
+library
+  exposed-modules:
+       HSExpr
+     , Interpreter
+     , Transpiler
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wwarn
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , mtl
+  default-language: Haskell2010
+
+test-suite script-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_script
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wwarn
+  build-depends:
+      base >=4.7 && <5
+    , script
+  default-language: Haskell2010

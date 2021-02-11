@@ -1,0 +1,107 @@
+grammar Calculator
+
+<package calculator>
+
+start => (int val)
+  orExpr
+    { @val = orExpr.val; }
+
+orExpr => (int val)
+  xorExpr orExprRest(xorExpr.val)
+    { @val = orExprRest.val; }
+
+orExprRest(int acc) => (int val)
+    OR xorExpr orExprRest(xorExpr.val | acc)
+      { @val = orExprRest.val; }
+  | EPS
+      { @val = acc; }
+
+xorExpr => (int val)
+  andExpr xorExprRest(andExpr.val)
+    { @val = xorExprRest.val; }
+
+xorExprRest(int acc) => (int val)
+    XOR andExpr xorExprRest(andExpr.val ^ acc)
+       { @val = xorExprRest.val; }
+  | EPS
+       { @val = acc; }
+
+andExpr => (int val)
+  addSubExpr andExprRest(addSubExpr.val)
+    { @val = andExprRest.val; }
+
+andExprRest(int acc) => (int val)
+    AND addSubExpr andExprRest(addSubExpr.val & acc)
+      { @val = andExprRest.val; }
+  | EPS
+      { @val = acc; }
+
+addSubExpr => (int val)
+  mulDivExpr addSubExprRest(mulDivExpr.val)
+    { @val = addSubExprRest.val; }
+
+addSubExprRest(int acc) => (int val)
+    PLUS mulDivExpr addSubExprRest(mulDivExpr.val + acc)
+      { @val = addSubExprRest.val; }
+  | MINUS mulDivExpr addSubExprRest(acc - mulDivExpr.val)
+      { @val = addSubExprRest.val; }
+  | EPS
+      { @val = acc; }
+
+mulDivExpr => (int val)
+  exprNot mulDivExprRest(exprNot.val)
+    { @val = mulDivExprRest.val; }
+
+mulDivExprRest(int acc) => (int val)
+    MULTIPLY exprNot mulDivExprRest(acc * exprNot.val)
+      { @val = mulDivExprRest.val; }
+  | DIVIDE exprNot mulDivExprRest(acc / exprNot.val)
+      { @val = mulDivExprRest.val; }
+  | EPS
+      { @val = acc; }
+
+exprNot => (int val)
+    NOT exprNot
+      { @val = ~exprNot.val; }
+  | unaryMinus
+      { @val = unaryMinus.val; }
+
+unaryMinus => (int val)
+    MINUS powExpr
+      { @val = -powExpr.val; }
+  | powExpr
+      { @val = powExpr.val; }
+
+powExpr => (int val)
+  tokenExpr powExprRest
+    { @val = (int) Math.pow(tokenExpr.val, powExprRest.val); }
+
+powExprRest => (int val)
+    POW powExpr
+      { @val = powExpr.val; }
+  | EPS
+      { @val = 1; }
+
+tokenExpr => (int val)
+    NUMBER
+      { @val = Integer.parseInt(@text); }
+  | OPEN orExpr CLOSE
+      { @val = orExpr.val; }
+  | TAN OPEN orExpr CLOSE
+      { @val = (int) Math.tan(Math.toRadians(orExpr.val)); }
+
+NUMBER   => "[0-9]+"
+PLUS     => "\+"
+MINUS    => "-"
+POW      => "\*\*"
+MULTIPLY => "\*"
+DIVIDE   => "/"
+OPEN     => "\("
+CLOSE    => "\)"
+OR       => "\|"
+AND      => "&"
+XOR      => "\^"
+NOT      => "!"
+TAN      => "tan"
+
+skip WS  => "[\s]+"

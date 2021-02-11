@@ -1,0 +1,36 @@
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/FileSystem/FSActions.hs:
+  hash: 9aead23a046777fa2e98969211c7a0382e0fe1bb8b252f583cac87ddd5466530
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/Parser/RunParser.hs:
+  hash: adcce40befd5a9b76a5c99ec3da2603610c142817702a67562ab538421f91d5d
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/FileSystem/FSException.hs:
+  hash: 9c5ea8a6e630423e9b373a00fb83fdedafce8d65f92427af2ea9959c9b07c23c
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/Utils/RainbowText.hs:
+  hash: 85be8e925908460644e62df77876bac67f8608a8e6a57441b4b6f56f1e6a3fce
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/Command/StartOption.hs:
+  hash: c5321aef6fda9cfeff1bd18186a3a431b0006aa1e7900e9e8d621ad98cd225be
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/Parser/CommandParser.hs:
+  hash: d5efddd547d19f081e5d1cc024cdd96300060a6651f453fc577a84ce173582ea
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/app/Main.hs:
+  hash: 33a7b0ecec6efeed7ec38f0d9db5a1f2efca80aaeedb0a1f6a4b22d7c55f2010
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/Utils/Time.hs:
+  hash: 0def37ececfe7e20cc5d20a3a43aed796503a69aaec0636671d64e22ffbe70ec
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/README.md:
+  hash: 9e4ca7a74cd570737187feee81bf2ca24cd51f2143000fb19ea3127a31071b5a
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/FileSystem/FSActionsVirtual.hs:
+  hash: 2977f96bc5853ed3dbb7291fae7e67a6edb1e68a0e56a2ff11afd49db7b58ffe
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/Utils/Path.hs:
+  hash: e0cf8aca3bdbfaf5ef3b1828961e5660d90f6550b86f5a5fa7622aab46872d80
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/Command/Command.hs:
+  hash: 6bd0b1aced21988508134fa274b28de6e8feecb45b76cc252f4eb7ec44b39d1d
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/Parser/StartOptionParser.hs:
+  hash: 0946de17839f377af64d1fa5b06af75ec954c94dd65f318faeea3e9749aad43c
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/hw3-Danielto1404.cabal:
+  hash: ab7da4c4ebe3e2ee387183353e7e4b13d70eda935e89958d061959e9521849be
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/FileSystem/VirtualFS.hs:
+  hash: 26f014ccf157f68623a2adac000ca59758c3229683ea0fba16b26b00536b759b
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/Command/Handler.hs:
+  hash: 64101245d42244d3e765d9634112eeefc5c0bc65b0437ace3d9340aaf6fb2145
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/FileSystem/FSActionsIO.hs:
+  hash: c3ee0a7e3e42190522970639f2e280c9eba85689aef53b6a435473200dfbe64c
+/Users/daniilkorolev/Documents/GitHub/3-rd-year/functional-programming/hw3-Danielto1404/src/FileSystem/FSEnviroment.hs:
+  hash: d43740a9e648eeb3f07561ffa10b464a5517bf93ba309181c1496a835a6e8347
