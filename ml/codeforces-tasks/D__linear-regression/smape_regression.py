@@ -194,10 +194,11 @@ def cf():
     X, y = [], []
     for _ in range(n):
         data = np.fromiter(input().split(), dtype=np.float)
-        xs, y = data[:-1], data[-1]
+        X.append(np.insert(data[:-1], m, 1))
+        y.append(data[-1])
 
     dataset = Dataset(X=np.array(X), y=np.array(y), n=n, features_cnt=m)
-    model = RidgeStochasticLinearRegression(h=0.5, lambda_=0.5)
+    model = RidgeStochasticLinearRegression(h=0.6, lambda_=0.9)
     model.fit(dataset)
     print(*model.w)
 
