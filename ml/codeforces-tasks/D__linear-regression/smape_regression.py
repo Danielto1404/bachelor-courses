@@ -129,26 +129,13 @@ def smape_loss(predicted, actual, n) -> np.float:
     return loss / n
 
 
-def least_squares_gradient(x, y, predicted):
-    return np.fromiter(map(lambda xi: -2 * xi * (y - predicted), x),
-                       dtype=np.float)
-
-
-def save(weights):
-    np.save("weights", weights)
-
-
-def load() -> np.array:
-    return np.load("weights.npy")
-
-
 def train_model(file_path):
-    def read(file, n, features_cnt):
+    def read(fl, n, features_cnt):
         X = []
         y = []
 
         for _ in range(n):
-            line = file.readline()
+            line = fl.readline()
             x = np.fromstring(line, sep=' ', dtype=np.float, count=features_cnt)
             X.append(np.insert(x, features_cnt, 1))  # add bias
             y.append(np.float(line.split()[-1]))
@@ -156,12 +143,12 @@ def train_model(file_path):
         return Dataset(X=np.array(X), y=np.array(y), n=n, features_cnt=features_cnt + 1)
 
     def read_file(path) -> (Dataset, Dataset):
-        with open(path, 'r') as file:
-            features_cnt = int(file.readline())
-            train_cnt = int(file.readline())
-            _train = read(file, train_cnt, features_cnt)
-            test_cnt = int(file.readline())
-            _test = read(file, test_cnt, features_cnt)
+        with open(path, 'r') as fl:
+            features_cnt = int(fl.readline())
+            train_cnt = int(fl.readline())
+            _train = read(fl, train_cnt, features_cnt)
+            test_cnt = int(fl.readline())
+            _test = read(fl, test_cnt, features_cnt)
 
             return _train, _test
 
@@ -179,13 +166,7 @@ SMAPE score: {}
 
 ==================================================='''.format(m[0], file_path, m[1]))
 
-#
-#
-# def print_loss(dataset, w):
-#     predicted = np.dot(dataset.X, w)
-#     print(smape_loss(predicted, dataset.y, dataset.n))
-#
-#
+
 # def draw_graphic(dataset, w):
 #     predicted = np.dot(dataset.X, w)
 #     actual = dataset.y
@@ -204,11 +185,21 @@ SMAPE score: {}
 #     plt.plot(xs, test.y, color='red')
 #     plt.plot(xs, model.predict(test.X), color='green')
 #     plt.show()
+
 #
-#
-# # sklearn_process()
-# fit("data/0.60_0.73.txt")
-# # cf()
+
+
+def cf():
+    n, m = map(int, input().split())
+    X, y = [], []
+    for _ in range(n):
+        data = np.fromiter(input().split(), dtype=np.float)
+        xs, y = data[:-1], data[-1]
+
+    dataset = Dataset(X=np.array(X), y=np.array(y), n=n, features_cnt=m)
+    model = RidgeStochasticLinearRegression(h=0.5, lambda_=0.5)
+    model.fit(dataset)
+    print(*model.w)
 
 
 if __name__ == '__main__':
