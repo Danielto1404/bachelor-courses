@@ -198,7 +198,7 @@ def cf():
         y.append(data[-1])
 
     dataset = Dataset(X=np.array(X), y=np.array(y), n=n, features_cnt=m)
-    model = RidgeStochasticLinearRegression(h=0.6, lambda_=0.9)
+    model = RidgeStochasticLinearRegression(h=0.6, lambda_=0.89, iterations=5000)
     model.fit(dataset)
     print(*model.w)
 
