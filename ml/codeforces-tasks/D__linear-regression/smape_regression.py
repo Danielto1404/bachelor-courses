@@ -46,10 +46,10 @@ class RidgeSmapeCV:
                 predicted = model.predict(self.test)
                 score = smape_loss(predicted, self.test.y, self.test.n)
                 scores.append((model, score))
+
                 iteration += 1
                 clear_screen()
                 print_rest_time(get_rest_time_in_seconds(iteration, amount_of_it))
-                # print('{} seconds left'.format(int(get_rest_time_in_seconds(iteration, amount_of_it))))
                 print('''
 ====>>> iteration: {} / {}
         lambda   : {}
