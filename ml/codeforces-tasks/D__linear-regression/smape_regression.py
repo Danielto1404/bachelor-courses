@@ -111,8 +111,10 @@ class RidgeStochasticLinearRegression:
             abs_y = np.abs(yi)
             diff = yi - pred
             abs_diff = np.abs(diff)
+
             derivative = -xi * diff / (abs_diff * (abs_predicted + abs_y)) \
                          - xi * pred * abs_diff / (abs_predicted * (abs_predicted + abs_y) ** 2)
+
             return derivative
 
         return np.fromiter(
@@ -208,9 +210,22 @@ def cf():
         y.append(data[-1])
 
     dataset = Dataset(X=np.array(X), y=np.array(y), n=n, features_cnt=m + 1)
-    model = RidgeStochasticLinearRegression(h=0.83, lambda_=0.85, iterations=2500)
-    model.fit(dataset)
-    print(*model.w)
+
+    models = []
+
+    for _ in range(50):
+        model = RidgeStochasticLinearRegression(h=0.7, lambda_=0.85, iterations=2500)
+        model.fit(dataset=dataset, initial_weight=random_weights(n=dataset.n, features_cnt=dataset.features_cnt))
+        model.predict(dataset)
+
+        loss = smape_loss(predicted=model.predict(dataset),
+                          actual=dataset.y,
+                          n=dataset.n)
+
+        models.append((model, loss))
+
+    (m, score) = min(models, key=lambda model_: model_[1])
+    print(m, score)
 
 
 def save_random_weights():
@@ -241,9 +256,9 @@ SMAPE score: {}
 
 
 if __name__ == '__main__':
-    save_random_weights()
-    find_best_params('data/0.40_0.65.txt')
-    find_best_params('data/0.52_0.70.txt')
-    find_best_params('data/0.62_0.80.txt')
+    # save_random_weights()
+    # find_best_params('data/0.40_0.65.txt')
+    # find_best_params('data/0.52_0.70.txt')
+    # find_best_params('data/0.62_0.80.txt')
 
-    # cf()
+    cf()
