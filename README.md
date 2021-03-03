@@ -20,7 +20,7 @@
 * ## 3rd year
 + [Translation methods](translation-methods)
 + [Parallel programming](parallel-programming)
-+ [Machine learning](ml)
++ [Machine learning](ML)
 + [Functional programming](functional-programming)
 + [Cryptography](cryptography)
 + [CTF Reverse](reverse)
