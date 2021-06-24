@@ -1,0 +1,6 @@
+* ping 10.0.0.1              -> командой ping 
+* ping [fd91:3abf:626b:1::1] -> командой ping6
+* MAC-адреа IPv4             -> arp -a
+* MAC-адрес IPv6             -> ip -6 -neigh
+* Поиск последних узлов      -> Бинарный поиск по подмаскам заданной сети
+* MTU до узла                -> traceroute6 + (48 if you use macOS)

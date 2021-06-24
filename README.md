@@ -24,3 +24,6 @@
 + [Functional programming](functional-programming)
 + [Cryptography](cryptography)
 + [CTF Reverse](reverse)
++ [Networks](networks)
++ [Advanced ML](advanced-ML)
++ [Recommender systems](recommender-systems)

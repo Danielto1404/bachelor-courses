@@ -1,0 +1,43 @@
+Во многих задания я использовал утилиту wireshark.
+
+1) IPv4: 
+Открыл wireshark и во время подключения к vpn выбрал появившийся интерфейс tap0. В логе открывшегося меню нашел первый протокол DHCP и запомнил source address -- таким образом я получил IPv4 по DHCP
+
+2) IPv4 ping:
+Пропинговал найденный сверху адрес.
+
+3) SLAAC:
+Дождался в логах wireshark пакета с протоколом ICMPv6 (в среднем приходит раз в 2 минуты), далее открыл вкладки с подробностями и выбрал ICMPv6 Option. В них есть 2 prefix адреса, один из SLAAC другой DHCPv6, далее я добавил суффикс из задания и сделал ping.
+
+4) Получить адрес по DHCPv6:
+sudo ipconfig set tap0 automatic-v6 – автоматическое получение IPv6
+Зашел в ifconfig и вытащил адрес для tap0
+
+5) ping DHCPv6:
+Аналогично SLAAC –– но использовал первый префикс из ICMPv6.
+
+6) IP example.localdomain:
+
+DNS получил с помощью команды scutil --dns и выбрал ip адрес для интерфейса tap0
+
+Далее с помощью утилиты nslookup сделал запрос на заданный domain.
+
+[QUERRY] nslookup -type=any example.localdomain fd87:52ab:6efc:40::53
+
+[RESPONSE]
+Server:	fd87:52ab:6efc:40::53
+Address:	fd87:52ab:6efc:40::53#53
+
+example.localdomain	has AAAA address fd87:52ab:6efc:40:8887:5ecd:a395:cae
+
+7) 
+[QUERRY]
+-H означает что мы добавляем header
+"HOST: .." передавая модифицированный заголовок «Host:», мы можем заставить сервер ответить содержимым сайта, даже если мы на самом деле не подключались к имени хоста.
+
+curl -H "Host: example.localdomain" "[fd87:52ab:6efc:40:8887:5ecd:a395:cae]"
+
+[RESPONSE]
+Ура!
+
+скрины: https://drive.google.com/drive/folders/1Vakih1OXoPuHq_iJQbFxTvsAo-KJQf4X?usp=sharing
