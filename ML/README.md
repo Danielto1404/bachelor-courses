@@ -2,7 +2,7 @@
 
 ### Course attachments
 
-* #### [Course attachments](course-attachments)
+* #### [Course attachments & slides](slides)
 
 
 ### Homeworks
@@ -10,4 +10,3 @@
 * #### [Codeforces tasks](codeforces-tasks)
 
 * #### [Machine learning algorithms](labs)
-
