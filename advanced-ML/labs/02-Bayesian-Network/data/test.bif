@@ -1,0 +1,26 @@
+network Test {
+}
+variable A {
+  type discrete [ 2 ] { low, med, high };
+}
+variable B {
+  type discrete [ 2 ] { low, high };
+}
+variable C {
+  type discrete [ 2 ] { low, high };
+}
+
+probability ( A ) {
+  table 0.3, 0.5, 0.2;
+}
+probability ( B ) {
+  table 0.1, 0.9;
+}
+probability ( C | A, B ) {
+  (low, low) 0.4, 0.6;
+  (low, high) 0.01, 0.99;
+  (med, low) 0.5, 0.5;
+  (med, high) 0.6, 0.4;
+  (high, low) 0.7, 0.3;
+  (high, high) 0.1, 0.9;
+}
