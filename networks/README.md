@@ -1,7 +1,7 @@
 ### Networks course
 
 #### Homeworks:
- + [1. Привет](01-Hello)
+ + [1. Привет](01-hello)
  + [2. L2](02-L2)
  + [3. L2: Episode One](03-L2-episode-one)
  + [4. L2: Episode Two](04-L2-episode-two)
