@@ -90,4 +90,7 @@ Test.dSYM/*
 #test files
 *Test*.java
 *test*.java
->>>>>>> 8f2b552261ad134d8a5d5d7d6eb819f19956188e
+
+# PyCharm & python
+venv
+__pycache__
