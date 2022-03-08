@@ -1,0 +1,9 @@
+π{SessionId}(
+    Sessions
+) except π{SessionId} (
+    π{ContestId, SessionId, Letter}(
+        Problems ⋈ Sessions
+    ) except π{ContestId, SessionId, Letter}(
+        Runs ⋈ Sessions
+    )
+)

@@ -1,0 +1,6 @@
+PassProblemTeams(TeamId) :-
+  Runs(_, SessionId, :Letter, _, 1),
+  Sessions(SessionId, TeamId, :ContestId, _).
+FailedProblemTeams(TeamName) :-
+  Teams(TeamId, TeamName),
+  not PassProblemTeams(TeamId).

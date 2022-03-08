@@ -1,0 +1,8 @@
+π{TeamName}(
+    π{TeamId, TeamName, ContestId}(
+        Teams ⋈ Contests
+    ) except
+    π{TeamId, TeamName, ContestId}(
+        Teams ⋈ Sessions ⋈ Runs
+    )
+)

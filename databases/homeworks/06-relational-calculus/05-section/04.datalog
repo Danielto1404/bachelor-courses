@@ -1,0 +1,12 @@
+StudentHaveMark(StudentId, CourseId) :-
+    Marks(StudentId, CourseId, _).
+
+MissedMark(StudentId) :-
+    Plan(GroupId, CourseId, LecturerId),
+    Lecturers(LecturerId, :LecturerName),
+    Students(StudentId, _, GroupId),
+    not StudentHaveMark(StudentId, CourseId).
+
+StudentWithAllLecturerMarks(StudentId) :-
+    Students(StudentId, _, _),
+    not MissedMark(StudentId).

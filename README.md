@@ -27,3 +27,10 @@
 + [Networks](networks)
 + [Advanced ML](advanced-ML)
 + [Recommender systems](recommender-systems)
+
+* ## 4th year
++ [Databases](databases)
++ [Coding theory](coding-theory)
++ [Python backend](python-backend)
++ [Software design](software-design)
++ [Optimization methods](optimization-methods)

@@ -1,0 +1,9 @@
+StudentsHaveBadMark(StudentId, CourseId) :-
+    Marks(StudentId, CourseId, Mark),
+    Mark < 3.
+
+StudentsWithDebt(StudentName, CourseName) :-
+    Students(StudentId, StudentName, GroupId),
+    Plan(GroupId, CourseId, _),
+    Courses(CourseId, CourseName),
+    StudentsHaveBadMark(StudentId, CourseId).

@@ -1,0 +1,13 @@
+π{SessionId}(
+    Sessions
+)
+except
+π{SessionId}(
+    π{SessionId, Letter}(
+        Sessions ⋈ Problems
+    )
+    except
+    π{SessionId, Letter}(
+        select {Accepted = 1} (Runs)
+    )
+)
