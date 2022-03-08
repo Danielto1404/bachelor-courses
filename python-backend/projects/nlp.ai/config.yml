@@ -1,0 +1,5 @@
+server:
+  port: 8000
+  host: localhost
+  log_level: info
+  reload: True
