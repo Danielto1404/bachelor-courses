@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class StubServerTests</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class StubServerTests</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/default-package.html">default-package</a> &gt; StubServerTests</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">2</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">4.413s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">aggregator is stopped by result quantity satisfaction()</td>
+<td class="success">0.563s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">aggregator is stopped by timeout exceeding()</td>
+<td class="success">3.850s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>Sleeping
+[INFO] [02/21/2022 10:09:23.376] [Test worker] [akka.actor.ActorSystemImpl(searching)] Sending request: Request(request=request)
+[INFO] [02/21/2022 10:09:23.400] [searching-akka.actor.default-dispatcher-5] [akka://searching/user/aggregator/zero] Starting child actor
+[INFO] [02/21/2022 10:09:23.408] [searching-akka.actor.default-dispatcher-7] [akka://searching/user/aggregator/second] Starting child actor
+[INFO] [02/21/2022 10:09:23.408] [searching-akka.actor.default-dispatcher-4] [akka://searching/user/aggregator/first] Starting child actor
+[INFO] [02/21/2022 10:09:23.413] [searching-akka.actor.default-dispatcher-6] [akka://searching/user/aggregator] Starting request propagation &amp; aggregation: Request(request=request)
+[INFO] [02/21/2022 10:09:23.435] [searching-akka.actor.default-dispatcher-5] [akka://searching/user/aggregator/first] Performing request: Request(request=request)
+[INFO] [02/21/2022 10:09:23.436] [searching-akka.actor.default-dispatcher-4] [akka://searching/user/aggregator/second] Performing request: Request(request=request)
+[INFO] [02/21/2022 10:09:23.436] [searching-akka.actor.default-dispatcher-7] [akka://searching/user/aggregator/zero] Performing request: Request(request=request)
+[INFO] [02/21/2022 10:09:23.697] [searching-akka.actor.default-dispatcher-7] [akka://searching/user/aggregator/zero] Result: [Link(header=Bing, url=https://www.bing.com/, source=zero), Link(header=Google, url=https://google.com/, source=zero), Link(header=Yandex, url=https://yandex.ru/, source=zero)]
+Sleeping
+[INFO] [02/21/2022 10:09:24.217] [searching-akka.actor.default-dispatcher-9] [akka://searching/user/aggregator] Stopped by timeout exceeding
+[INFO] [02/21/2022 10:09:24.217] [searching-akka.actor.default-dispatcher-9] [akka://searching/user/aggregator] Results: [Link(header=Bing, url=https://www.bing.com/, source=zero), Link(header=Google, url=https://google.com/, source=zero), Link(header=Yandex, url=https://yandex.ru/, source=zero)]
+[INFO] [02/21/2022 10:09:24.652] [searching-akka.actor.default-dispatcher-5] [akka://searching/user/aggregator/first] Result: [Link(header=Bing, url=https://www.bing.com/, source=first), Link(header=Google, url=https://google.com/, source=first), Link(header=Yandex, url=https://yandex.ru/, source=first)]
+[INFO] [02/21/2022 10:09:25.655] [searching-akka.actor.default-dispatcher-4] [akka://searching/user/aggregator/second] Result: [Link(header=Bing, url=https://www.bing.com/, source=second), Link(header=Google, url=https://google.com/, source=second), Link(header=Yandex, url=https://yandex.ru/, source=second)]
+Sleeping
+[INFO] [02/21/2022 10:09:25.749] [Test worker] [akka.actor.ActorSystemImpl(searching)] Sending request: Request(request=request)
+[INFO] [02/21/2022 10:09:25.751] [searching-akka.actor.default-dispatcher-7] [akka://searching/user/aggregator] Starting request propagation &amp; aggregation: Request(request=request)
+[INFO] [02/21/2022 10:09:25.751] [searching-akka.actor.default-dispatcher-7] [akka://searching/user/aggregator/zero] Starting child actor
+[INFO] [02/21/2022 10:09:25.751] [searching-akka.actor.default-dispatcher-7] [akka://searching/user/aggregator/zero] Performing request: Request(request=request)
+[INFO] [02/21/2022 10:09:25.753] [searching-akka.actor.default-dispatcher-6] [akka://searching/user/aggregator/first] Starting child actor
+[INFO] [02/21/2022 10:09:25.753] [searching-akka.actor.default-dispatcher-6] [akka://searching/user/aggregator/first] Performing request: Request(request=request)
+[INFO] [02/21/2022 10:09:25.754] [searching-akka.actor.default-dispatcher-8] [akka://searching/user/aggregator/second] Starting child actor
+[INFO] [02/21/2022 10:09:25.754] [searching-akka.actor.default-dispatcher-8] [akka://searching/user/aggregator/second] Performing request: Request(request=request)
+[INFO] [02/21/2022 10:09:25.767] [searching-akka.actor.default-dispatcher-7] [akka://searching/user/aggregator/zero] Result: [Link(header=Bing, url=https://www.bing.com/, source=zero), Link(header=Google, url=https://google.com/, source=zero), Link(header=Yandex, url=https://yandex.ru/, source=zero)]
+[INFO] [02/21/2022 10:09:25.778] [searching-akka.actor.default-dispatcher-6] [akka://searching/user/aggregator/first] Result: [Link(header=Bing, url=https://www.bing.com/, source=first), Link(header=Google, url=https://google.com/, source=first), Link(header=Yandex, url=https://yandex.ru/, source=first)]
+[INFO] [02/21/2022 10:09:25.784] [searching-akka.actor.default-dispatcher-8] [akka://searching/user/aggregator/second] Result: [Link(header=Bing, url=https://www.bing.com/, source=second), Link(header=Google, url=https://google.com/, source=second), Link(header=Yandex, url=https://yandex.ru/, source=second)]
+[INFO] [02/21/2022 10:09:25.785] [searching-akka.actor.default-dispatcher-7] [akka://searching/user/aggregator] Stopped by result quantity satisfaction
+[INFO] [02/21/2022 10:09:25.785] [searching-akka.actor.default-dispatcher-7] [akka://searching/user/aggregator] Stopped by timeout exceeding
+[INFO] [02/21/2022 10:09:25.785] [searching-akka.actor.default-dispatcher-7] [akka://searching/user/aggregator] Results: [Link(header=Bing, url=https://www.bing.com/, source=zero), Link(header=Google, url=https://google.com/, source=zero), Link(header=Yandex, url=https://yandex.ru/, source=zero), Link(header=Bing, url=https://www.bing.com/, source=first), Link(header=Google, url=https://google.com/, source=first), Link(header=Yandex, url=https://yandex.ru/, source=first), Link(header=Bing, url=https://www.bing.com/, source=second), Link(header=Google, url=https://google.com/, source=second), Link(header=Yandex, url=https://yandex.ru/, source=second)]
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>Feb 21, 2022 10:09:22 AM org.glassfish.grizzly.http.server.NetworkListener start
+INFO: Started listener bound to [0.0.0.0:32453]
+Feb 21, 2022 10:09:22 AM org.glassfish.grizzly.http.server.HttpServer start
+INFO: [HttpServer] Started.
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer - GET Request to URL: http://localhost:32453/2 of type null
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer - GET Request to URL: http://localhost:32453/1 of type null
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer - GET Request to URL: http://localhost:32453/0 of type null
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [host] with value: [localhost:32453]
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [host] with value: [localhost:32453]
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [host] with value: [localhost:32453]
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [connection] with value: [keep-alive]
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [connection] with value: [keep-alive]
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [connection] with value: [keep-alive]
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [accept-encoding] with value: [gzip, deflate]
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [accept-encoding] with value: [gzip, deflate]
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [accept-encoding] with value: [gzip, deflate]
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [accept] with value: [*/*]
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [accept] with value: [*/*]
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [accept] with value: [*/*]
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [user-agent] with value: [khttp/1.0.0-SNAPSHOT]
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [user-agent] with value: [khttp/1.0.0-SNAPSHOT]
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [user-agent] with value: [khttp/1.0.0-SNAPSHOT]
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Body: 
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Body: 
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Body: 
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer - 
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer - 
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer - 
+Feb 21, 2022 10:09:25 AM org.glassfish.grizzly.http.server.NetworkListener shutdownNow
+INFO: Stopped listener bound to [0.0.0.0:32453]
+Feb 21, 2022 10:09:25 AM org.glassfish.grizzly.http.server.NetworkListener start
+INFO: Started listener bound to [0.0.0.0:32453]
+Feb 21, 2022 10:09:25 AM org.glassfish.grizzly.http.server.HttpServer start
+INFO: [HttpServer-1] Started.
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer - GET Request to URL: http://localhost:32453/0 of type null
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [host] with value: [localhost:32453]
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [connection] with value: [keep-alive]
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [accept-encoding] with value: [gzip, deflate]
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [accept] with value: [*/*]
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [user-agent] with value: [khttp/1.0.0-SNAPSHOT]
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Body: 
+[Grizzly-worker(1)] INFO com.xebialabs.restito.server.StubServer - 
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer - GET Request to URL: http://localhost:32453/2 of type null
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer - GET Request to URL: http://localhost:32453/1 of type null
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [host] with value: [localhost:32453]
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [host] with value: [localhost:32453]
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [connection] with value: [keep-alive]
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [connection] with value: [keep-alive]
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [accept-encoding] with value: [gzip, deflate]
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [accept-encoding] with value: [gzip, deflate]
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [accept] with value: [*/*]
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [accept] with value: [*/*]
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [user-agent] with value: [khttp/1.0.0-SNAPSHOT]
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Header [user-agent] with value: [khttp/1.0.0-SNAPSHOT]
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Body: 
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer -  --&gt; Body: 
+[Grizzly-worker(3)] INFO com.xebialabs.restito.server.StubServer - 
+[Grizzly-worker(2)] INFO com.xebialabs.restito.server.StubServer - 
+Feb 21, 2022 10:09:26 AM org.glassfish.grizzly.http.server.NetworkListener shutdownNow
+INFO: Stopped listener bound to [0.0.0.0:32453]
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 6.6.1</a> at Feb 21, 2022, 10:09:26 AM</p>
+</div>
+</div>
+</body>
+</html>

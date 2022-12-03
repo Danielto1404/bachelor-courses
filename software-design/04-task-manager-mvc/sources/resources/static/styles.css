@@ -1,0 +1,88 @@
+.sized {
+    width: 320px;
+    vertical-align:top;
+    text-align:center;
+}
+
+.container {
+    width: 300px
+    height: 80px;
+    text-align: center;
+    font-family: "PT Mono", serif;
+    border-radius: 10px;
+    padding: 15px 15px 15px 15px;
+    margin: 20px 20px 20px 20px;
+    background: white;
+    overflow: visible;
+    position: relative;
+    box-shadow: 12px 12px 10px 1px rgba(0, 0, 255, .2);
+}
+
+.newTask {
+    width: 200px;
+    height: 20px;
+    text-align: center;
+    font-family: "PT Mono", serif;
+    border-radius: 20px;
+    padding: 15px 15px 15px 15px;
+    margin: 20px 20px 20px 20px;
+    background: rgb(235, 236, 240);
+    overflow: visible;
+    position: relative;
+}
+
+.removeGroup {
+    position: relative;
+    background: black;
+    width: 30px;
+    height: 20px;
+    border-radius: 10px;
+    border: 0;
+    color: white;
+    top: -5px;
+    right: -150px;
+}
+
+.removeButton {
+    position: absolute;
+    background: black;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 0;
+    color: white;
+    top: -3px;
+    right: -3px;
+}
+
+.doneButton {
+    background: black;
+    color: white;
+    border-radius: 3px;
+    width: 250px;
+    height: 20px;
+}
+
+.input {
+    border-radius: 10px;
+    background-color: lightslategray;
+    width: 100px;
+    height: 20px;
+    font-family: "PT Mono", serif;
+}
+
+.gradient {
+    background: rgb(147, 112, 219);
+}
+
+
+.tasksGroup {
+    background: rgb(235, 236, 240);
+    border-radius: 20px;
+    height: 100%;
+}
+
+table td {
+    table-layout: fixed;
+    width: 340;
+}

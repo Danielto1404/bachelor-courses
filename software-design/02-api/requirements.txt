@@ -1,0 +1,6 @@
+pydantic
+plotly
+pandas
+vk_api
+PyYAML
+loguru

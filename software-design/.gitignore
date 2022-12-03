@@ -1,0 +1,12 @@
+# Python 
+__pycache__
+venv
+
+# PyCharm
+.idea
+
+# MacOS
+.DS_Store
+
+*.xml
+*.iml

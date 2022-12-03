@@ -1,0 +1,4 @@
+pygame
+pycairo
+matplotlib
+numpy

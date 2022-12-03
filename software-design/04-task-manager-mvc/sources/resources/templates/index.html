@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Task manager 📋</title>
+    <link rel="logo" href="../images/logo.jpg"/>
+    <link rel="stylesheet" href="{{ url_for('static', path='/styles.css') }}" type="text/css"/>
+</head>
+<body class="gradient">
+<div class="input">
+    <form method="post" action="/add-group">
+        <label>
+            <input type="text" name="group_name" value="" placeholder="Имя списка"/>
+        </label>
+        <input type="submit" value="Добавить список">
+    </form>
+</div>
+<br><br><br>
+<br>
+<table style="">
+    {% for group in groups %}
+    <td style="vertical-align:top;text-align:center;">
+        <div class="tasksGroup">
+            <table class="sized">
+                <form method="post" action="/remove-group/{{ group.group_id }}">
+                    <button class="removeGroup" type="submit">x</button>
+                </form>
+                <thead><h2><em>{{ group.name }}</em></h2></thead>
+                {% for task in group.tasks %}
+                <tr>
+                    <div class="container">
+                        <strong style="font-family:Gill Sans, sans-serif">{{ task.name }}</strong>
+                        <br>
+                        {{ "✅" if task.completed else "❌"}}
+                        <br><br>
+                        <form method="post"
+                              action="/mark?completed={{ not task.completed }}&task_id={{ task.task_id }}">
+                            <button class="doneButton" type="submit">
+                                {{ "Убрать из сделанных" if task.completed else "Выполнить" }}
+                            </button>
+                        </form>
+                        <form method="post" action="/remove-task/{{ task.task_id }}">
+                            <button class="removeButton" type="submit">x</button>
+                        </form>
+                    </div>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <div class="newTask">
+                        <form method="post" action="/add-task/{{ group.group_id }}">
+                            <label>
+                                <input type="text" name="task_name" placeholder="Имя задачи">
+                            </label>
+                            <input type="submit" value="+">
+                        </form>
+                    </div>
+                </tr>
+            </table>
+        </div>
+    </td>
+    {% endfor %}
+</table>
+</body>
+</html>
