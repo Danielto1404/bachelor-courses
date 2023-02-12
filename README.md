@@ -20,12 +20,12 @@
 * ## 3rd year
 + [Translation methods](translation-methods)
 + [Parallel programming](parallel-programming)
-+ [Machine learning](ML)
++ [Machine learning Intro](ml)
 + [Functional programming](functional-programming)
 + [Cryptography](cryptography)
 + [CTF Reverse](reverse)
 + [Networks](networks)
-+ [Advanced ML](advanced-ML)
++ [Advanced ML](advanced-ml)
 + [Recommender systems](recommender-systems)
 
 * ## 4th year
