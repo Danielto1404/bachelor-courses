@@ -15,7 +15,7 @@ python-multipart==0.0.5
 PyYAML==5.4.1
 Rx==1.6.1
 six==1.16.0
-starlette==0.14.2
+starlette==0.25.0
 torch==1.9.1
 typing-extensions==3.10.0.2
 uvicorn==0.15.0
